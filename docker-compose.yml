@@ -1,0 +1,25 @@
+version: '3'
+services:
+    server:
+        build:
+            context: ./server
+            dockerfile: Dockerfile-server
+        image: dj-server
+        container_name: server
+        ports:
+            - '8000:8000'
+        volumes:
+            - .:/home/blog
+        tty: true
+
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile-client
+        image: vue-client
+        container_name: client
+        ports:
+            - '8080:8080'
+        volumes:
+            - .:/home/blog
+        tty: true
