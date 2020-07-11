@@ -14,18 +14,6 @@ SECRET_KEY = 'h-9c4=k98lc2%h-v&n*_x+w2*2iusl2u7-x5^@ax)z)gd_b#tq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-if DEBUG:
-    logging.basicConfig(
-        level = logging.DEBUG,
-        format = '''%(levelname)s %(asctime)s %(pathname)s:%(funcName)s:%(lineno)s
-        %(message)s''')
-
-else:
-    logging.basicConfig(
-        level = logging.DEBUG,
-        format = '''%(levelname)s %(asctime)s %(pathname)s:%(funcName)s 行数:%(lineno)s:%(lineno)s
-        %(message)s'''
-    )
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -161,3 +149,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if DEBUG:
+    logging.basicConfig(
+        level = logging.DEBUG,
+        format = '''%(levelname)s %(asctime)s %(pathname)s:%(funcName)s:%(lineno)s
+        %(message)s''')
+
+    INSTALLED_APPS += ['corsheaders']
+    MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
+    CORS_ORIGIN_WHITELIST = (
+        'http://localhost:8080',
+    )
+else:
+    logging.basicConfig(
+        level = logging.DEBUG,
+        format = '''%(levelname)s %(asctime)s %(pathname)s:%(funcName)s 行数:%(lineno)s:%(lineno)s
+        %(message)s'''
+    )
