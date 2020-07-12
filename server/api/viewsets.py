@@ -21,11 +21,17 @@ from rest_framework.parsers import FileUploadParser
 from .serializers import *
 from .models import *
 
-import logging
-import re
+import re, logging
 
-logger = logging.getLogger(__name__)
+log = logging.getLogger(__name__)
 
 class ArticleViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny,)
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny,)
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

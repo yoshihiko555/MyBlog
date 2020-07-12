@@ -9,4 +9,15 @@ class ArticleSerializer(serializers.ModelSerializer):
             'id',
             'title',
             'content',
+            'category',
+            'thumbnail',
+            'created_at',
+            'updated_at',
         ]
+
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = '__all__'

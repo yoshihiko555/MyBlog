@@ -52,7 +52,8 @@
     "rules": {
         "no-tabs": 0,
         "indent": "off",
-        "comma-dangle": "off"
+        "comma-dangle": "off",
+        "eol-last": "off"
     }
   },
   "browserslist": [

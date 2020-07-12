@@ -3,8 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import http from '@/plugins/http'
+require('@/static/scss/main.scss')
 
 Vue.config.productionTip = false
+
+Vue.use(http)
 
 new Vue({
   router,

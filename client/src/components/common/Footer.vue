@@ -1,5 +1,10 @@
 <template>
-    <h1>Footer</h1>
+    <v-footer
+    >
+        <v-row justify='end'>
+            <small>Yoshihiko All Rights Reserved</small>
+        </v-row>
+    </v-footer>
 </template>
 
 <script>
