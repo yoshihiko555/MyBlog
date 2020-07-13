@@ -6,7 +6,7 @@
         show-arrows-on-hover
     >
         <v-carousel-item
-            v-for='(article, i) in latestArticles'
+            v-for='(article, i) in latestArticleList'
             :key='i'
         >
             <v-sheet
@@ -27,17 +27,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: 'CarouselArticles',
-    props: {
-        latestArticles: {
-            type: Array,
-            required: true,
-        }
-    },
     data: () => ({
 
-    })
+    }),
+    computed: {
+        ...mapGetters([
+            'latestArticleList',
+        ])
+    },
 }
 </script>
 

@@ -53,7 +53,8 @@
         "no-tabs": 0,
         "indent": "off",
         "comma-dangle": "off",
-        "eol-last": "off"
+        "eol-last": "off",
+        "no-unused-vars": "off"
     }
   },
   "browserslist": [
