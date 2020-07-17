@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "Yoshihiko",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -54,7 +54,9 @@
         "indent": "off",
         "comma-dangle": "off",
         "eol-last": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "no-mixed-spaces-and-tabs": "off",
+        "no-unneeded-ternary": "off"
     }
   },
   "browserslist": [

@@ -4,11 +4,13 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import http from '@/plugins/http'
+import { globalMixins } from '@/mixins'
 require('@/static/scss/main.scss')
 
 Vue.config.productionTip = false
 
 Vue.use(http)
+Vue.mixin(globalMixins)
 
 new Vue({
   router,

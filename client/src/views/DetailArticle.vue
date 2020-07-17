@@ -51,6 +51,7 @@ export default {
             res.data.created_at = res.data.created_at.substr(0, 10).replace(/-/g, '/')
             console.log(res)
             this.article = res.data
+            this.setTitle(res.data.title)
             console.log(this.article)
         })
         .catch(e => {
