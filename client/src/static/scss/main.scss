@@ -1,3 +1,9 @@
+body {
+    p {
+        font-family: 'Inconsolata', monospace;
+    }
+}
+
 .main {
     margin-top: $header;
 	min-height: calc(100vh - #{($header + $footer)}) !important;

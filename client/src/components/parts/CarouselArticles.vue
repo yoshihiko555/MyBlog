@@ -1,7 +1,7 @@
 <template>
     <v-carousel
         id="carousel_wrap"
-        height='400'
+        height='300'
         hide-delimiter-background
         show-arrows-on-hover
     >

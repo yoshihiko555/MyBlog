@@ -1,12 +1,14 @@
 <template>
     <div id='sidebar_wrap'>
-        <h1 class="sidebar_logo">Yoshihiko</h1>
+        <router-link to='/' class="sidebar_logo_link">
+            <h1 class="sidebar_logo mb-2">Yoshihiko</h1>
+        </router-link>
 
-        <v-img src='@/static/img/pithuy.jpeg'></v-img>
+        <v-img src='@/static/img/pithuy.jpeg' class="mb-5"></v-img>
 
         <p>This is my personal blog where I share a lot of stuffs about life and work everything I do in between.</p>
 
-        <div class="sns_wrap">
+        <div class="sns_wrap mb-5">
             <v-btn icon href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
             <v-btn icon href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn>
             <v-btn icon href='https://github.com/shutotakizawa' target='blank'><v-icon>mdi-github</v-icon></v-btn>
@@ -15,23 +17,31 @@
 
         <v-divider></v-divider>
 
-        <div class="recent_wrap">
-            <h2>Recent Articles</h2>
+        <div class="recent_wrap my-3">
+            <h2 class="recent_title mb-2">Recent Articles</h2>
             <div
                 v-for='article in latestArticleList'
                 :key='article.id'
                 class="recent_article_wrap"
             >
-                <v-img :src='article.thumbnail' class="recent_thumbnail"></v-img>
-                <h2 class="text-subtitle-1 recent_title">{{ article.title }}</h2>
-                <p class="recent_create">{{ article.created_at }}</p>
+                <router-link
+                    :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
+                >
+                    <v-img
+                        :src='article.thumbnail'
+                        class="recent_thumbnail"
+                        :alt='article.title'
+                    ></v-img>
+                    <h2 class="text-subtitle-1 recent_title">{{ article.title }}</h2>
+                    <p class="recent_create">{{ article.created_at }}</p>
+                </router-link>
                 <v-divider></v-divider>
             </div>
 
         </div>
 
-        <div class="categorys_wrap">
-            <h2>Categorys</h2>
+        <div class="categorys_wrap mt-5">
+            <h2 class="category_title mb-2">Categorys</h2>
             <v-chip-group
                 column
             >
@@ -88,30 +98,57 @@ export default {
 
 <style lang="scss">
     #sidebar_wrap {
-
-        .recent_article_wrap {
-            position: relative;
-            height: 80px;
-            margin-bottom: 5%;
-
-            .recent_thumbnail {
-                width: 40%;
-                height: 100%;
-                display: inline-block;
+        .sidebar_logo_link {
+            text-decoration: none;
+            .sidebar_logo {
+                color: #333;
             }
+        }
+
+        .sns_wrap {
+            margin-bottom: 0%;
+        }
+
+        .recent_wrap {
 
             .recent_title {
-                display: inline-block;
-                position: absolute;
-                top: 0;
-                margin-left: 3%;
+                font-family: 'Inconsolata', monospace;
+                font-weight: 500;
             }
 
-            .recent_create {
-                display: inline-block;
-                position: absolute;
-                top: 30%;
-                margin-left: 3%;
+            .recent_article_wrap {
+                position: relative;
+                height: 80px;
+                margin-bottom: 5%;
+
+                .recent_thumbnail {
+                    width: 40%;
+                    height: 100%;
+                    display: inline-block;
+                }
+
+                .recent_title {
+                    color: #333;
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    margin-left: 3%;
+                }
+
+                .recent_create {
+                    color: #333;
+                    display: inline-block;
+                    position: absolute;
+                    top: 30%;
+                    margin-left: 3%;
+                }
+            }
+        }
+
+        .categorys_wrap {
+            .category_title {
+                font-family: 'Inconsolata', monospace;
+                font-weight: 500;
             }
         }
     }
