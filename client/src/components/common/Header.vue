@@ -4,23 +4,20 @@
             app
             flat
             dense
+            color='white'
         >
             <v-row align='center'>
                 <!-- ハンバーガーボタン設定 -->
-                <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+                <v-app-bar-nav-icon @click="drawer = true" class="d-md-none"></v-app-bar-nav-icon>
+                <router-link to='/' class="header_logo">
+                    <h1>Yoshihiko</h1>
+                </router-link>
                 <v-spacer></v-spacer>
-                <!-- 検索フィールド -->
-                <v-text-field
-                    prepend-inner-icon='mdi-magnify'
-                    placeholder='Search...'
-                    dense
-                    solo
-                    flat
-                    outlined
-                    rounded
-                    class="search_field"
-                    color='blue-grey darken-1'
-                ></v-text-field>
+                <div class="header_link_wrap">
+                    <router-link to='/about' class="link">About</router-link>
+                    <router-link to='/about' class="link">Contact</router-link>
+                </div>
+                <Search/>
             </v-row>
         </v-app-bar>
 
@@ -47,8 +44,12 @@
 </template>
 
 <script>
+import Search from '@/components/parts/Search'
 export default {
     name: 'Header',
+    components: {
+        Search,
+    },
 
     data: () => ({
         drawer: false,
@@ -72,16 +73,17 @@ export default {
 
 <style lang="scss">
     #header {
-        .search_field {
-            max-width: 30%;
-
-            .v-input__slot {
-                margin: 0;
-            }
+        .header_logo {
+            color: #333;
+            text-decoration: none;
         }
-
-        .v-text-field__details {
-            display: none !important;
+        .header_link_wrap {
+            display: contents;
+            .link {
+                padding: 0 1%;
+                color: #333;
+                text-decoration: none;
+            }
         }
     }
 </style>

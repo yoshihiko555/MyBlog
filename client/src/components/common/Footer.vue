@@ -1,5 +1,6 @@
 <template>
     <v-footer
+        color='white'
     >
         <v-row justify='end'>
             <small>Yoshihiko All Rights Reserved</small>

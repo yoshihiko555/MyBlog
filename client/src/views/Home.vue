@@ -1,35 +1,26 @@
 <template>
     <div id="home" class="main">
+        <v-img src='@/static/img/main_bg.png' height='40vh'></v-img>
         <v-container>
-            <v-row>
-                <v-col cols='12' sm='4'>
-                    <Sidebar/>
-                </v-col>
+            <v-row v-for='article in articleList' :key='article.id'>
+                <v-col cols='12'>
+                    <v-card tile class="my-5">
+                        <v-img :src='article.thumbnail' height='300'></v-img>
+                        <v-card-title>{{ article.title }}</v-card-title>
 
-                <v-col cols='12' sm='8'>
-                    <CarouselAricles/>
+                        <v-card-text>{{ article.content }}</v-card-text>
 
-                    <v-container>
-                        <v-row v-for='article in articleList' :key='article.id'>
-                            <v-card tile class="my-5">
-                                <v-img :src='article.thumbnail' height='300'></v-img>
-                                <v-card-title>{{ article.title }}</v-card-title>
-
-                                <v-card-text>{{ article.content }}</v-card-text>
-
-                                <v-card-actions class="article_list_btn_wrap pa-10">
-                                    <v-btn
-                                        outlined
-                                        tile
-                                        color='blue-grey darken-1'
-                                        :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
-                                    >
-                                        ReadMore
-                                    </v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-row>
-                    </v-container>
+                        <v-card-actions class="article_list_btn_wrap pa-10">
+                            <v-btn
+                                outlined
+                                tile
+                                color='blue-grey darken-1'
+                                :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
+                            >
+                                ReadMore
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
                 </v-col>
             </v-row>
         </v-container>
