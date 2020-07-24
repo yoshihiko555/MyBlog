@@ -4,6 +4,7 @@ import { setTitle, setDescription } from '@/mixins'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Admin from '../views/Admin.vue'
+import Contact from '../views/Contact.vue'
 import CreateArticle from '../views/CreateArticle.vue'
 import DetailArticle from '../views/DetailArticle.vue'
 
@@ -26,6 +27,15 @@ const routes = [
         meta: {
         	title: 'About',
         	description: 'About Me',
+        }
+    },
+    {
+        path: '/contact',
+        name: 'Contact',
+        component: Contact,
+        meta: {
+        	title: 'Contact',
+        	description: 'Contact Me',
         }
     },
     {

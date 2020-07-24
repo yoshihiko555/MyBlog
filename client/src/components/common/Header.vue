@@ -1,24 +1,28 @@
 <template>
-    <header id="header">
+    <div id="header">
         <v-app-bar
             app
             flat
             dense
             color='white'
         >
-            <v-row align='center'>
+            <v-row align='center' justify='space-between'>
                 <!-- ハンバーガーボタン設定 -->
-                <v-app-bar-nav-icon @click="drawer = true" class="d-md-none"></v-app-bar-nav-icon>
+                <v-app-bar-nav-icon @click="drawer = true" class="d-sm-none"></v-app-bar-nav-icon>
                 <router-link to='/' class="header_logo">
                     <h1>Yoshihiko</h1>
                 </router-link>
-                <v-spacer></v-spacer>
                 <div class="header_link_wrap">
-                    <router-link to='/about' class="link">About</router-link>
-                    <router-link to='/about' class="link">Contact</router-link>
+                    <router-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</router-link>
+                    <router-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</router-link>
+                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
+                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn>
+                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://github.com/shutotakizawa' target='blank'><v-icon>mdi-github</v-icon></v-btn>
+                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.linkedin.com/in/shuto-takizawa-a269b116b/' target='blank'><v-icon>mdi-linkedin</v-icon></v-btn>
+                    <Search/>
                 </div>
-                <Search/>
             </v-row>
+
         </v-app-bar>
 
         <!-- ハンバーガーメニュー設定 -->
@@ -40,7 +44,7 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-    </header>
+    </div>
 </template>
 
 <script>
@@ -63,6 +67,10 @@ export default {
                 url: '/about',
             },
             {
+                title: 'Contact',
+                url: '/contact',
+            },
+            {
                 title: 'Admin',
                 url: '/admin',
             },
@@ -74,15 +82,35 @@ export default {
 <style lang="scss">
     #header {
         .header_logo {
+            margin-left: 2%;
+            font-size: 12px;
             color: #333;
             text-decoration: none;
         }
         .header_link_wrap {
-            display: contents;
+            margin-right: 2%;
+            display: inline-flex;
+            align-items: center;
             .link {
-                padding: 0 1%;
                 color: #333;
                 text-decoration: none;
+                position: relative;
+                transition: .3s;
+
+                &::after {
+                    position: absolute;
+                    bottom: 0;
+                    left: 2%;
+                    content: '';
+                    width: 0;
+                    height: 1px;
+                    background-color: #333;
+                    transition: .3s;
+                }
+
+                &:hover::after {
+                    width: 100%;
+                }
             }
         }
     }

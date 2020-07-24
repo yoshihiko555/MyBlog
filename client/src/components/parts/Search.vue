@@ -1,19 +1,36 @@
 <template>
-    <div id="search_field_wrap">
+    <v-dialog
+        v-model='dialog'
+        transition="scroll-y-transition"
+        eager
+        overlay-color='#333'
+        overlay-opacity='0.7'
+    >
+        <template #activator='{ on }'>
+            <v-btn v-on='on' icon x-small class="mx-1">
+                <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+        </template>
         <!-- 検索フィールド -->
         <v-text-field
             v-model="searchText"
             prepend-inner-icon='mdi-magnify'
             placeholder='Search...'
-            dense
             solo
             flat
-            outlined
-            rounded
             class="search_field"
             color='blue-grey darken-1'
         ></v-text-field>
-    </div>
+        <div class="btn_wrap">
+            <v-btn
+                @click='dialog = false'
+                class="mt-5 white--text"
+                text
+            >
+            <v-icon>mdi-close</v-icon>
+            CLOSE</v-btn>
+        </div>
+    </v-dialog>
 </template>
 
 <script>
@@ -23,6 +40,7 @@ export default {
     name: 'Serch',
     data: () => ({
         searchText: '',
+        dialog: false,
     }),
     watch: {
         searchText (val) {
@@ -59,16 +77,29 @@ export default {
 }
 </script>
 
-<style lang="scss">
-    #search_field_wrap {
-        .search_field {
-            .v-input__slot {
-                margin: 0;
+<style lang="scss" scoped>
+    .v-dialog__content {
+        align-items: start;
+        ::v-deep .v-dialog {
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+
+            .v-input {
+                border-radius: 0;
+                .v-input__slot {
+                    margin: 0;
+                }
+
+                .v-text-field__details {
+                    display: none;
+                }
+            }
+
+            .btn_wrap {
+                text-align: center;
             }
         }
-
-        .v-text-field__details {
-            display: none !important;
-        }
     }
+
 </style>
