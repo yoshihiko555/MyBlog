@@ -20,6 +20,8 @@
             flat
             class="search_field"
             color='blue-grey darken-1'
+            @keyup="onEnter"
+            @click:prepend-inner="search"
         ></v-text-field>
         <div class="btn_wrap">
             <v-btn
@@ -34,7 +36,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import { mapActions } from 'vuex'
 
 export default {
     name: 'Serch',
@@ -43,18 +45,18 @@ export default {
         dialog: false,
     }),
     watch: {
-        searchText (val) {
-            if (val) {
-                this.search(val)
-            } else {
-
-            }
-        }
     },
     methods: {
-        search: _.debounce(function search (searchText) {
-            // 空白削除し、カンマ区切りの文字列で送る
-            var trimedText = this.trim(searchText)
+        ...mapActions([
+            'updateSearchText',
+            'updateSearchResult',
+        ]),
+        onEnter (e) {
+            if (e.keyCode === 13) this.search()
+        },
+        search () {
+            var trimedText = this.trim(this.searchText)
+            this.updateSearchText(trimedText)
             var trimedTextList = [...new Set(trimedText.split(/\s+/))]
             var searchWord = trimedTextList.join(',')
             console.log('検索文字列 : ' + searchWord)
@@ -65,13 +67,17 @@ export default {
             })
             .then(res => {
                 console.log(res.data)
+                this.dialog = false
+                this.updateSearchResult(res.data)
+                if (this.$router.currentRoute.name !== 'SearchResult') {
+                    this.$router.push({
+                        name: 'SearchResult'
+                    })
+                }
             })
             .catch(e => {
                 console.log(e)
             })
-        }, 500),
-        trim (word) {
-            return String(word).replace(/^\s+|\s+$/g, '')
         },
     }
 }

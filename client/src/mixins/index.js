@@ -7,6 +7,9 @@ export const setTitle = pathTitle => {
 	return (window.document.title = pageTitle)
 }
 
+/**
+ * Descriptionの設定
+ */
 export const setDescription = pathMeta => {
 	const defaultDescription = 'This is initial description.'
 	const description = pathMeta ? pathMeta : defaultDescription
@@ -15,9 +18,15 @@ export const setDescription = pathMeta => {
 		.setAttribute('content', description)
 }
 
+/**
+ * 空白文字の変換
+ */
+export const trim = word => String(word).replace(/^\s+|\s+$/g, '')
+
 export const globalMixins = {
 		methods: {
 			setTitle,
-			setDescription,
+            setDescription,
+            trim,
 		}
 }

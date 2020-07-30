@@ -7,6 +7,7 @@ import Admin from '../views/Admin.vue'
 import Contact from '../views/Contact.vue'
 import CreateArticle from '../views/CreateArticle.vue'
 import DetailArticle from '../views/DetailArticle.vue'
+import SearchResult from '../views/SearchResult.vue'
 
 Vue.use(VueRouter)
 
@@ -56,6 +57,11 @@ const routes = [
         path: '/:title',
         name: 'DetailArticle',
         component: DetailArticle,
+    },
+    {
+        path: '/search',
+        name: 'SearchResult',
+        component: SearchResult,
     },
 ]
 

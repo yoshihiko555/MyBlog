@@ -79,6 +79,20 @@ export default {
     data: () => ({
         fab: false,
     }),
+    created () {
+        this.$axios({
+            url: '/api/article/',
+            method: 'GET',
+        })
+        .then(res => {
+            console.log(res)
+            this.updateArticles(res.data)
+            this.updateLatestArticles(res.data)
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    },
     computed: {
         ...mapGetters([
             'articleList',
@@ -95,20 +109,6 @@ export default {
             const top = window.pageYOffset || e.target.scrollTop || 0
             this.fab = top > 850
         }
-    },
-    created () {
-        this.$axios({
-            url: '/api/article/',
-            method: 'GET',
-        })
-        .then(res => {
-            console.log(res)
-            this.updateArticles(res.data)
-            this.updateLatestArticles(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
     },
 }
 </script>

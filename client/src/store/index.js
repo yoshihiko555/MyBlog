@@ -6,14 +6,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     strict: true,
     state: {
-        articles: {},
-        latestArticles: {},
+        articles: [],
+        latestArticles: [],
         categorys: {},
+        searchText: '',
+        searchResult: [],
     },
     getters: {
         articleList: state => state.articles,
         latestArticleList: state => state.latestArticles,
         categoryList: state => state.categorys,
+        searchText: state => state.searchText,
+        searchResultList: state => state.searchResult,
     },
     mutations: {
         setArticles (state, payload) {
@@ -24,7 +28,13 @@ export default new Vuex.Store({
         },
         setCategorys (state, payload) {
             state.categorys = payload
-        }
+        },
+        setSearchText (state, payload) {
+            state.searchText = payload
+        },
+        setSearchResult (state, payload) {
+            state.searchResult = payload
+        },
     },
     actions: {
         updateArticles (ctx, kwargs) {
@@ -35,6 +45,12 @@ export default new Vuex.Store({
         },
         updateCategorys (ctx, kwargs) {
             this.commit('setCategorys', kwargs)
+        },
+        updateSearchText (ctx, kwargs) {
+            this.commit('setSearchText', kwargs)
+        },
+        updateSearchResult (ctx, kwargs) {
+            this.commit('setSearchResult', kwargs)
         },
     },
     modules: {
