@@ -54,14 +54,14 @@ const routes = [
         component: CreateArticle,
     },
     {
-        path: '/:title',
-        name: 'DetailArticle',
-        component: DetailArticle,
-    },
-    {
         path: '/search',
         name: 'SearchResult',
         component: SearchResult,
+    },
+    {
+        path: '/:title',
+        name: 'DetailArticle',
+        component: DetailArticle,
     },
 ]
 

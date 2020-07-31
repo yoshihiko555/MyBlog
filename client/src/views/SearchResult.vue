@@ -12,7 +12,7 @@
                     ></v-text-field>
                 </v-col>
             </v-row>
-            <div v-if="loading">
+            <div v-if="!loading">
                 <v-row>
                     <v-col cols='12'>
                         <div>検索内容：{{ searchText }}</div>

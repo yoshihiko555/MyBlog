@@ -5,13 +5,14 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import http from '@/plugins/http'
 import { globalMixins } from '@/mixins'
-import { vsLoading } from 'vuesax'
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css'
 require('@/static/scss/main.scss')
 
 Vue.config.productionTip = false
 
 Vue.use(http)
-Vue.use(vsLoading)
+Vue.use(Vuesax)
 Vue.mixin(globalMixins)
 
 new Vue({

@@ -1,20 +1,30 @@
 <template>
-    <vue-loading
-        type="spiningDubbles"
-        :size='{ width: "40px", height: "40px" }'
-    ></vue-loading>
+	<div ref="content" id='loading' class="vs-con-loading__container" />
 </template>
 
 <script>
-import { VueLoading } from 'vue-loading-template'
-
 export default {
     name: 'Loading',
-    components: {
-        VueLoading,
+    mounted () {
+		this.$vs.loading({
+			container: this.$refs.content,
+			type: 'border',
+			color: '#333',
+			scale: 0.6,
+		})
     },
+    methods: {
+    }
 }
 </script>
 
 <style lang='scss'>
+#loading {
+	width: 200px;
+	height: 100px;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 </style>
