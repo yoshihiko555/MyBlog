@@ -40,6 +40,9 @@ export default new Vuex.Store({
         },
         setDetailArticle (state, payload) {
             state.detailArticle = payload
+        },
+        setCommentDetailArticle (state, payload) {
+            state.detailArticle.comment.unshift(payload)
         }
     },
     actions: {
@@ -60,6 +63,9 @@ export default new Vuex.Store({
         },
         updateDetailArticle (ctx, kwargs) {
             this.commit('setDetailArticle', kwargs)
+        },
+        addCommentDetailArticle (ctx, kwargs) {
+            this.commit('setCommentDetailArticle', kwargs)
         },
     },
     modules: {

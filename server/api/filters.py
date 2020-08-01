@@ -8,6 +8,7 @@ log = logging.getLogger(__name__)
 class ArticleFilter(django_filter.FilterSet):
 
     searchText = django_filter.CharFilter(field_name='title', method='title_filter')
+    categoryId = django_filter.NumberFilter(method='category_filter')
 
     class Meta:
         model = Article
@@ -27,3 +28,7 @@ class ArticleFilter(django_filter.FilterSet):
         log.debug('検索結果 : ')
         log.debug(q)
         return q
+
+    def category_filter(self, queryset, name, value):
+        log.info('=====CATEGORY_FILTER=====')
+        return queryset.filter(category=value)

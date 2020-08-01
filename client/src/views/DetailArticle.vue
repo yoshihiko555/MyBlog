@@ -9,8 +9,10 @@
                 <v-col cols='12' sm='8'>
                     <v-card
                         tile
+                        id="detail_article_wrap"
+                        class="mb-5"
                     >
-                        <v-img :src='article.thumbnail'></v-img>
+                        <v-img :src='article.thumbnail' height=400></v-img>
                         <v-card-title>
                             {{ article.title }}
                         </v-card-title>
@@ -23,7 +25,12 @@
 
                     </v-card>
 
-                    <Comment/>
+                    <Comment
+                        :comments='article.comment'
+                    />
+                    <SendComment
+                        :article='article'
+                    />
                 </v-col>
             </v-row>
         </v-container>
@@ -33,6 +40,7 @@
 <script>
 import Sidebar from '@/components/common/Sidebar'
 import Comment from '@/components/common/Comment'
+import SendComment from '@/components/parts/SendComment'
 
 import { mapGetters, mapActions } from 'vuex'
 
@@ -41,6 +49,7 @@ export default {
     components: {
         Sidebar,
         Comment,
+        SendComment,
     },
     data: () => ({
         article: {},
@@ -87,7 +96,11 @@ export default {
     methods: {
         ...mapActions([
             'updateDetailArticle',
-        ])
+        ]),
+        // appendComment (comment) {
+        //     console.log(comment)
+        //     this.article.comment.unshift(comment)
+        // }
     },
 }
 </script>

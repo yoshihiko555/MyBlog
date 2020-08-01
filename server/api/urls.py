@@ -5,6 +5,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register('article', viewsets.ArticleViewSet)
 router.register('category', viewsets.CategoryViewSet)
+router.register('comment', viewsets.CommentViewSet)
 
 app_name = 'api'
 

@@ -50,6 +50,7 @@
                     :key="category.id"
                     label
                     outlined
+                    @click='filterCategory(category)'
                 >
                     {{ category.name }}
                 </v-chip>
@@ -69,6 +70,19 @@ export default {
     data: () => ({
 
     }),
+        created () {
+        this.$axios({
+            url: '/api/category/',
+            method: 'GET',
+        })
+        .then(res => {
+            console.log('カテゴリー一覧', res)
+            this.updateCategorys(res.data)
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    },
     computed: {
         ...mapGetters([
             'latestArticleList',
@@ -78,21 +92,32 @@ export default {
     methods: {
         ...mapActions([
             'updateCategorys',
-        ])
+            'updateSearchText',
+            'updateSearchResult',
+        ]),
+        filterCategory (category) {
+            console.log(category)
+            this.updateSearchText(category.name)
+            this.$axios({
+                url: '/api/article/',
+                method: 'GET',
+                params: {
+                    categoryId: category.id
+                }
+            })
+            .then(res => {
+                console.log(res)
+                this.updateSearchResult(res.data)
+                this.$router.push({
+                    name: 'SearchResult'
+                })
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        },
     },
-    created () {
-        this.$axios({
-            url: '/api/category/',
-            method: 'GET',
-        })
-        .then(res => {
-            console.log(res)
-            this.updateCategorys(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
-    }
+
 }
 </script>
 

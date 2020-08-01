@@ -85,7 +85,7 @@ export default {
             method: 'GET',
         })
         .then(res => {
-            console.log(res)
+            console.log('記事一覧', res)
             this.updateArticles(res.data)
             this.updateLatestArticles(res.data)
         })
