@@ -1,6 +1,7 @@
 <template>
     <div id='search_result_wrap' class="main">
         <v-container>
+            <!-- 検索ワード入力 -->
             <v-row>
                 <v-col cols='12'>
                     <v-text-field
@@ -12,32 +13,46 @@
                     ></v-text-field>
                 </v-col>
             </v-row>
+
+            <!-- 検索完了画面 -->
             <div v-if="!loading">
+                <!-- 検索ワード表示 -->
                 <v-row>
                     <v-col cols='12'>
                         <div>検索内容：{{ searchText }}</div>
                     </v-col>
                 </v-row>
-                <v-row v-for='article in searchResultList' :key='article.id'>
-                    <v-card
-                        class="my-3"
-                        link
-                        hover
-                        :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
-                    >
-                        <v-row>
-                            <v-col cols='4'>
-                                <v-img :src='article.thumbnail' height=150></v-img>
-                            </v-col>
-                            <v-col cols='8'>
-                                <h3>{{ article.title }}</h3>
-                                <p>{{ article.created_at}}</p>
-                                <p>{{ article.content}}</p>
-                            </v-col>
-                        </v-row>
-                    </v-card>
-                </v-row>
+
+                <div v-if="searchResultList.length > 0">
+                    <!-- 検索結果:あり -->
+                    <v-row v-for='article in searchResultList' :key='article.id'>
+                        <v-card
+                            class="my-3"
+                            link
+                            hover
+                            :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
+                        >
+                            <v-row>
+                                <v-col cols='4'>
+                                    <v-img :src='article.thumbnail' height=150></v-img>
+                                </v-col>
+                                <v-col cols='8'>
+                                    <h3>{{ article.title }}</h3>
+                                    <p>{{ article.created_at}}</p>
+                                    <p>{{ article.content}}</p>
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-row>
+                </div>
+
+                <div v-else>
+                    <!-- 検索結果:なし -->
+                    記事が見つかりません
+                </div>
             </div>
+
+            <!-- ロード中画面表示 -->
             <div v-else>
                 <Loading/>
             </div>

@@ -8,6 +8,7 @@ import Contact from '../views/Contact.vue'
 import CreateArticle from '../views/CreateArticle.vue'
 import DetailArticle from '../views/DetailArticle.vue'
 import SearchResult from '../views/SearchResult.vue'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -59,9 +60,14 @@ const routes = [
         component: SearchResult,
     },
     {
-        path: '/:title',
+        path: '/post/:title',
         name: 'DetailArticle',
         component: DetailArticle,
+    },
+    {
+        path: '*',
+        name: 'NotFound',
+        component: NotFound,
     },
 ]
 

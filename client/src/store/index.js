@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistedstate from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
         categorys: {},
         searchText: '',
         searchResult: [],
+        detailArticle: {},
     },
     getters: {
         articleList: state => state.articles,
@@ -18,6 +20,7 @@ export default new Vuex.Store({
         categoryList: state => state.categorys,
         searchText: state => state.searchText,
         searchResultList: state => state.searchResult,
+        detailArticle: state => state.detailArticle,
     },
     mutations: {
         setArticles (state, payload) {
@@ -35,6 +38,9 @@ export default new Vuex.Store({
         setSearchResult (state, payload) {
             state.searchResult = payload
         },
+        setDetailArticle (state, payload) {
+            state.detailArticle = payload
+        }
     },
     actions: {
         updateArticles (ctx, kwargs) {
@@ -52,7 +58,15 @@ export default new Vuex.Store({
         updateSearchResult (ctx, kwargs) {
             this.commit('setSearchResult', kwargs)
         },
+        updateDetailArticle (ctx, kwargs) {
+            this.commit('setDetailArticle', kwargs)
+        },
     },
     modules: {
-    }
+    },
+    plugins: [
+        VuexPersistedstate({
+            storage: window.localStorage
+        })
+    ]
 })
