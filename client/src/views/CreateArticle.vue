@@ -1,6 +1,6 @@
 <template>
     <div id="create" class="main">
-        <v-container>
+        <v-container v-show="isAuth">
             <v-row>
                 <h1>記事作成</h1>
             </v-row>
@@ -36,9 +36,14 @@ export default {
     name: 'CreateArticle',
 
     data: () => ({
+        isAuth: false,
         article: {},
         categorys: [],
     }),
+        created () {
+        if (!this.$session.has('token')) this.$router.push('/signin')
+        else this.isAuth = this.$session.has('token')
+    },
     mounted () {
         this.$axios({
             url: '/api/category/',

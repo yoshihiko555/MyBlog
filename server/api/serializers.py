@@ -9,6 +9,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     created_at = serializers.SerializerMethodField()
     comment = serializers.SerializerMethodField()
+    category_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
@@ -17,6 +18,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'title',
             'content',
             'category',
+            'category_name',
             'thumbnail',
             'created_at',
             'updated_at',
@@ -27,7 +29,10 @@ class ArticleSerializer(serializers.ModelSerializer):
         return obj.created_at.strftime('%b %d %Y')
 
     def get_comment(self, obj):
-        return CommentSerializer(obj.comment_set.all(), many=True).data
+        return CommentSerializer(obj.comment_set.filter(is_public=True), many=True).data
+
+    def get_category_name(self, obj):
+        return obj.category.name
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -39,14 +44,26 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
+    article_title = serializers.SerializerMethodField()
+
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = [
+            'id',
+            'article',
+            'name',
+            'content',
+            'is_public',
+            'created_at',
+            'article_title',
+        ]
+
+    def get_article_title(self, obj):
+        return obj.article.title
 
     def create(self, validated_data):
         comment = Comment.objects.create(
             name=validated_data['name'],
-            title=validated_data['title'],
             content=validated_data['content'],
             article=validated_data['article'],
         )

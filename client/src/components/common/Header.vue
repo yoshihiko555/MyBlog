@@ -15,6 +15,8 @@
                 <div class="header_link_wrap">
                     <router-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</router-link>
                     <router-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</router-link>
+                    <router-link to='/admin' class="link mx-3 d-none d-sm-inline-block">Admin</router-link>
+                    <router-link to='/signin' class="link mx-3 d-none d-sm-inline-block">SignIn</router-link>
                     <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
                     <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn>
                     <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://github.com/shutotakizawa' target='blank'><v-icon>mdi-github</v-icon></v-btn>
@@ -75,7 +77,7 @@ export default {
                 url: '/admin',
             },
         ]
-    })
+    }),
 }
 </script>
 

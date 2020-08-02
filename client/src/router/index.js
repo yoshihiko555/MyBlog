@@ -9,6 +9,8 @@ import CreateArticle from '../views/CreateArticle.vue'
 import DetailArticle from '../views/DetailArticle.vue'
 import SearchResult from '../views/SearchResult.vue'
 import NotFound from '../views/NotFound.vue'
+import SignIn from '../views/SignIn.vue'
+import CommentList from '../views/CommentList.vue'
 
 Vue.use(VueRouter)
 
@@ -50,9 +52,19 @@ const routes = [
         }
     },
     {
+        path: '/signin',
+        name: 'SignIn',
+        component: SignIn,
+    },
+    {
         path: '/create',
         name: 'Create',
         component: CreateArticle,
+    },
+    {
+        path: '/comment',
+        name: 'Comment',
+        component: CommentList,
     },
     {
         path: '/search',

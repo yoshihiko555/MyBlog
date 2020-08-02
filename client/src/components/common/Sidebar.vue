@@ -96,7 +96,6 @@ export default {
             'updateSearchResult',
         ]),
         filterCategory (category) {
-            console.log(category)
             this.updateSearchText(category.name)
             this.$axios({
                 url: '/api/article/',

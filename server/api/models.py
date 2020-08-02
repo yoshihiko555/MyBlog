@@ -38,10 +38,10 @@ class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     name = models.CharField('名前', max_length=100)
-    title = models.CharField('タイトル', max_length=255)
     content = models.TextField('内容')
-    readed = models.BooleanField('既読', default=False)
+    deleted = models.BooleanField('削除フラグ', default=False)
     is_public = models.BooleanField('公開フラグ', default=False)
+    created_at = models.DateTimeField('作成日時', default=timezone.now)
 
     def __str__(self):
-        return self.title
+        return self.name

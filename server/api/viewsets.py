@@ -41,7 +41,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny,)
-    queryset = Comment.objects.all()
+    queryset = Comment.objects.filter(is_public=False, deleted=False)
     serializer_class = CommentSerializer
 
     def create(self, request, *args, **kwargs):
@@ -50,3 +50,19 @@ class CommentViewSet(viewsets.ModelViewSet):
             self.perform_create(serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    @action(methods=['PUT'], detail=True)
+    def approval(self, request, pk=None):
+        comment = Comment.objects.get(id=pk)
+        comment.is_public = True
+        comment.save()
+        return Response(status=status.HTTP_200_OK)
+
+
+    @action(methods=['PUT'], detail=True)
+    def delete(self, request, pk=None):
+        comment = Comment.objects.get(id=pk)
+        comment.deleted = True
+        comment.save()
+        return Response(status=status.HTTP_200_OK)

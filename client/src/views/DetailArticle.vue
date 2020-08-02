@@ -27,6 +27,7 @@
 
                     <Comment
                         :comments='article.comment'
+                        :is-comment='isComment'
                     />
                     <SendComment
                         :article='article'
@@ -53,39 +54,14 @@ export default {
     },
     data: () => ({
         article: {},
+        isComment: false,
     }),
     created () {
         const id = this.$route.params.id || this.detailArticle.id
-        this.$axios({
-            url: `/api/article/${id}/`,
-            method: 'GET'
-        })
-        .then(res => {
-            console.log('記事詳細', res)
-            res.data.created_at = res.data.created_at.substr(0, 10).replace(/-/g, '/')
-            this.article = res.data
-            this.setTitle(res.data.title)
-            this.updateDetailArticle(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
+        this.getArticle(id)
     },
     beforeRouteUpdate (to, form, next) {
-        this.$axios({
-            url: `/api/article/${to.params.id}/`,
-            method: 'GET'
-        })
-        .then(res => {
-            console.log('記事詳細', res)
-            res.data.created_at = res.data.created_at.substr(0, 10).replace(/-/g, '/')
-            this.article = res.data
-            this.setTitle(res.data.title)
-            this.updateDetailArticle(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
+        this.getArticle(to.params.id)
         next()
     },
     computed: {
@@ -97,10 +73,24 @@ export default {
         ...mapActions([
             'updateDetailArticle',
         ]),
-        // appendComment (comment) {
-        //     console.log(comment)
-        //     this.article.comment.unshift(comment)
-        // }
+        getArticle (id) {
+            this.$axios({
+                url: `/api/article/${id}/`,
+                method: 'GET'
+            })
+            .then(res => {
+                console.log('記事詳細', res)
+                res.data.created_at = res.data.created_at.substr(0, 10).replace(/-/g, '/')
+                this.article = res.data
+                // コメントが存在するか判定
+                this.isComment = (res.data.comment.length) ? true : false
+                this.setTitle(res.data.title)
+                this.updateDetailArticle(res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        }
     },
 }
 </script>

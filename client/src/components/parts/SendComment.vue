@@ -7,11 +7,6 @@
                 placeholder='Name'
                 :rules='[rules.required]'
             />
-            <v-text-field
-                v-model="comment.title"
-                placeholder='Title'
-                :rules='[rules.required]'
-            />
             <v-textarea
                 v-model="comment.content"
                 placeholder='Content'
@@ -42,7 +37,6 @@ export default {
         valid: true,
         comment: {
             name: '',
-            title: '',
             content: '',
         },
         rules: {
@@ -68,7 +62,7 @@ export default {
                     title: '',
                     content: '',
                 }
-                this.addCommentDetailArticle(res.data)
+                // this.addCommentDetailArticle(res.data)
             })
             .catch(e => {
                 console.log(e)

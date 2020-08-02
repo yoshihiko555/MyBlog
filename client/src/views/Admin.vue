@@ -1,6 +1,6 @@
 <template>
     <div id="admin" class="main">
-        <v-container>
+        <v-container v-show='isAuth'>
             <v-row>
                 <h1>管理画面</h1>
             </v-row>
@@ -19,6 +19,9 @@
             <v-row>
                 <v-col cols='6'>
                     <h2>コメント管理</h2>
+                    <v-btn to='/comment'>
+                        コメント一覧
+                    </v-btn>
                 </v-col>
             </v-row>
         </v-container>
@@ -30,8 +33,12 @@ export default {
     name: 'Admin',
 
     data: () => ({
-
-    })
+        isAuth: false,
+    }),
+    created () {
+        if (!this.$session.has('token')) this.$router.push('/signin')
+        else this.isAuth = this.$session.has('token')
+    }
 }
 </script>
 
