@@ -14,7 +14,7 @@
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-session": "^1.0.0",
-    "vuesax": "^3.11.17",
+    "vuesax": "^4.0.1-alpha.23",
     "vuetify": "^2.2.11",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^3.0.1"

@@ -7,10 +7,11 @@ export default {
     name: 'Loading',
     mounted () {
 		this.$vs.loading({
-			container: this.$refs.content,
-			type: 'border',
-			color: '#333',
-			scale: 0.6,
+			target: this.$refs.content,
+			type: 'gradient',
+            color: '#333',
+            text: 'Search Now...',
+			scale: 0.8,
 		})
     },
     methods: {
@@ -23,6 +24,7 @@ export default {
 	width: 200px;
 	height: 100px;
 	margin: auto;
+    position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;

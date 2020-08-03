@@ -53,9 +53,14 @@
                     </v-card>
 
                     <!-- ページネーション -->
-					<Pagination
-						:pagination='pagination'
-					/>
+                    <v-pagination
+                        v-model="pagination.current_page"
+                        :page='pagination.current_page'
+                        :length='pagination.total_pages'
+                        color='blue-grey lighten-1'
+                        total-visible=5
+                        @input='changePage'
+                    />
                 </div>
 
                 <div v-else>
@@ -77,13 +82,11 @@ import { mapGetters, mapActions } from 'vuex'
 import _ from 'lodash'
 
 import Loading from '@/components/parts/Loading'
-import Pagination from '@/components/parts/Pagination'
 
 export default {
     name: 'SearchResult',
     components: {
         Loading,
-        Pagination,
     },
     data: () => ({
         searchRetryText: '',
@@ -145,6 +148,24 @@ export default {
                 console.log(e)
             })
         }, 1000),
+    	changePage (page) {
+            this.$axios({
+    			url: '/api/article/',
+                method: 'GET',
+                params: {
+                    page: page,
+                    searchText: this.searchText,
+                }
+    		})
+    		.then(res => {
+                console.log(res)
+                this.pagination = res.data
+    			this.updateSearchResult(res.data.results)
+    		})
+    		.catch(e => {
+    			console.log(e)
+    		})
+    	},
     },
 }
 </script>

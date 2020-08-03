@@ -62,7 +62,12 @@ export default {
                     title: '',
                     content: '',
                 }
-                // this.addCommentDetailArticle(res.data)
+                this.$vs.notification({
+                    color: 'dark',
+                    classNotification: 'send_comment_notify',
+                    title: 'コメントを送信しました。',
+                    text: '承認されるまでしばらくお待ちください。',
+                })
             })
             .catch(e => {
                 console.log(e)
@@ -73,4 +78,9 @@ export default {
 </script>
 
 <style lang="scss">
+    .send_comment_notify{
+        h4, p {
+            color: #fff !important;
+        }
+    }
 </style>
