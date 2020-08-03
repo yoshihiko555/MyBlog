@@ -12,7 +12,7 @@ class Article(models.Model):
     title = models.CharField('タイトル', max_length=255)
     content = models.TextField('内容')
     category = models.ForeignKey('api.Category', on_delete=models.PROTECT)
-    thumbnail = models.ImageField('サムネイル', upload_to=article_file_name, blank=True, null=True)
+    thumbnail = models.ImageField('サムネイル', upload_to=article_file_name, default='default/default-thumbnail.jpg', blank=True, null=True)
     created_at = models.DateTimeField('作成日時', default=timezone.now)
     updated_at = models.DateTimeField('更新日時', auto_now=True)
     is_public = models.BooleanField('公開フラグ', default=False)

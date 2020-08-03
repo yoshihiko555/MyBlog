@@ -34,6 +34,13 @@ class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     filter_class = ArticleFilter
 
+    @action(methods=['GET'], detail=False)
+    def recent_article(self, request, *args, **kwargs):
+        # 最新記事を６個まで取得
+        queryset = self.get_queryset().order_by('-created_at')[0:6]
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny,)

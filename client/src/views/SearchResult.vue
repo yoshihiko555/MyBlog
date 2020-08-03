@@ -58,6 +58,7 @@
                         :page='pagination.current_page'
                         :length='pagination.total_pages'
                         color='blue-grey lighten-1'
+                        class="mt-5"
                         total-visible=5
                         @input='changePage'
                     />

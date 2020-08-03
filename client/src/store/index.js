@@ -7,27 +7,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     strict: true,
     state: {
-        articles: [],
-        latestArticles: [],
+        recentArticles: [],
         categorys: {},
         searchText: '',
         searchResult: [],
         detailArticle: {},
     },
     getters: {
-        articleList: state => state.articles,
-        latestArticleList: state => state.latestArticles,
+        recentArticleList: state => state.recentArticles,
         categoryList: state => state.categorys,
         searchText: state => state.searchText,
         searchResultList: state => state.searchResult,
         detailArticle: state => state.detailArticle,
     },
     mutations: {
-        setArticles (state, payload) {
-            state.articles = payload
-        },
-        setLatestArticles (state, payload) {
-            state.latestArticles = payload
+        setRecentArticles (state, payload) {
+            state.recentArticles = payload
         },
         setCategorys (state, payload) {
             state.categorys = payload
@@ -41,16 +36,10 @@ export default new Vuex.Store({
         setDetailArticle (state, payload) {
             state.detailArticle = payload
         },
-        // setCommentDetailArticle (state, payload) {
-        //     state.detailArticle.comment.unshift(payload)
-        // }
     },
     actions: {
-        updateArticles (ctx, kwargs) {
-            this.commit('setArticles', kwargs)
-        },
-        updateLatestArticles (ctx, kwargs) {
-            this.commit('setLatestArticles', kwargs)
+        updateRecentArticles (ctx, kwargs) {
+            this.commit('setRecentArticles', kwargs)
         },
         updateCategorys (ctx, kwargs) {
             this.commit('setCategorys', kwargs)
@@ -64,9 +53,6 @@ export default new Vuex.Store({
         updateDetailArticle (ctx, kwargs) {
             this.commit('setDetailArticle', kwargs)
         },
-        // addCommentDetailArticle (ctx, kwargs) {
-        //     this.commit('setCommentDetailArticle', kwargs)
-        // },
     },
     modules: {
     },

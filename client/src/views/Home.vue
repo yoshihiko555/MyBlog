@@ -26,7 +26,7 @@
 
 			<!-- 記事一覧 -->
             <v-row class="home_articles_wrap">
-                <v-col cols='12' sm='4' v-for='article in articleList' :key='article.id'>
+                <v-col cols='12' sm='4' v-for='article in recentArticleList' :key='article.id'>
                     <v-card tile class="my-5">
                         <v-img :src='article.thumbnail' height='200'></v-img>
                         <v-card-title>{{ article.title }}</v-card-title>
@@ -48,6 +48,7 @@
             </v-row>
         </v-container>
 
+        <!-- 記事一覧へのボタン -->
         <transition name="fade">
             <v-btn
                 v-scroll='onScroll'
@@ -70,26 +71,23 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import Sidebar from '@/components/common/Sidebar'
-import CarouselAricles from '@/components/parts/CarouselArticles'
 
 export default {
     name: 'Home',
     components: {
         Sidebar,
-        CarouselAricles,
     },
     data: () => ({
         fab: false,
     }),
     created () {
         this.$axios({
-            url: '/api/article/',
+            url: '/api/article/recent_article/',
             method: 'GET',
         })
         .then(res => {
-            console.log('記事一覧', res)
-            this.updateArticles(res.data.results)
-            this.updateLatestArticles(res.data.results)
+            console.log('最新記事一覧', res)
+            this.updateRecentArticles(res.data)
         })
         .catch(e => {
             console.log(e)
@@ -97,14 +95,12 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'articleList',
-            'latestArticleList',
+            'recentArticleList',
         ]),
     },
     methods: {
         ...mapActions([
-            'updateArticles',
-            'updateLatestArticles',
+            'updateRecentArticles',
         ]),
         onScroll (e) {
             if (typeof window === 'undefined') return

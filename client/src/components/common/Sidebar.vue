@@ -1,11 +1,8 @@
 <template>
     <div id='sidebar_wrap'>
-        <router-link to='/' class="sidebar_logo_link">
-            <h1 class="sidebar_logo mb-2">Yoshihiko</h1>
-        </router-link>
-
+        <!-- プロフィール部分 -->
+        <h1 class="sidebar_logo mb-2">Yoshihiko</h1>
         <v-img src='@/static/img/pithuy.jpeg' class="mb-5"></v-img>
-
         <p>This is my personal blog where I share a lot of stuffs about life and work everything I do in between.</p>
 
         <div class="sns_wrap mb-5">
@@ -17,10 +14,11 @@
 
         <v-divider></v-divider>
 
+        <!-- 最新記事一覧 -->
         <div class="recent_wrap my-3">
             <h2 class="recent_title mb-2">Recent Articles</h2>
             <div
-                v-for='article in latestArticleList'
+                v-for='article in recentArticleList'
                 :key='article.id'
                 class="recent_article_wrap"
             >
@@ -40,6 +38,7 @@
 
         </div>
 
+        <!-- カテゴリー一覧 -->
         <div class="categorys_wrap mt-5">
             <h2 class="category_title mb-2">Categorys</h2>
             <v-chip-group
@@ -70,7 +69,18 @@ export default {
     data: () => ({
 
     }),
-        created () {
+    created () {
+        this.$axios({
+            url: '/api/article/recent_article/',
+            method: 'GET'
+        })
+        .then(res => {
+            console.log('最新記事', res)
+            this.updateRecentArticles(res.data)
+        })
+        .catch(e => {
+            console.log(e)
+        })
         this.$axios({
             url: '/api/category/',
             method: 'GET',
@@ -85,12 +95,13 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'latestArticleList',
+            'recentArticleList',
             'categoryList',
         ])
     },
     methods: {
         ...mapActions([
+            'updateRecentArticles',
             'updateCategorys',
             'updateSearchText',
             'updateSearchResult',
@@ -122,13 +133,6 @@ export default {
 
 <style lang="scss">
     #sidebar_wrap {
-        .sidebar_logo_link {
-            text-decoration: none;
-            .sidebar_logo {
-                color: #333;
-            }
-        }
-
         .sns_wrap {
             margin-bottom: 0%;
         }

@@ -58,6 +58,7 @@ export default {
     }),
     created () {
         const id = this.$route.params.id || this.detailArticle.id
+        console.log(id)
         this.getArticle(id)
     },
     beforeRouteUpdate (to, form, next) {
