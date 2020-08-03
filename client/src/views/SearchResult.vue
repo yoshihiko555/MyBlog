@@ -51,6 +51,11 @@
                             </v-col>
                         </v-row>
                     </v-card>
+
+                    <!-- ページネーション -->
+					<Pagination
+						:pagination='pagination'
+					/>
                 </div>
 
                 <div v-else>
@@ -72,15 +77,34 @@ import { mapGetters, mapActions } from 'vuex'
 import _ from 'lodash'
 
 import Loading from '@/components/parts/Loading'
+import Pagination from '@/components/parts/Pagination'
 
 export default {
     name: 'SearchResult',
+    components: {
+        Loading,
+        Pagination,
+    },
     data: () => ({
         searchRetryText: '',
         loading: false,
+        pagination: {},
     }),
-    components: {
-        Loading,
+    created () {
+    	console.log('検索開始')
+		 this.$axios.get('api/article/', {
+		    params: {
+		        searchText: this.searchText
+		    }
+		})
+		.then(res => {
+		    console.log('検索結果一覧', res.data)
+		    this.pagination = res.data
+		    this.updateSearchResult(res.data.results)
+		})
+		.catch(e => {
+		    console.log(e)
+		})
     },
     watch: {
         searchRetryText (val) {
@@ -112,9 +136,10 @@ export default {
                 }
             })
             .then(res => {
-                console.log(res.data)
+                console.log('検索結果一覧', res.data)
                 this.loading = false
-                this.updateSearchResult(res.data)
+                this.pagination = res.data
+                this.updateSearchResult(res.data.results)
             })
             .catch(e => {
                 console.log(e)

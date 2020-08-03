@@ -1,6 +1,7 @@
 <template>
     <div id="home" class="main">
         <v-container>
+        	<!-- メインコンテンツ -->
             <v-row>
                 <v-col cols='12 py-0 px-sm-4 px-md-0'>
                     <section class="home_main_wrap">
@@ -23,6 +24,7 @@
                 </v-col>
             </v-row>
 
+			<!-- 記事一覧 -->
             <v-row class="home_articles_wrap">
                 <v-col cols='12' sm='4' v-for='article in articleList' :key='article.id'>
                     <v-card tile class="my-5">
@@ -86,8 +88,8 @@ export default {
         })
         .then(res => {
             console.log('記事一覧', res)
-            this.updateArticles(res.data)
-            this.updateLatestArticles(res.data)
+            this.updateArticles(res.data.results)
+            this.updateLatestArticles(res.data.results)
         })
         .catch(e => {
             console.log(e)
@@ -108,7 +110,7 @@ export default {
             if (typeof window === 'undefined') return
             const top = window.pageYOffset || e.target.scrollTop || 0
             this.fab = top > 850
-        }
+        },
     },
 }
 </script>

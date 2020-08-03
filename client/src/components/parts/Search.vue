@@ -50,34 +50,20 @@ export default {
         ...mapActions([
             'updateSearchText',
             'updateSearchResult',
+            'updatePaginationArticle',
         ]),
         onEnter (e) {
             if (e.keyCode === 13) this.search()
         },
         search () {
+        	this.dialog = false
             var trimedText = this.trim(this.searchText)
             this.updateSearchText(trimedText)
-            var trimedTextList = [...new Set(trimedText.split(/\s+/))]
-            var searchWord = trimedTextList.join(',')
-            console.log('検索文字列 : ' + searchWord)
-            this.$axios.get('api/article/', {
-                params: {
-                    searchText: searchWord
-                }
-            })
-            .then(res => {
-                console.log(res.data)
-                this.dialog = false
-                this.updateSearchResult(res.data)
-                if (this.$router.currentRoute.name !== 'SearchResult') {
-                    this.$router.push({
-                        name: 'SearchResult'
-                    })
-                }
-            })
-            .catch(e => {
-                console.log(e)
-            })
+            if (this.$router.currentRoute.name !== 'SearchResult') {
+                this.$router.push({
+                    name: 'SearchResult',
+                })
+            }
         },
     }
 }

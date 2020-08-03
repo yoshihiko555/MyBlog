@@ -21,12 +21,14 @@ from rest_framework.parsers import FileUploadParser
 from .serializers import *
 from .models import *
 from .filters import *
+from .paginations import *
 
 import re, logging
 
 log = logging.getLogger(__name__)
 
 class ArticleViewSet(viewsets.ModelViewSet):
+    pagination_class = DefaultResultPagination
     permission_classes = (permissions.AllowAny,)
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
