@@ -10,5 +10,6 @@ router.register('comment', viewsets.CommentViewSet)
 app_name = 'api'
 
 urlpatterns = [
+    path('upload/', views.SingleUploadFileView.as_view(), name='upload_file'),
     path('', include(router.urls)),
 ]

@@ -8,11 +8,17 @@
             <v-form>
                 <v-text-field
                     v-model='article.title'
+                    placeholder='title'
+                    counter=255
                 ></v-text-field>
 
                 <v-textarea
-                    v-model='article.content'
+                    v-model='article.lead_text'
+                    placeholder='lead_text'
+                    counter=60
                 ></v-textarea>
+
+                <mavon-editor v-model="article.content" language="en" />
 
                 <v-select
                     v-model="article.category"
@@ -34,13 +40,12 @@
 <script>
 export default {
     name: 'CreateArticle',
-
     data: () => ({
         isAuth: false,
         article: {},
         categorys: [],
     }),
-        created () {
+    created () {
         if (!this.$session.has('token')) this.$router.push('/signin')
         else this.isAuth = this.$session.has('token')
     },

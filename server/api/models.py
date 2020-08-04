@@ -4,19 +4,29 @@ import os, uuid, logging
 
 log = logging.getLogger(__name__)
 
-def article_file_name(instance, filename):
-    return 'upload/{0}/{1}/'.format(instance.title, filename)
+def article_thumbnail(instance, filename):
+    return 'thumbnail/{0}/{1}/'.format(instance.title, filename)
+
+def upload_image(instance, filename):
+    return 'images/{0}/'.format(filename)
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
     title = models.CharField('タイトル', max_length=255)
     content = models.TextField('内容')
+    lead_text = models.TextField('紹介文', max_length=60)
     category = models.ForeignKey('api.Category', on_delete=models.PROTECT)
-    thumbnail = models.ImageField('サムネイル', upload_to=article_file_name, default='default/default-thumbnail.jpg', blank=True, null=True)
+    thumbnail = models.ImageField(
+        'サムネイル',
+        upload_to=article_thumbnail,
+        default='default/default-thumbnail.jpg',
+        blank=True,
+        null=True
+    )
     created_at = models.DateTimeField('作成日時', default=timezone.now)
     updated_at = models.DateTimeField('更新日時', auto_now=True)
     is_public = models.BooleanField('公開フラグ', default=False)
-    related_articles = models.ManyToManyField('self', blank=True, null=True)
+    related_articles = models.ManyToManyField('self', blank=True)
 
     class Meta:
         # 新しいデータから表示
@@ -45,3 +55,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UploadFile(models.Model):
+    file = models.ImageField(
+        '画像ファイル',
+        upload_to=upload_image
+    )
+
+    def __str__(self):
+        return self.file.url

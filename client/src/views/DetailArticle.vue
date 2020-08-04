@@ -19,9 +19,7 @@
 
                         <v-card-subtitle>{{ article.created_at }}</v-card-subtitle>
 
-                        <v-card-text>
-                            {{ article.content }}
-                        </v-card-text>
+                        <div id='article_main' v-html="article.conversion_content"/>
 
                     </v-card>
 

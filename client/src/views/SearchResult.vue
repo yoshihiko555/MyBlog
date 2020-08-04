@@ -204,9 +204,6 @@ export default {
                 font-size: .8em;
                 color: #555;
             }
-            .search_result_content {
-
-            }
         }
         &:hover {
             background-color: rgba(190, 190, 190, .2);

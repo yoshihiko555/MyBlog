@@ -31,7 +31,7 @@
                         <v-img :src='article.thumbnail' height='200'></v-img>
                         <v-card-title>{{ article.title }}</v-card-title>
 
-                        <v-card-text>{{ article.content }}</v-card-text>
+                        <v-card-text>{{ article.lead_text | truncate(60)}}</v-card-text>
 
                         <v-card-actions class="article_list_btn_wrap pa-10">
                             <v-btn
