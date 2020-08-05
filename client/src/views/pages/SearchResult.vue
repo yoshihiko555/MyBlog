@@ -37,11 +37,11 @@
                         flat
                         tile
                         outlined
-                        :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
+                        :to='{ name: "DetailArticle", params: { title: article.title }}'
                     >
                         <v-row>
                             <v-col cols='4' class="pa-0 search_result_img_wrap">
-                                <v-img :src='article.thumbnail' height=200></v-img>
+                                <v-img :src='article.thumbnail' alt='article.title' height=200></v-img>
                                 <span class="search_result_category pa-1">{{ article.category_name }}</span>
                             </v-col>
                             <v-col cols='8' class="pl-4">

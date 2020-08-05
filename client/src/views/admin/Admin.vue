@@ -9,8 +9,11 @@
             <v-row>
                 <v-col cols='6'>
                     <h2>記事管理</h2>
-                    <v-btn to='/create'>
+   		            <v-btn to='/admin/create' class='mr-3'>
                         記事作成
+                    </v-btn>
+                    <v-btn to='/admin/article'>
+                        記事一覧
                     </v-btn>
                 </v-col>
             </v-row>
@@ -19,8 +22,19 @@
             <v-row>
                 <v-col cols='6'>
                     <h2>コメント管理</h2>
-                    <v-btn to='/comment'>
+                    <v-btn to='/admin/comment'>
                         コメント一覧
+                    </v-btn>
+                </v-col>
+            </v-row>
+
+            <!-- カテゴリー管理 -->
+            <v-row>
+                <v-col cols='6'>
+                    <h2>カテゴリー管理</h2>
+                    <CreateCategory/>
+                    <v-btn to='/admin/category'>
+                        カテゴリー一覧
                     </v-btn>
                 </v-col>
             </v-row>
@@ -29,14 +43,17 @@
 </template>
 
 <script>
+import CreateCategory from '@/components/parts/CreateCategory'
 export default {
     name: 'Admin',
-
+    components: {
+    	CreateCategory,
+    },
     data: () => ({
         isAuth: false,
     }),
     created () {
-        if (!this.$session.has('token')) this.$router.push('/signin')
+        if (!this.$session.has('token')) this.$router.push('/admin/signin')
         else this.isAuth = this.$session.has('token')
     }
 }

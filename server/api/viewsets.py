@@ -10,6 +10,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.core.serializers import serialize
+from django.shortcuts import get_object_or_404
 
 from rest_framework import generics, permissions, authentication
 from rest_framework.decorators import action
@@ -34,9 +35,15 @@ class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     filter_class = ArticleFilter
 
+    def retrieve(self, request, pk=None):
+        lookup_field = 'title'
+        instance = get_object_or_404(Article, title=pk)
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     @action(methods=['GET'], detail=False)
-    def recent_article(self, request, *args, **kwargs):
-        # 最新記事を６個まで取得
+    def recent_articles(self, request, *args, **kwargs):
+        # 最新記事を6件取得
         queryset = self.get_queryset().order_by('-created_at')[0:6]
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

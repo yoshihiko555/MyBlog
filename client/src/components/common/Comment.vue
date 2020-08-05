@@ -1,6 +1,10 @@
 <template>
-    <v-card id="comments_wrap" class="mb-5">
-        <v-container>
+    <v-container>
+	    <v-card
+	    	id="comments_wrap"
+	    	class="mb-5"
+	    	flat
+	    >
             <v-card-title>Comment List</v-card-title>
             <div v-if='isComment'>
                 <v-row v-for='comment in comments' :key='comment.id'>
@@ -13,8 +17,8 @@
             <div v-else>
                 <v-card-text>コメントがありません</v-card-text>
             </div>
-        </v-container>
-    </v-card>
+   		</v-card>
+    </v-container>
 </template>
 
 <script>

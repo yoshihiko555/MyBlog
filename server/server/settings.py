@@ -152,7 +152,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if DEBUG:
     logging.basicConfig(
-        level = logging.DEBUG,
+        level = logging.INFO,
         format = '''%(levelname)s %(asctime)s %(pathname)s:%(funcName)s:%(lineno)s
         %(message)s''')
 
@@ -163,7 +163,7 @@ if DEBUG:
     )
 else:
     logging.basicConfig(
-        level = logging.DEBUG,
+        level = logging.INFO,
         format = '''%(levelname)s %(asctime)s %(pathname)s:%(funcName)s 行数:%(lineno)s:%(lineno)s
         %(message)s'''
     )

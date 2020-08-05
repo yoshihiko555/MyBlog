@@ -16,6 +16,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     lead_text = serializers.CharField(max_length=60)
     next = serializers.SerializerMethodField()
     previous = serializers.SerializerMethodField()
+    related_articles = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
@@ -33,6 +34,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'comment',
             'next',
             'previous',
+            'related_articles',
         ]
 
     def get_created_at(self, obj):
@@ -47,6 +49,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_category_name(self, obj):
         return obj.category.name
 
+    # Markdown To HTML
     def get_conversion_content(self, obj):
         md = markdown.Markdown(
                 extensions=[
@@ -60,15 +63,36 @@ class ArticleSerializer(serializers.ModelSerializer):
             )
         return md.convert(obj.content)
 
+    # 次の記事
     def get_next(self, obj):
         try:
-            return ArticleSubSerializer(obj.get_next_by_created_at()).data
+            # SubSerializerにcontextを渡してあげる
+            return ArticleSubSerializer(obj.get_next_by_created_at(), context=self.context).data
         except:
             return None
 
+    # 前の記事
     def get_previous(self, obj):
         try:
-            return ArticleSubSerializer(obj.get_previous_by_created_at()).data
+            # SubSerializerにcontextを渡してあげる
+            return ArticleSubSerializer(obj.get_previous_by_created_at(), context=self.context).data
+        except:
+            return None
+
+    # 関連記事
+    def get_related_articles(self, obj):
+        try:
+            if obj.related_articles.count() == 0:
+                # 関連記事が存在しない場合は、同じカテゴリーの記事を5件返却
+                return ArticleSubSerializer(Article.objects
+                                            .exclude(id=obj.id)
+                                            .filter(category=obj.category)
+                                            .order_by('-created_at')[0:5],
+                                            context=self.context,
+                                            many=True).data
+            else:
+                # 関連記事が存在する場合は、該当記事を返却
+                return ArticleSubSerializer(obj.related_articles, self.context, many=True).data
         except:
             return None
 
@@ -78,6 +102,12 @@ class ArticleSubSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
     category_name = serializers.SerializerMethodField()
+    thumbnail_url = serializers.SerializerMethodField()
+
+    def __init__(self, *args, **kwargs):
+        # 呼び出し元のcontextを取得してセットする
+        self.cxt = kwargs['context'] if 'context' in kwargs else None
+        super().__init__(*args, **kwargs)
 
     class Meta:
         model = Article
@@ -87,7 +117,7 @@ class ArticleSubSerializer(serializers.ModelSerializer):
             'lead_text',
             'category',
             'category_name',
-            'thumbnail',
+            'thumbnail_url',
             'created_at',
             'updated_at',
         ]
@@ -101,6 +131,11 @@ class ArticleSubSerializer(serializers.ModelSerializer):
     def get_category_name(self, obj):
         return obj.category.name
 
+    def get_thumbnail_url(self,obj):
+        # requestから画像の絶対パスを取得する
+        request = self.cxt.get('request')
+        return request.build_absolute_uri(obj.thumbnail.url)
+
 
 class CategorySerializer(serializers.ModelSerializer):
 
@@ -110,7 +145,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    
+
     created_at = serializers.SerializerMethodField()
     article_title = serializers.SerializerMethodField()
 
@@ -144,4 +179,5 @@ class SingleUploadFileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UploadFile
-        fields = ['__all__']
+        fields = '__all__'
+

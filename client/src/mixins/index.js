@@ -23,10 +23,15 @@ export const setDescription = pathMeta => {
  */
 export const trim = word => String(word).replace(/^\s+|\s+$/g, '')
 
+export const toErrorPage = (status, router) => {
+//	router.push(`/${status}`)
+}
+
 export const globalMixins = {
 		methods: {
 			setTitle,
             setDescription,
             trim,
+            toErrorPage,
 		}
 }

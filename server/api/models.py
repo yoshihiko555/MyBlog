@@ -12,7 +12,7 @@ def upload_image(instance, filename):
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
-    title = models.CharField('タイトル', max_length=255)
+    title = models.CharField('タイトル', max_length=255, unique=True)
     content = models.TextField('内容')
     lead_text = models.TextField('紹介文', max_length=60)
     category = models.ForeignKey('api.Category', on_delete=models.PROTECT)

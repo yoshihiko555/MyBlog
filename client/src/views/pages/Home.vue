@@ -28,7 +28,7 @@
             <v-row class="home_articles_wrap">
                 <v-col cols='12' sm='4' v-for='article in recentArticleList' :key='article.id'>
                     <v-card tile class="my-5">
-                        <v-img :src='article.thumbnail' height='200'></v-img>
+                        <v-img :src='article.thumbnail' :alt='article.title' height='200'></v-img>
                         <v-card-title>{{ article.title }}</v-card-title>
 
                         <v-card-text>{{ article.lead_text | truncate(60)}}</v-card-text>
@@ -38,7 +38,7 @@
                                 outlined
                                 tile
                                 color='blue-grey darken-1'
-                                :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
+                                :to='{ name: "DetailArticle", params: { title: article.title }}'
                             >
                                 ReadMore
                             </v-btn>
@@ -82,7 +82,7 @@ export default {
     }),
     created () {
         this.$axios({
-            url: '/api/article/recent_article/',
+            url: '/api/article/recent_articles/',
             method: 'GET',
         })
         .then(res => {

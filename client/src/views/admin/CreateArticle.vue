@@ -1,5 +1,5 @@
 <template>
-    <div id="create" class="main">
+    <div id="create_article_wrap" class="main">
         <v-container v-show="isAuth">
             <v-row>
                 <h1>記事作成</h1>
@@ -30,23 +30,30 @@
 
                 <v-btn
                     text
+                    class='mr-3'
                     @click='create'
                 >投稿</v-btn>
+
+                <CreateCategory/>
             </v-form>
         </v-container>
     </div>
 </template>
 
 <script>
+import CreateCategory from '@/components/parts/CreateCategory'
 export default {
     name: 'CreateArticle',
+    components: {
+    	CreateCategory,
+    },
     data: () => ({
         isAuth: false,
         article: {},
         categorys: [],
     }),
     created () {
-        if (!this.$session.has('token')) this.$router.push('/signin')
+        if (!this.$session.has('token')) this.$router.push('/admin/signin')
         else this.isAuth = this.$session.has('token')
     },
     mounted () {

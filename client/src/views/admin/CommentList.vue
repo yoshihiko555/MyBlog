@@ -8,7 +8,7 @@
             <v-row v-for="comment in comments" :key='comment.id'>
                 <v-col cols='8'>
                     <router-link
-                        :to='{ name: "DetailArticle", params: { title: comment.article_title, id: comment.article }}'
+                        :to='{ name: "DetailArticle", params: { title: comment.article_title }}'
                     >
                         <p>Article: {{ comment.article_title }}</p>
                     </router-link>
@@ -44,7 +44,7 @@ export default {
     }),
     created () {
         if (!this.$session.has('token')) {
-            this.$router.push('/signin')
+            this.$router.push('/admin/signin')
         } else {
             this.isAuth = this.$session.has('token')
             this.getComments()

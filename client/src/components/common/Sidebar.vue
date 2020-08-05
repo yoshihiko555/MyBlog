@@ -2,9 +2,10 @@
     <div id='sidebar_wrap'>
         <!-- プロフィール部分 -->
         <h1 class="sidebar_logo mb-2">Yoshihiko</h1>
-        <v-img src='@/static/img/pithuy.jpeg' class="mb-5"></v-img>
+        <v-img src='@/static/img/pithuy.jpeg' alt='Acount Profile' class="mb-5"></v-img>
         <p>This is my personal blog where I share a lot of stuffs about life and work everything I do in between.</p>
 
+		<!-- SNS系ボタン -->
         <div class="sns_wrap mb-5">
             <v-btn icon href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
             <v-btn icon href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn>
@@ -12,7 +13,7 @@
             <v-btn icon href='https://www.linkedin.com/in/shuto-takizawa-a269b116b/' target='blank'><v-icon>mdi-linkedin</v-icon></v-btn>
         </div>
 
-        <v-divider></v-divider>
+        <v-divider/>
 
         <!-- 最新記事一覧 -->
         <div class="recent_wrap my-3">
@@ -23,7 +24,7 @@
                 class="recent_article_wrap"
             >
                 <router-link
-                    :to='{ name: "DetailArticle", params: { title: article.title, id: article.id }}'
+                    :to='{ name: "DetailArticle", params: { title: article.title }}'
                 >
                     <v-img
                         :src='article.thumbnail'
@@ -33,7 +34,7 @@
                     <h2 class="text-subtitle-1 recent_title">{{ article.title }}</h2>
                     <p class="recent_create">{{ article.created_at }}</p>
                 </router-link>
-                <v-divider></v-divider>
+                <v-divider/>
             </div>
 
         </div>
@@ -55,7 +56,7 @@
                 </v-chip>
             </v-chip-group>
 
-            <v-divider></v-divider>
+            <v-divider/>
         </div>
     </div>
 </template>
@@ -71,7 +72,7 @@ export default {
     }),
     created () {
         this.$axios({
-            url: '/api/article/recent_article/',
+            url: '/api/article/recent_articles/',
             method: 'GET'
         })
         .then(res => {

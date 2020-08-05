@@ -1,25 +1,34 @@
 <template>
-    <v-card id="send_comment_wrap">
+	<v-container>
+    <v-card
+    	id="send_comment_wrap"
+    	flat
+    >
         <v-card-title>コメントを送信する</v-card-title>
-        <v-form v-model="valid" ref="form">
-            <v-text-field
-                v-model="comment.name"
-                placeholder='Name'
-                :rules='[rules.required]'
-            />
-            <v-textarea
-                v-model="comment.content"
-                placeholder='Content'
-                :rules='[rules.required]'
-            />
-            <v-btn
-                :disabled='!valid'
-                @click="sendComment"
-            >
-                Submit
-            </v-btn>
-        </v-form>
+
+        <v-card-actions>
+	        <v-form v-model="valid" ref="form" id='send_comment_form'>
+	            <v-text-field
+	                v-model="comment.name"
+	                placeholder='Name'
+	                :rules='[rules.required]'
+	            />
+	            <v-textarea
+	                v-model="comment.content"
+	                placeholder='Content'
+	                :rules='[rules.required]'
+	            />
+	            <v-btn
+	            	class='float-right'
+	                :disabled='!valid'
+	                @click="sendComment"
+	            >
+	                Submit
+	            </v-btn>
+	        </v-form>
+        </v-card-actions>
     </v-card>
+    </v-container>
 </template>
 
 <script>
@@ -78,6 +87,9 @@ export default {
 </script>
 
 <style lang="scss">
+	#send_comment_form {
+		width: 100%;
+	}
     .send_comment_notify{
         h4, p {
             color: #fff !important;
