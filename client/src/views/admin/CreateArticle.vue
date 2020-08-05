@@ -34,7 +34,11 @@
                     @click='create'
                 >投稿</v-btn>
 
-                <CreateCategory/>
+                <CreateCategory
+                    @createCategory='addCategory'
+                />
+
+                <UploadImage/>
             </v-form>
         </v-container>
     </div>
@@ -42,10 +46,13 @@
 
 <script>
 import CreateCategory from '@/components/parts/CreateCategory'
+import UploadImage from '@/components/parts/UploadImage'
+
 export default {
     name: 'CreateArticle',
     components: {
-    	CreateCategory,
+        CreateCategory,
+        UploadImage,
     },
     data: () => ({
         isAuth: false,
@@ -86,11 +93,16 @@ export default {
             .catch(e => {
                 console.log(e.response)
             })
-        }
+        },
+        addCategory (category) {
+            this.categorys.push(category)
+        },
     }
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+    .v-note-wrapper {
+        z-index: inherit !important;
+    }
 </style>

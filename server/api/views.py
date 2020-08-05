@@ -6,6 +6,7 @@ from rest_framework import status, generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from .models import *
 from .serializers import *
 
 import logging, environ
@@ -15,12 +16,13 @@ env = environ.Env()
 env.read_env('.env')
 
 class SingleUploadFileView(generics.CreateAPIView):
+    permission_classes = (permissions.AllowAny,)
+    queryset = UploadFile.objects.all()
     serializer_class = SingleUploadFileSerializer
 
 
 class SendContactView(APIView):
     permission_classes = (permissions.AllowAny,)
-    # serializer_class = ContactSerializer
 
     def post(self, request, format=None):
         serializer = ContactSerializer(data=request.data)

@@ -29,8 +29,10 @@ export default {
 				res => {
 					// リクエストデータのJSON解析
 					try {
-						var requestData = (res.config.data !== undefined) ? JSON.parse(res.config.data) : null
-						res.requestData = requestData
+                        if (!(res.config.data instanceof FormData)) {
+                            var requestData = (res.config.data !== undefined) ? JSON.parse(res.config.data) : null
+                            res.requestData = requestData
+                        }
 					} catch (e) {
 						console.log(e)
 					} finally {
