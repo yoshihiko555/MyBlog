@@ -4,10 +4,12 @@ node_modules
 __pycache__
 media
 db.sqlite3
+server/templates/mail/contact_receive.txt
 
 # local env files
 .env.local
 .env.*.local
+*.env
 
 # Log files
 npm-debug.log*
@@ -23,3 +25,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+

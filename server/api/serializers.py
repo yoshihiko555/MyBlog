@@ -181,3 +181,10 @@ class SingleUploadFileSerializer(serializers.ModelSerializer):
         model = UploadFile
         fields = '__all__'
 
+
+class ContactSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    email = serializers.EmailField()
+    title = serializers.CharField(max_length=100)
+    content = serializers.CharField()
+

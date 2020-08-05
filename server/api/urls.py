@@ -11,5 +11,6 @@ app_name = 'api'
 
 urlpatterns = [
     path('upload/', views.SingleUploadFileView.as_view(), name='upload_file'),
+    path('contact/', views.SendContactView.as_view(), name='send_contact'),
     path('', include(router.urls)),
 ]

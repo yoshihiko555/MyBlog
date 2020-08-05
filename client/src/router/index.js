@@ -6,6 +6,7 @@ import { setTitle, setDescription } from '@/mixins'
 import Home from '../views/pages/Home.vue'
 import About from '../views/pages/About.vue'
 import Contact from '../views/pages/Contact.vue'
+import ContactComplete from '../views/pages/ContactComplete.vue'
 import DetailArticle from '../views/pages/DetailArticle.vue'
 import SearchResult from '../views/pages/SearchResult.vue'
 import NotFound from '../views/pages/NotFound.vue'
@@ -50,6 +51,15 @@ const main = [
         meta: {
         	title: 'Contact',
         	description: 'Contact Me',
+        }
+    },
+    {
+        path: '/contact_complete',
+        name: 'ContactComplete',
+        component: ContactComplete,
+        meta: {
+        	title: 'ContactComplete',
+        	description: 'Send Contact Complete',
         }
     },
     {

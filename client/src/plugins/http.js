@@ -40,7 +40,7 @@ export default {
 				e => {
 					// エラーコードのページに遷移
 					console.log('HTTP ERROR RESPONSE:', e.response)
-					router.push(`/${e.response.status}`)
+					// router.push(`/${e.response.status}`) // 本番になったらコメントアウトを外す
 					return Promise.reject(e)
 				}
 		 	)

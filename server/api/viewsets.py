@@ -12,11 +12,10 @@ from django.utils.decorators import method_decorator
 from django.core.serializers import serialize
 from django.shortcuts import get_object_or_404
 
-from rest_framework import generics, permissions, authentication
+from rest_framework import generics, permissions, authentication, status, viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
-from rest_framework import status, viewsets, filters
 from rest_framework.parsers import FileUploadParser
 
 from .serializers import *
