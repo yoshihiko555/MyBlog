@@ -29,10 +29,14 @@
                 ></v-select>
 
                 <v-btn
-                    text
                     class='mr-3'
-                    @click='create'
+                    @click='create(true)'
                 >投稿</v-btn>
+
+                <v-btn
+                    class='mr-3'
+                    @click='create(false)'
+                >下書き</v-btn>
 
                 <CreateCategory
                     @createCategory='addCategory'
@@ -77,9 +81,10 @@ export default {
         })
     },
     methods: {
-        create () {
+        create (flg) {
             console.log('投稿')
             console.log(this.article)
+            this.article.is_public = flg
             this.$axios({
                 url: '/api/article/',
                 method: 'POST',
@@ -91,7 +96,7 @@ export default {
                 this.$router.push('/')
             })
             .catch(e => {
-                console.log(e.response)
+                console.log(e)
             })
         },
         addCategory (category) {

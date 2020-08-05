@@ -17,6 +17,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     next = serializers.SerializerMethodField()
     previous = serializers.SerializerMethodField()
     related_articles = serializers.SerializerMethodField()
+    is_public = serializers.BooleanField(write_only=True)
 
     class Meta:
         model = Article
@@ -35,6 +36,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'next',
             'previous',
             'related_articles',
+            'is_public',
         ]
 
     def get_created_at(self, obj):
@@ -95,6 +97,17 @@ class ArticleSerializer(serializers.ModelSerializer):
                 return ArticleSubSerializer(obj.related_articles, self.context, many=True).data
         except:
             return None
+
+
+    def create(self, validated_data):
+        article = Article.objects.create(
+            title=validated_data['title'],
+            lead_text=validated_data['lead_text'],
+            content=validated_data['content'],
+            category=validated_data['category'],
+            is_public=validated_data['is_public'],
+        )
+        return article
 
 
 class ArticleSubSerializer(serializers.ModelSerializer):
