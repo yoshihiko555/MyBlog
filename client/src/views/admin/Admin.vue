@@ -44,6 +44,7 @@
 
 <script>
 import CreateCategory from '@/components/parts/CreateCategory'
+
 export default {
     name: 'Admin',
     components: {

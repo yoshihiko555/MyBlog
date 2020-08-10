@@ -15,6 +15,7 @@ import InternalServerError from '../views/pages/InternalServerError.vue'
 // Admin
 import Admin from '../views/admin/Admin.vue'
 import CreateArticle from '../views/admin/CreateArticle.vue'
+import EditArticle from '../views/admin/EditArticle.vue'
 import SignIn from '../views/admin/SignIn.vue'
 import CommentList from '../views/admin/CommentList.vue'
 import CategoryList from '../views/admin/CategoryList.vue'
@@ -112,8 +113,13 @@ const admin = [
     },
     {
         path: '/admin/create',
-        name: 'Create',
+        name: 'CreateArticle',
         component: CreateArticle,
+    },
+    {
+        path: '/admin/edit/:title',
+        name: 'EditArticle',
+        component: EditArticle,
     },
     {
         path: '/admin/comment',

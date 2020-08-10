@@ -50,8 +50,8 @@ export default {
             })
             .then(res => {
                 console.log(res)
+                this.$store.commit('addCategorys', res.data)
                 this.clear()
-                this.$emit('createCategory', res.data)
             })
             .catch(e => {
                 console.log(e.response)

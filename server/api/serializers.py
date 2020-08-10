@@ -11,7 +11,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     updated_at = serializers.SerializerMethodField()
     comment = serializers.SerializerMethodField()
     category_name = serializers.SerializerMethodField()
-    content = serializers.CharField(write_only=True)
+    content = serializers.CharField()
     conversion_content = serializers.SerializerMethodField()
     lead_text = serializers.CharField(max_length=60)
     next = serializers.SerializerMethodField()
@@ -100,14 +100,37 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
-        article = Article.objects.create(
-            title=validated_data['title'],
-            lead_text=validated_data['lead_text'],
-            content=validated_data['content'],
-            category=validated_data['category'],
-            is_public=validated_data['is_public'],
-        )
-        return article
+        if 'thumbnail' in validated_data:
+            article = Article.objects.create(
+                title=validated_data['title'],
+                lead_text=validated_data['lead_text'],
+                content=validated_data['content'],
+                category=validated_data['category'],
+                thumbnail=validated_data['thumbnail'],
+                is_public=validated_data['is_public'],
+            )
+            return article
+        
+        else:
+            article = Article.objects.create(
+                title=validated_data['title'],
+                lead_text=validated_data['lead_text'],
+                content=validated_data['content'],
+                category=validated_data['category'],
+                is_public=validated_data['is_public'],
+            )
+            return article
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data['title']
+        instance.lead_text = validated_data['lead_text']
+        instance.content = validated_data['content']
+        instance.category = validated_data['category']
+        instance.is_public = validated_data['is_public']
+        if 'thumbnail' in validated_data:
+            instance.thumbnail = validated_data['thumbnail']
+        instance.save()
+        return instance
 
 
 class ArticleSubSerializer(serializers.ModelSerializer):

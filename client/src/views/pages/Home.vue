@@ -80,28 +80,12 @@ export default {
     data: () => ({
         fab: false,
     }),
-    created () {
-        this.$axios({
-            url: '/api/article/recent_articles/',
-            method: 'GET',
-        })
-        .then(res => {
-            console.log('最新記事一覧', res)
-            this.updateRecentArticles(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
-    },
     computed: {
         ...mapGetters([
             'recentArticleList',
         ]),
     },
     methods: {
-        ...mapActions([
-            'updateRecentArticles',
-        ]),
         onScroll (e) {
             if (typeof window === 'undefined') return
             const top = window.pageYOffset || e.target.scrollTop || 0

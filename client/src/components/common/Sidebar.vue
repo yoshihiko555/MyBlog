@@ -70,30 +70,6 @@ export default {
     data: () => ({
 
     }),
-    created () {
-        this.$axios({
-            url: '/api/article/recent_articles/',
-            method: 'GET'
-        })
-        .then(res => {
-            console.log('最新記事', res)
-            this.updateRecentArticles(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
-        this.$axios({
-            url: '/api/category/',
-            method: 'GET',
-        })
-        .then(res => {
-            console.log('カテゴリー一覧', res)
-            this.updateCategorys(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
-    },
     computed: {
         ...mapGetters([
             'recentArticleList',
@@ -102,8 +78,6 @@ export default {
     },
     methods: {
         ...mapActions([
-            'updateRecentArticles',
-            'updateCategorys',
             'updateSearchText',
             'updateSearchResult',
         ]),

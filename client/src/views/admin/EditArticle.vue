@@ -2,7 +2,7 @@
     <div id="create_article_wrap" class="main">
         <v-container v-show="isAuth">
             <v-row>
-                <h1>記事作成</h1>
+                <h1>記事更新</h1>
             </v-row>
 
             <v-row>
@@ -25,41 +25,39 @@
                 </v-col>
 
                 <v-col cols='2'>
-                        <v-btn
-                            @click='create(true)'
-                        >投稿</v-btn>
+                    <v-btn
+                        @click='update(true)'
+                    >投稿</v-btn>
 
-                        <v-btn
-                            @click='create(false)'
-                        >下書き</v-btn>
+                    <v-btn
+                        @click='update(false)'
+                    >下書き</v-btn>
 
-                        <CreateCategory/>
+                    <CreateCategory/>
 
-                        <v-select
-                            v-model="article.category"
-                            :items="categoryList"
-                            item-text='name'
-                            item-value='id'
-                            filled
-                        />
+                    <v-select
+                        v-model="article.category"
+                        :items="categoryList"
+                        item-text='name'
+                        item-value='id'
+                        filled
+                    />
 
-                        <UploadImage/>
+                    <UploadImage/>
 
-                        <h3>サムネイル</h3>
-                        <div v-show="isShow">
-                            <v-img :src='previewSrc'/>
-                            <v-btn
-                                @click="deleteImage"
-                            >
-                                削除
-                            </v-btn>
-                        </div>
-                        <v-file-input
-                            ref='input'
-                            accept="image/*"
-							prepend-icon="mdi-image"
-							@change='inputFile'
-                        />
+                    <h3>サムネイル</h3>
+                    <div v-if="!isPreview">
+                        <v-img :src='article.thumbnail'/>
+                    </div>
+                    <div v-else>
+                        <v-img :src='previewSrc'/>
+                    </div>
+                    <v-file-input
+                        ref='input'
+                        accept="image/*"
+                        prepend-icon="mdi-image"
+                        @change='inputFile'
+                    />
                 </v-col>
             </v-row>
         </v-container>
@@ -75,7 +73,7 @@ import UploadImage from '@/components/parts/UploadImage'
 const reader = new FileReader()
 
 export default {
-    name: 'CreateArticle',
+    name: 'EditArticle',
     components: {
         CreateCategory,
         UploadImage,
@@ -83,13 +81,17 @@ export default {
     data: () => ({
         isAuth: false,
         article: {},
-        isShow: false,
+        isPreview: false,
         file: null,
         previewSrc: '',
     }),
     created () {
-        if (!this.$session.has('token')) this.$router.push('/admin/signin')
-        else this.isAuth = this.$session.has('token')
+        if (!this.$session.has('token')) {
+            this.$router.push('/admin/signin')
+        } else {
+            this.isAuth = this.$session.has('token')
+            this.getArticle(this.$route.params.title)
+        }
     },
     computed: {
         ...mapGetters([
@@ -97,10 +99,24 @@ export default {
         ])
     },
     methods: {
-        create (flg) {
-            console.log('投稿')
+        getArticle (title) {
+            this.$axios({
+                url: `/api/article/${title}/`,
+                method: 'GET'
+            })
+            .then(res => {
+                console.log('記事詳細', res)
+                this.article = res.data
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        },
+        update (flg) {
+            console.log('更新')
             console.log(this.article)
             this.article.is_public = flg
+            delete this.article.thumbnail // これがあるとサーバでエラー吐くので一旦削除する
             let sendData
             if (this.file !== null) {
                 sendData = new FormData()
@@ -114,14 +130,13 @@ export default {
                 sendData = this.article
             }
             this.$axios({
-                url: '/api/article/',
-                method: 'POST',
+                url: `/api/article/${this.article.id}/`,
+                method: 'PUT',
                 data: sendData,
             })
             .then(res => {
                 console.log(res)
                 this.article = {}
-                this.deleteImage()
                 this.$router.push('/')
             })
             .catch(e => {
@@ -134,13 +149,13 @@ export default {
                 this.previewSrc = e.target.result
             }
             this.file = e
-            this.isShow = true
+            this.isPreview = true
         },
         deleteImage () {
             this.file = null
             this.previewSrc = ''
             this.$refs.input.lazyValue = ''
-            this.isShow = false
+            this.isPreview = false
         },
     }
 }

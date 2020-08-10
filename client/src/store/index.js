@@ -36,6 +36,9 @@ export default new Vuex.Store({
         setDetailArticle (state, payload) {
             state.detailArticle = payload
         },
+        addCategorys (state, payload) {
+            state.categorys.push(payload)
+        }
     },
     actions: {
         updateRecentArticles (ctx, kwargs) {

@@ -4,12 +4,12 @@
             <v-row>
                 <h1>カテゴリー一覧</h1>
             </v-row>
-            <div v-if="categorys.length > 0">
-            <v-row v-for="category in categorys" :key='category.id'>
-                <v-col cols='8'>
-                	<p>Name:{{ category.name }}</p>
-                </v-col>
-            </v-row>
+            <div v-if="categoryList.length > 0">
+                <v-row v-for="category in categoryList" :key='category.id'>
+                    <v-col cols='8'>
+                        <p>Name:{{ category.name }}</p>
+                    </v-col>
+                </v-row>
             </div>
             <div v-else>
                 <p>カテゴリーがありません</p>
@@ -19,36 +19,44 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: 'CategoryList',
 
     data: () => ({
     	isAuth: false,
-    	categorys: [],
+    	// categorys: [],
     }),
     created () {
-        if (!this.$session.has('token')) {
-            this.$router.push('/admin/signin')
-        } else {
-            this.isAuth = this.$session.has('token')
-            this.getCategorys()
-        }
+        // if (!this.$session.has('token')) {
+        //     this.$router.push('/admin/signin')
+        // } else {
+        //     this.isAuth = this.$session.has('token')
+        //     this.getCategorys()
+        // }
+        if (!this.$session.has('token')) this.$router.push('/admin/signin')
+        else this.isAuth = this.$session.has('token')
     },
-    methods: {
-    	getCategorys () {
-    		this.$axios({
-    			url: '/api/category/',
-    			method: 'GET',
-    		})
-    		.then(res => {
-    			console.log(res)
-    			this.categorys = res.data
-    		})
-    		.catch(e => {
-    			console.log(e)
-    		})
-    	}
-    }
+    computed: {
+        ...mapGetters([
+            'categoryList',
+        ])
+    },
+    // methods: {
+    // 	getCategorys () {
+    // 		this.$axios({
+    // 			url: '/api/category/',
+    // 			method: 'GET',
+    // 		})
+    // 		.then(res => {
+    // 			console.log(res)
+    // 			this.categorys = res.data
+    // 		})
+    // 		.catch(e => {
+    // 			console.log(e)
+    // 		})
+    // 	}
+    // }
 }
 </script>
 
