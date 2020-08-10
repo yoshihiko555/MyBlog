@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 env = environ.Env()
 env.read_env('.env')
 
-class SingleUploadFileView(generics.CreateAPIView):
+class ImageFileView(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = UploadFile.objects.all()
     serializer_class = SingleUploadFileSerializer

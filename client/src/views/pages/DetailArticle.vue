@@ -109,5 +109,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+    #detail {
+        #article_main {
+            ::v-deep img {
+                width: 100%;
+            }
+        }
+    }
 </style>

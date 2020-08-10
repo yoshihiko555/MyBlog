@@ -31,30 +31,10 @@ new Vue({
     vuetify,
     created () {
         // 最新記事取得処理
-        this.$axios({
-            url: '/api/article/recent_articles/',
-            method: 'GET',
-        })
-        .then(res => {
-            console.log('最新記事一覧', res)
-            this.updateRecentArticles(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
+        this.updateRecentArticles()
 
         // カテゴリー取得処理
-        this.$axios({
-            url: '/api/category/',
-            method: 'GET',
-        })
-        .then(res => {
-            console.log('カテゴリー一覧', res)
-            this.updateCategorys(res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
+        this.updateCategorys()
     },
     methods: {
         ...mapActions([

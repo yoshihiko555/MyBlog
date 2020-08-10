@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import CreateCategory from '@/components/parts/CreateCategory'
 import UploadImage from '@/components/parts/UploadImage'
@@ -99,6 +99,9 @@ export default {
         ])
     },
     methods: {
+        ...mapActions([
+            'updateRecentArticles',
+        ]),
         getArticle (title) {
             this.$axios({
                 url: `/api/article/${title}/`,
@@ -113,9 +116,8 @@ export default {
             })
         },
         update (flg) {
-            console.log('更新')
-            console.log(this.article)
             this.article.is_public = flg
+            console.log('更新', this.article)
             delete this.article.thumbnail // これがあるとサーバでエラー吐くので一旦削除する
             let sendData
             if (this.file !== null) {
@@ -137,6 +139,7 @@ export default {
             .then(res => {
                 console.log(res)
                 this.article = {}
+                this.updateRecentArticles()
                 this.$router.push('/')
             })
             .catch(e => {

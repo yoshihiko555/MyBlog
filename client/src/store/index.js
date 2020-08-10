@@ -41,11 +41,33 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        // 最新記事取得
         updateRecentArticles (ctx, kwargs) {
-            this.commit('setRecentArticles', kwargs)
+            Vue.prototype.$axios({
+                url: '/api/article/recent_articles/',
+                method: 'GET',
+            })
+            .then(res => {
+                console.log('最新記事一覧', res)
+                this.commit('setRecentArticles', res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
         },
+        // カテゴリー一覧取得
         updateCategorys (ctx, kwargs) {
-            this.commit('setCategorys', kwargs)
+            Vue.prototype.$axios({
+                url: '/api/category/',
+                method: 'GET',
+            })
+            .then(res => {
+                console.log('カテゴリー一覧', res)
+                this.commit('setCategorys', res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
         },
         updateSearchText (ctx, kwargs) {
             this.commit('setSearchText', kwargs)

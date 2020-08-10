@@ -57,6 +57,19 @@ class Comment(models.Model):
         return self.name
 
 
+class CommentReply(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
+    comment = models.ForeignKey(Comment, related_name='reply', on_delete=models.CASCADE)
+    name = models.CharField('名前', max_length=100)
+    content = models.TextField('内容')
+    deleted = models.BooleanField('削除フラグ', default=False)
+    is_public = models.BooleanField('公開フラグ', default=False)
+    created_at = models.DateTimeField('作成日時', default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
+
 class UploadFile(models.Model):
     file = models.ImageField(
         '画像ファイル',
@@ -65,3 +78,7 @@ class UploadFile(models.Model):
 
     def __str__(self):
         return self.file.url
+
+    @property
+    def filename(self):
+        return os.path.basename(self.file.name)

@@ -81,3 +81,9 @@ class CommentViewSet(viewsets.ModelViewSet):
         comment.deleted = True
         comment.save()
         return Response(status=status.HTTP_200_OK)
+
+
+class CommentReplyViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny,)
+    queryset = CommentReply.objects.all()
+    serializer_class = CommentReplySerializer

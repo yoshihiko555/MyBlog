@@ -1,33 +1,33 @@
 <template>
 	<v-container>
-    <v-card
-    	id="send_comment_wrap"
-    	flat
-    >
-        <v-card-title>コメントを送信する</v-card-title>
+        <v-card
+            id="send_comment_wrap"
+            flat
+        >
+            <v-card-title>コメントを送信する</v-card-title>
 
-        <v-card-actions>
-	        <v-form v-model="valid" ref="form" id='send_comment_form'>
-	            <v-text-field
-	                v-model="comment.name"
-	                placeholder='Name'
-	                :rules='[rules.required]'
-	            />
-	            <v-textarea
-	                v-model="comment.content"
-	                placeholder='Content'
-	                :rules='[rules.required]'
-	            />
-	            <v-btn
-	            	class='float-right'
-	                :disabled='!valid'
-	                @click="sendComment"
-	            >
-	                Submit
-	            </v-btn>
-	        </v-form>
-        </v-card-actions>
-    </v-card>
+            <v-card-actions>
+                <v-form v-model="valid" ref="form" id='send_comment_form'>
+                    <v-text-field
+                        v-model="comment.name"
+                        placeholder='Name'
+                        :rules='[rules.required]'
+                    />
+                    <v-textarea
+                        v-model="comment.content"
+                        placeholder='Content'
+                        :rules='[rules.required]'
+                    />
+                    <v-btn
+                        class='float-right'
+                        :disabled='!valid'
+                        @click="sendComment"
+                    >
+                        Submit
+                    </v-btn>
+                </v-form>
+            </v-card-actions>
+        </v-card>
     </v-container>
 </template>
 
@@ -53,9 +53,6 @@ export default {
         }
     }),
     methods: {
-        ...mapActions([
-            'addCommentDetailArticle',
-        ]),
         sendComment () {
             this.comment.article = this.article.id
             this.$axios({
@@ -68,7 +65,6 @@ export default {
                 this.$refs.form.reset()
                 this.comment = {
                     name: '',
-                    title: '',
                     content: '',
                 }
                 this.$vs.notification({

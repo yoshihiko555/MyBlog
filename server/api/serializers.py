@@ -184,6 +184,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     created_at = serializers.SerializerMethodField()
     article_title = serializers.SerializerMethodField()
+    reply = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -195,10 +196,16 @@ class CommentSerializer(serializers.ModelSerializer):
             'is_public',
             'created_at',
             'article_title',
+            'reply',
         ]
+    def get_created_at(self, obj):
+        return obj.created_at.strftime('%b %d %Y')
 
     def get_article_title(self, obj):
         return obj.article.title
+
+    def get_reply(self, obj):
+        return CommentReplySerializer(obj.reply, many=True).data
 
     def create(self, validated_data):
         comment = Comment.objects.create(
@@ -209,13 +216,25 @@ class CommentSerializer(serializers.ModelSerializer):
         return comment
 
 
+class CommentReplySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CommentReply
+        fields = '__all__'
+
+
 class SingleUploadFileSerializer(serializers.ModelSerializer):
 
     file = serializers.ImageField()
+    file_name = serializers.SerializerMethodField()
 
     class Meta:
         model = UploadFile
         fields = '__all__'
+
+    
+    def get_file_name(seld, obj):
+        return obj.filename
 
 
 class ContactSerializer(serializers.Serializer):

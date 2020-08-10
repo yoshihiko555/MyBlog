@@ -6,11 +6,12 @@ router = DefaultRouter()
 router.register('article', viewsets.ArticleViewSet)
 router.register('category', viewsets.CategoryViewSet)
 router.register('comment', viewsets.CommentViewSet)
+router.register('reply', viewsets.CommentReplyViewSet)
 
 app_name = 'api'
 
 urlpatterns = [
-    path('upload/', views.SingleUploadFileView.as_view(), name='upload_file'),
     path('contact/', views.SendContactView.as_view(), name='send_contact'),
+    path('image/', views.ImageFileView.as_view(), name='images'),
     path('', include(router.urls)),
 ]

@@ -78,7 +78,7 @@ export default {
             const data = new FormData()
             data.append('file', this.file)
             this.$axios({
-                url: '/api/upload/',
+                url: '/api/image/',
                 method: 'POST',
                 data: data,
             })
@@ -86,6 +86,7 @@ export default {
                 console.log(res)
                 this.dialog = false
                 this.clear()
+                this.$emit('upload', res.data)
             })
             .catch(e => {
                 console.log(e)

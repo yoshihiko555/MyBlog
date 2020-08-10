@@ -20,7 +20,7 @@
                             counter=60
                         ></v-textarea>
 
-                        <mavon-editor v-model="article.content" language="en" />
+                        <mavon-editor v-model="article.content" ref='editor' language="en"/>
                     </v-form>
                 </v-col>
 
@@ -43,7 +43,13 @@
                             filled
                         />
 
-                        <UploadImage/>
+                        <UploadImage
+                            @upload='upload'
+                        />
+
+                        <SelectImage
+                            @select='upload'
+                        />
 
                         <h3>サムネイル</h3>
                         <div v-show="isShow">
@@ -67,10 +73,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import CreateCategory from '@/components/parts/CreateCategory'
 import UploadImage from '@/components/parts/UploadImage'
+import SelectImage from '@/components/parts/SelectImage'
 
 const reader = new FileReader()
 
@@ -79,6 +86,7 @@ export default {
     components: {
         CreateCategory,
         UploadImage,
+        SelectImage,
     },
     data: () => ({
         isAuth: false,
@@ -97,10 +105,12 @@ export default {
         ])
     },
     methods: {
+        ...mapActions([
+            'updateRecentArticles',
+        ]),
         create (flg) {
-            console.log('投稿')
-            console.log(this.article)
             this.article.is_public = flg
+            console.log('投稿', this.article)
             let sendData
             if (this.file !== null) {
                 sendData = new FormData()
@@ -122,6 +132,7 @@ export default {
                 console.log(res)
                 this.article = {}
                 this.deleteImage()
+                this.updateRecentArticles()
                 this.$router.push('/')
             })
             .catch(e => {
@@ -141,6 +152,9 @@ export default {
             this.previewSrc = ''
             this.$refs.input.lazyValue = ''
             this.isShow = false
+        },
+        upload (image) {
+            this.$refs.editor.value += `![${image.file_name}](${image.file})`
         },
     }
 }
