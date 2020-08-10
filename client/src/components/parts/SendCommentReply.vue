@@ -6,7 +6,6 @@
 	>
 		<template #activator='{ on }'>
 			<v-btn
-				class='mr-3'
 				v-on='on'
 			>
 				返信
@@ -62,7 +61,7 @@ export default {
             .then(res => {
                 console.log(res)
                 this.clear()
-                this.$emit('add-comment', res.data)
+                this.$store.commit('addDetailCommentReply', res.data)
             })
             .catch(e => {
                 console.log(e)

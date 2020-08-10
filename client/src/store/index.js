@@ -38,6 +38,10 @@ export default new Vuex.Store({
         },
         addCategorys (state, payload) {
             state.categorys.push(payload)
+        },
+        addDetailCommentReply (state, payload) {
+            const comment = state.detailArticle.comments.find(comment => comment.id === payload.comment)
+            comment.reply.push(payload)
         }
     },
     actions: {

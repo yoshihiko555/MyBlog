@@ -9,7 +9,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
-    comment = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
     category_name = serializers.SerializerMethodField()
     content = serializers.CharField()
     conversion_content = serializers.SerializerMethodField()
@@ -32,7 +32,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'thumbnail',
             'created_at',
             'updated_at',
-            'comment',
+            'comments',
             'next',
             'previous',
             'related_articles',
@@ -45,7 +45,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_updated_at(self, obj):
         return obj.updated_at.strftime('%b %d %Y')
 
-    def get_comment(self, obj):
+    def get_comments(self, obj):
         return CommentSerializer(obj.comment_set.filter(is_public=True), many=True).data
 
     def get_category_name(self, obj):

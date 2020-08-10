@@ -34,7 +34,7 @@
                     />
 
                     <Comment
-                        :comments='article.comment'
+                        :comments='article.comments'
                         :is-comment='isComment'
                     />
                     <SendComment
@@ -96,7 +96,7 @@ export default {
                 this.article = res.data
                 this.isShow = true
                 // コメントが存在するか判定
-                this.isComment = (res.data.comment.length) ? true : false
+                this.isComment = (res.data.comments.length) ? true : false
                 this.setTitle(res.data.title)
                 this.updateDetailArticle(res.data)
             })

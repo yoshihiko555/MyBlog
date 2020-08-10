@@ -47,7 +47,7 @@ class Category(models.Model):
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    name = models.CharField('名前', max_length=100)
+    name = models.CharField('名前', max_length=100, default='名無し')
     content = models.TextField('内容')
     deleted = models.BooleanField('削除フラグ', default=False)
     is_public = models.BooleanField('公開フラグ', default=False)
@@ -60,7 +60,7 @@ class Comment(models.Model):
 class CommentReply(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
     comment = models.ForeignKey(Comment, related_name='reply', on_delete=models.CASCADE)
-    name = models.CharField('名前', max_length=100)
+    name = models.CharField('名前', max_length=100, default='名無し')
     content = models.TextField('内容')
     deleted = models.BooleanField('削除フラグ', default=False)
     is_public = models.BooleanField('公開フラグ', default=False)
