@@ -49,21 +49,24 @@ export default {
     methods: {
         ...mapActions([
             'updateSearchText',
-            'updateSearchResult',
-            'updatePaginationArticle',
         ]),
         onEnter (e) {
             if (e.keyCode === 13) this.search()
         },
         search () {
-        	this.dialog = false
-            var trimedText = this.trim(this.searchText)
-            this.updateSearchText(trimedText)
-            if (this.$router.currentRoute.name !== 'SearchResult') {
+            // 初期化
+            this.dialog = false
+            const trimedText = this.trim(this.searchText)
+            // this.updateSearchText(trimedText)
+            // if (this.$router.currentRoute.name !== 'SearchResult') {
                 this.$router.push({
                     name: 'SearchResult',
+                    query: {
+                        searchText: trimedText
+                    }
                 })
-            }
+            // }
+            this.searchText = ''
         },
     }
 }

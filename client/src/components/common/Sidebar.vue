@@ -82,24 +82,30 @@ export default {
             'updateSearchResult',
         ]),
         filterCategory (category) {
-            this.updateSearchText(category.name)
-            this.$axios({
-                url: '/api/article/',
-                method: 'GET',
-                params: {
-                    categoryId: category.id
+            // this.updateSearchText(category.name)
+            this.$router.push({
+                name: 'SearchResult',
+                query: {
+                    category: category.name
                 }
             })
-            .then(res => {
-                console.log(res)
-                this.updateSearchResult(res.data)
-                this.$router.push({
-                    name: 'SearchResult'
-                })
-            })
-            .catch(e => {
-                console.log(e)
-            })
+            // this.$axios({
+            //     url: '/api/article/',
+            //     method: 'GET',
+            //     params: {
+            //         category: category.id
+            //     }
+            // })
+            // .then(res => {
+            //     console.log(res)
+            //     this.updateSearchResult(res.data)
+            //     this.$router.push({
+            //         name: 'SearchResult'
+            //     })
+            // })
+            // .catch(e => {
+            //     console.log(e)
+            // })
         },
     },
 

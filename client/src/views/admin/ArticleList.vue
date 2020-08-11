@@ -97,7 +97,7 @@ export default {
                 method: 'GET',
                 params: {
                     page: page,
-                    searchText: this.searchText,
+                    // searchText: this.searchText,
                 }
     		})
     		.then(res => {

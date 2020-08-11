@@ -8,14 +8,14 @@ log = logging.getLogger(__name__)
 class ArticleFilter(django_filter.FilterSet):
 
     searchText = django_filter.CharFilter(field_name='title', method='title_filter')
-    categoryId = django_filter.NumberFilter(method='category_filter')
+    category = django_filter.CharFilter(method='category_filter')
 
     class Meta:
         model = Article
         fields = []
 
     def title_filter(self, queryset, name, value):
-        log.debug('=====TITLE_FILTER=====')
+        log.info('=====TITLE_FILTER=====')
 
         q_list = []
         qs = list({i.strip() for i in value.split(',')})
@@ -25,10 +25,10 @@ class ArticleFilter(django_filter.FilterSet):
 
         q = Article.objects.filter(eval(query_str))
 
-        log.debug('検索結果 : ')
-        log.debug(q)
+        log.info('検索結果 : ')
+        log.info(q)
         return q
 
     def category_filter(self, queryset, name, value):
         log.info('=====CATEGORY_FILTER=====')
-        return queryset.filter(category=value)
+        return queryset.filter(category__name=value)
