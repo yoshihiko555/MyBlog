@@ -42,10 +42,14 @@ export default new Vuex.Store({
         addDetailCommentReply (state, payload) {
             const comment = state.detailArticle.comments.find(comment => comment.id === payload.comment)
             comment.reply.push(payload)
+        },
+        setCategory (state, payload) {
+            const category = state.categorys.find(category => category.id === payload.id)
+            category.name = payload.name
         }
     },
     actions: {
-        // 最新記事取得
+        // 最新記事更新
         updateRecentArticles (ctx, kwargs) {
             Vue.prototype.$axios({
                 url: '/api/article/recent_articles/',
@@ -59,7 +63,7 @@ export default new Vuex.Store({
                 console.log(e)
             })
         },
-        // カテゴリー一覧取得
+        // カテゴリー一覧更新
         updateCategorys (ctx, kwargs) {
             Vue.prototype.$axios({
                 url: '/api/category/',
@@ -82,6 +86,22 @@ export default new Vuex.Store({
         updateDetailArticle (ctx, kwargs) {
             this.commit('setDetailArticle', kwargs)
         },
+        // カテゴリー情報更新
+        updateCategory (ctx, kwargs) {
+            Vue.prototype.$axios({
+                url: `/api/category/${kwargs.id}/`,
+                method: 'PUT',
+                data: {
+                    name: kwargs.name,
+                }
+            })
+            .then(res => {
+                this.commit('setCategory', res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        }
     },
     modules: {
     },

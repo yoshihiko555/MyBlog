@@ -7,7 +7,20 @@
             <div v-if="categoryList.length > 0">
                 <v-row v-for="category in categoryList" :key='category.id'>
                     <v-col cols='8'>
-                        <p>Name:{{ category.name }}</p>
+                        <p>CategoryName: {{ category.name }}</p>
+                    </v-col>
+
+                    <v-col cols='4'>
+                        <v-btn
+                            @click='showEdit(category)'
+                        >
+                            編集
+                        </v-btn>
+                        <v-btn
+                            @click="deleteCategory(category)"
+                        >
+                            削除
+                        </v-btn>
                     </v-col>
                 </v-row>
             </div>
@@ -15,25 +28,26 @@
                 <p>カテゴリーがありません</p>
             </div>
         </v-container>
+        <EditCategory
+            ref='edit'
+        />
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+
+import EditCategory from '@/components/parts/EditCategory'
+
 export default {
     name: 'CategoryList',
-
+    components: {
+        EditCategory,
+    },
     data: () => ({
-    	isAuth: false,
-    	// categorys: [],
+        isAuth: false,
     }),
     created () {
-        // if (!this.$session.has('token')) {
-        //     this.$router.push('/admin/signin')
-        // } else {
-        //     this.isAuth = this.$session.has('token')
-        //     this.getCategorys()
-        // }
         if (!this.$session.has('token')) this.$router.push('/admin/signin')
         else this.isAuth = this.$session.has('token')
     },
@@ -42,21 +56,23 @@ export default {
             'categoryList',
         ])
     },
-    // methods: {
-    // 	getCategorys () {
-    // 		this.$axios({
-    // 			url: '/api/category/',
-    // 			method: 'GET',
-    // 		})
-    // 		.then(res => {
-    // 			console.log(res)
-    // 			this.categorys = res.data
-    // 		})
-    // 		.catch(e => {
-    // 			console.log(e)
-    // 		})
-    // 	}
-    // }
+    methods: {
+        showEdit (category) {
+            this.$refs.edit.showEdit(category)
+        },
+        deleteCategory (category) {
+            this.$axios({
+                url: `/api/category/${category.id}/`,
+                method: 'DELETE',
+            })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        }
+    }
 }
 </script>
 
