@@ -17,7 +17,6 @@ class ArticleSerializer(serializers.ModelSerializer):
     next = serializers.SerializerMethodField()
     previous = serializers.SerializerMethodField()
     related_articles = serializers.SerializerMethodField()
-    is_public = serializers.BooleanField(write_only=True)
 
     class Meta:
         model = Article

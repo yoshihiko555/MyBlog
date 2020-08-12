@@ -23,7 +23,7 @@ class ArticleFilter(django_filter.FilterSet):
             q_list.append('Q(title__contains=q)')
         query_str = '&'.join(q_list)
 
-        q = Article.objects.filter(eval(query_str))
+        q = queryset.filter(eval(query_str))
 
         log.info('検索結果 : ')
         log.info(q)

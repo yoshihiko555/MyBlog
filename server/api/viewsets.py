@@ -22,6 +22,7 @@ from .serializers import *
 from .models import *
 from .filters import *
 from .paginations import *
+from .permissions import IsAdminOrReadOnly
 
 import re, logging
 
@@ -29,14 +30,21 @@ log = logging.getLogger(__name__)
 
 class ArticleViewSet(viewsets.ModelViewSet):
     pagination_class = DefaultResultPagination
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (IsAdminOrReadOnly,)
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     filter_class = ArticleFilter
 
+    def get_queryset(self):
+        # 管理者以外は公開フラグ:Trueの記事を返却
+        if self.request.user.is_superuser:
+            return Article.objects.all()
+        else:
+            return Article.objects.filter(is_public=True)
+
     def retrieve(self, request, pk=None):
         lookup_field = 'title'
-        instance = get_object_or_404(Article, title=pk)
+        instance = get_object_or_404(self.get_queryset(), title=pk)
         serializer = self.get_serializer(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -49,15 +57,22 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (IsAdminOrReadOnly,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
 class CommentViewSet(viewsets.ModelViewSet):
+    # TODO : コメント系は誰でも投稿可能にするためアクセス権限は不要？
     permission_classes = (permissions.AllowAny,)
-    queryset = Comment.objects.filter(is_public=False, deleted=False)
+    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Comment.objects.all()
+        else:
+            return Comment.objects.filter(is_public=True, deleted=False)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
