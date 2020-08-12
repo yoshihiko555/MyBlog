@@ -68,7 +68,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_next(self, obj):
         try:
             # SubSerializerにcontextを渡してあげる
-            return ArticleSubSerializer(obj.get_next_by_created_at(), context=self.context).data
+            return ArticleSubSerializer(obj.get_next_by_created_at(is_public=True), context=self.context).data
         except:
             return None
 
@@ -76,7 +76,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_previous(self, obj):
         try:
             # SubSerializerにcontextを渡してあげる
-            return ArticleSubSerializer(obj.get_previous_by_created_at(), context=self.context).data
+            return ArticleSubSerializer(obj.get_previous_by_created_at(is_public=True), context=self.context).data
         except:
             return None
 
