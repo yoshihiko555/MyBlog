@@ -47,7 +47,7 @@
                             <v-col cols='8' class="pl-4">
                                 <h4 class="search_result_title">{{ article.title }}</h4>
                                 <p class="search_result_created mb-3">{{ article.created_at}}</p>
-                                <p class="search_result_content">{{ article.content}}</p>
+                                <p class="search_result_content">{{ article.lead_text}}</p>
                             </v-col>
                         </v-row>
                     </v-card>

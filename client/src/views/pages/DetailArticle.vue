@@ -2,23 +2,31 @@
     <div id="detail" class="main">
         <v-container v-show='isShow'>
             <v-row>
-                <v-col cols='12' sm='4'>
+                <v-col cols='12' sm='3'>
                     <Sidebar/>
                 </v-col>
 
-                <v-col cols='12' sm='8'>
+                <v-col cols='12' sm='8' offset-md='1'>
                     <v-card
                         tile
                         flat
                         id="detail_article_wrap"
                         class="mb-5"
                     >
-                        <v-img :src='article.thumbnail' :alt='article.title' height=400></v-img>
-                        <v-card-title>
+                        <v-btn
+                            depressed
+                            :to='{ name: "SearchResult", query: { category: article.category_name }}'
+                        >
+                            {{ article.category_name }}
+                        </v-btn>
+                        <v-card-subtitle class="text-center">
+                            {{ article.created_at }}
+                        </v-card-subtitle>
+
+                        <v-card-title class="justify-center">
                             {{ article.title }}
                         </v-card-title>
-
-                        <v-card-subtitle>{{ article.created_at }}</v-card-subtitle>
+                        <v-img :src='article.thumbnail' :alt='article.title' height=500></v-img>
 
                         <v-card-text id='article_main' v-html='article.conversion_content'/>
 
@@ -98,6 +106,7 @@ export default {
                 // コメントが存在するか判定
                 this.isComment = (res.data.comments.length) ? true : false
                 this.setTitle(res.data.title)
+                this.setDescription(res.data.lead_text)
                 this.updateDetailArticle(res.data)
             })
             .catch(e => {
@@ -112,8 +121,26 @@ export default {
 <style lang="scss" scoped>
     #detail {
         #article_main {
-            ::v-deep img {
-                width: 100%;
+            &::v-deep {
+                .toc {
+                    margin-bottom: 20px;
+                    padding: 20px 0;
+                    background-color: #f1f1f1;
+
+                    ul {
+                        list-style: none;
+
+                        li {
+                            a {
+                                color: #555;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+                img {
+                    width: 100%;
+                }
             }
         }
     }

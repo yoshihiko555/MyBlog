@@ -4,12 +4,15 @@
 			<v-col cols='6' class='text-start'>
 				<h3>前の記事</h3>
 				<div v-if='previous'>
-					<router-link
-						:to='{ name: "DetailArticle", params: { title: previous.title }}'
-					>
-						<v-img :src='previous.thumbnail_url' :alt='previous.title' height='200'/>
-						{{ previous.title }}
-					</router-link>
+                    <v-card
+                        link
+                        tile
+                        flat
+                        :to='{ name: "DetailArticle", params: { title: previous.title }}'
+                    >
+						<v-img :src='previous.thumbnail_url' :alt='previous.title'/>
+						<p>{{ previous.title }}</p>
+                    </v-card>
 				</div>
 				<div v-else>
 					<p>記事無し</p>
@@ -19,12 +22,15 @@
 			<v-col cols='6' class='text-end'>
 				<h3>次の記事</h3>
 				<div v-if='next'>
-					<router-link
-						:to='{ name: "DetailArticle", params: { title: next.title }}'
-					>
-						<v-img :src='next.thumbnail_url' :alt='next.title' height='200'/>
-						{{ next.title }}
-					</router-link>
+                    <v-card
+                        link
+                        flat
+                        tile
+                        :to='{ name: "DetailArticle", params: { title: next.title }}'
+                    >
+						<v-img :src='next.thumbnail_url' :alt='next.title'/>
+						<p>{{ next.title }}</p>
+                    </v-card>
 				</div>
 				<div v-else>
 					<p>記事無し</p>

@@ -114,6 +114,16 @@ export default {
 
 <style lang="scss">
     #sidebar_wrap {
+        padding-bottom: 20px;
+        height: calc(100vh - #{($header + $footer)});
+        overflow-y: scroll;
+        position: sticky;
+        top: $header;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
         .sns_wrap {
             margin-bottom: 0%;
         }
