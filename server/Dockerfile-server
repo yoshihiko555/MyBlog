@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 MAINTAINER admin
 
