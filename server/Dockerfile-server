@@ -1,5 +1,7 @@
 FROM continuumio/anaconda3
 
+WORKDIR /home/blog/
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
   net-tools \
   sudo \
@@ -20,6 +22,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   conda install -c conda-forge djangorestframework && \
   conda install -c conda-forge djangorestframework-jwt && \
   conda install -c conda-forge django-cors-headers && \
-  conda install -c conda-forge django-cleanup
+  conda install -c conda-forge django-cleanup && \
+  conda install -c anaconda psycopg2 && \
+  conda install -c conda-forge whitenoise && \
+  conda install -c anaconda gunicorn && \
+  conda install -c conda-forge dj-database-url
 
-WORKDIR /home/blog/
+COPY . .
+
+RUN python manage.py collectstatic --noinput
+
+MAINTAINER admin
+
+ENV USER admin
+
+RUN useradd -m ${USER}
+RUN gpasswd -a ${USER} sudo
+RUN echo "${USER}:test_pass" | chpasswd
+USER ${USER}
+
+CMD gunicorn server.wsgi:application --bind 0.0.0.0:$PORT
