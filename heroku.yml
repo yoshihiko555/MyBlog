@@ -1,0 +1,9 @@
+build:
+  docker:
+    web: server/Dockerfile-server
+run:
+  web: gunicorn server.wsgi:aoolication --bind 0.0.0.0:$PORT
+release:
+  image: web
+  command:
+    - python manage.py collectstatic --noinput

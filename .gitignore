@@ -4,7 +4,7 @@ node_modules
 __pycache__
 media
 db.sqlite3
-server/templates/mail/contact_receive.txt
+# server/templates/mail/contact_receive.txt
 
 # local env files
 .env.local

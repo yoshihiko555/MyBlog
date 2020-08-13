@@ -2,7 +2,9 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
+  outputDir: 'dist/',
   assetsDir: 'static',
+  indexPath: 'templates/index.html',
   css: {
     loaderOptions: {
         scss: {

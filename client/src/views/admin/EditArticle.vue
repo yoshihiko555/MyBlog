@@ -24,12 +24,14 @@
                     </v-form>
                 </v-col>
 
-                <v-col cols='2'>
+                <v-col cols='2' class="article_operation_wrap">
                     <v-btn
+                        class="ope_btn mb-4"
                         @click='update(true)'
                     >投稿</v-btn>
 
                     <v-btn
+                        class="ope_btn mb-4"
                         @click='update(false)'
                     >下書き</v-btn>
 
@@ -165,6 +167,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .article_operation_wrap {
+        height: calc(100vh - #{($header + $footer)});
+        position: sticky;
+        top: $header;
+        &::v-deep {
+            .ope_btn {
+                width: 100%;
+            }
+        }
+    }
     .v-note-wrapper {
         z-index: inherit !important;
     }

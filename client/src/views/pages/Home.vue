@@ -27,13 +27,13 @@
 			<!-- 記事一覧 -->
             <v-row class="home_articles_wrap">
                 <v-col cols='12' sm='4' v-for='article in recentArticleList' :key='article.id'>
-                    <v-card tile class="my-5">
+                    <v-card tile class="my-5" height=410>
                         <v-img :src='article.thumbnail' :alt='article.title' height='200'></v-img>
                         <v-card-title>{{ article.title }}</v-card-title>
 
-                        <v-card-text>{{ article.lead_text | truncate(60)}}</v-card-text>
+                        <v-card-text class="home_lead_text">{{ article.lead_text | truncate(60)}}</v-card-text>
 
-                        <v-card-actions class="article_list_btn_wrap pa-10">
+                        <v-card-actions class="home_article_btn_wrap pa-5">
                             <v-btn
                                 outlined
                                 tile
@@ -48,7 +48,7 @@
             </v-row>
         </v-container>
 
-        <!-- 記事一覧へのボタン -->
+        <!-- TOPへのボタン -->
         <transition name="fade">
             <v-btn
                 v-scroll='onScroll'
@@ -104,7 +104,6 @@ export default {
 
             .home_main_content {
                 align-self: center;
-
             }
 
             .guide_blog_wrap {
@@ -115,10 +114,17 @@ export default {
             }
         }
 
-        .article_list_btn_wrap {
-            justify-content: center;
-            align-items: center;
+        .home_articles_wrap {
+            .home_lead_text {
+                min-height: 60px;
+            }
+
+            .home_article_btn_wrap {
+                justify-content: center;
+                align-items: center;
+            }
         }
+
         .fade-enter-active, .fade-leave-active {
             transition: 0.5s;
         }

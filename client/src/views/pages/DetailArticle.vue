@@ -27,8 +27,17 @@
                             {{ article.title }}
                         </v-card-title>
                         <v-img :src='article.thumbnail' :alt='article.title' height=500></v-img>
+                        <div id='toc_wrap' class='my-8 mx-4 pa-4'>
+                            <h4 id="toc_title" class="text-center mb-4 pb-2">Contents</h4>
+                            <nav
+                                id='toc'
+                                ref='toc'
+                                v-show='isToc'
+                                @click='toScroll'
+                            />
+                        </div>
 
-                        <v-card-text id='article_main' v-html='article.conversion_content'/>
+                        <v-card-text id='article_main' ref='main' v-html='article.conversion_content'/>
 
                     </v-card>
 
@@ -51,6 +60,23 @@
                 </v-col>
             </v-row>
         </v-container>
+
+        <!-- TOPへのボタン -->
+        <transition name="fade">
+            <v-btn
+                v-scroll='onScroll'
+                v-show='fab'
+                fixed
+                bottom
+                right
+                icon
+                x-large
+                color='blue-grey darken-1'
+                @click='$vuetify.goTo(0)'
+            >
+            <v-icon>mdi-chevron-up</v-icon>
+            </v-btn>
+        </transition>
     </div>
 </template>
 
@@ -76,12 +102,14 @@ export default {
         article: {},
         isShow: false,
         isComment: false,
+        isToc: false,
+        fab: false,
     }),
     created () {
         this.getArticle(this.$route.params.title)
     },
-    beforeRouteUpdate (to, form, next) {
-        this.getArticle(to.params.title)
+    beforeRouteUpdate (to, from, next) {
+        if (to.params.title !== from.params.title) this.getArticle(to.params.title)
         next()
     },
     computed: {
@@ -100,48 +128,85 @@ export default {
             })
             .then(res => {
                 console.log('記事詳細', res)
-                res.data.created_at = res.data.created_at.substr(0, 10).replace(/-/g, '/')
                 this.article = res.data
-                this.isShow = true
+                this.updateDetailArticle(res.data)
+
                 // コメントが存在するか判定
                 this.isComment = (res.data.comments.length) ? true : false
+
+                // Ttile & Description設定
                 this.setTitle(res.data.title)
                 this.setDescription(res.data.lead_text)
-                this.updateDetailArticle(res.data)
+
+                // 目次関連の処理
+                this.$nextTick(() => this.moveToc())
+
+                this.isShow = true
             })
             .catch(e => {
                 console.log(e)
                 this.isShow = false
             })
+        },
+        moveToc () {
+            this.isToc = false
+            this.$refs.toc.innerHTML = ''
+            const innerToc = this.$refs.main.querySelector('div.toc')
+            if (innerToc !== null) {
+                // 目次があれば処理する
+                const cloneToc = innerToc.cloneNode(true)
+                this.$refs.toc.appendChild(cloneToc)
+                this.isToc = true
+            }
+        },
+        onScroll (e) {
+            if (typeof window === 'undefined') return
+            const top = window.pageYOffset || e.target.scrollTop || 0
+            this.fab = top > 850
+        },
+        toScroll (e) {
+            this.$vuetify.goTo(e.target.hash)
         }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-    #detail {
-        #article_main {
-            &::v-deep {
-                .toc {
-                    margin-bottom: 20px;
-                    padding: 20px 0;
-                    background-color: #f1f1f1;
+    #detail::v-deep {
+        #toc_wrap {
+            background-color: #f1f1f1;
+            #toc_title {
+                font-size: 24px;
+                border-bottom: solid 0.5px #bbb;
+            }
+            #toc {
+                ul {
+                    list-style: none;
 
-                    ul {
-                        list-style: none;
-
-                        li {
-                            a {
-                                color: #555;
-                                text-decoration: none;
-                            }
+                    li {
+                        a {
+                            color: #555;
+                            text-decoration: none;
                         }
                     }
                 }
-                img {
-                    width: 100%;
-                }
             }
+        }
+        #article_main {
+            .toc {
+                display: none;
+            }
+            img {
+                width: 100%;
+            }
+        }
+
+        .fade-enter-active, .fade-leave-active {
+            transition: 0.5s;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+            transform: scale(0);
         }
     }
 </style>
