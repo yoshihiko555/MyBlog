@@ -24,48 +24,50 @@
                     </v-form>
                 </v-col>
 
-                <v-col cols='2'>
+                <v-col cols='2' class="article_operation_wrap">
+                    <v-btn
+                        class="ope_btn mb-4"
+                        @click='create(true)'
+                    >投稿</v-btn>
+
+                    <v-btn
+                        class="ope_btn mb-4"
+                        @click='create(false)'
+                    >下書き</v-btn>
+
+                    <CreateCategory/>
+
+                    <v-select
+                        v-model="article.category"
+                        :items="categoryList"
+                        item-text='name'
+                        item-value='id'
+                        filled
+                    />
+
+                    <UploadImage
+                        @upload='upload'
+                    />
+
+                    <SelectImage
+                        @select='upload'
+                    />
+
+                    <h3>サムネイル</h3>
+                    <div v-show="isShow">
+                        <v-img :src='previewSrc'/>
                         <v-btn
-                            @click='create(true)'
-                        >投稿</v-btn>
-
-                        <v-btn
-                            @click='create(false)'
-                        >下書き</v-btn>
-
-                        <CreateCategory/>
-
-                        <v-select
-                            v-model="article.category"
-                            :items="categoryList"
-                            item-text='name'
-                            item-value='id'
-                            filled
-                        />
-
-                        <UploadImage
-                            @upload='upload'
-                        />
-
-                        <SelectImage
-                            @select='upload'
-                        />
-
-                        <h3>サムネイル</h3>
-                        <div v-show="isShow">
-                            <v-img :src='previewSrc'/>
-                            <v-btn
-                                @click="deleteImage"
-                            >
-                                削除
-                            </v-btn>
-                        </div>
-                        <v-file-input
-                            ref='input'
-                            accept="image/*"
-							prepend-icon="mdi-image"
-							@change='inputFile'
-                        />
+                            @click="deleteImage"
+                        >
+                            削除
+                        </v-btn>
+                    </div>
+                    <v-file-input
+                        ref='input'
+                        accept="image/*"
+                        prepend-icon="mdi-image"
+                        @change='inputFile'
+                    />
                 </v-col>
             </v-row>
         </v-container>
@@ -161,6 +163,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .article_operation_wrap {
+        height: calc(100vh - #{($header + $footer)});
+        position: sticky;
+        top: $header;
+        &::v-deep {
+            .ope_btn {
+                width: 100%;
+            }
+        }
+    }
     .v-note-wrapper {
         z-index: inherit !important;
     }

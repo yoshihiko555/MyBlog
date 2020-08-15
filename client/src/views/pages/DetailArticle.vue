@@ -2,7 +2,7 @@
     <div id="detail" class="main">
         <v-container v-show='isShow'>
             <v-row>
-                <v-col cols='12' sm='3'>
+                <v-col cols='12' sm='3' class="d-none d-sm-block sidebar_wrap">
                     <Sidebar/>
                 </v-col>
 
@@ -27,12 +27,11 @@
                             {{ article.title }}
                         </v-card-title>
                         <v-img :src='article.thumbnail' :alt='article.title' height=500></v-img>
-                        <div id='toc_wrap' class='my-8 mx-4 pa-4'>
+                        <div id='toc_wrap' class='my-8 mx-4 pa-4' v-show='isToc'>
                             <h4 id="toc_title" class="text-center mb-4 pb-2">Contents</h4>
                             <nav
                                 id='toc'
                                 ref='toc'
-                                v-show='isToc'
                                 @click='toScroll'
                             />
                         </div>
@@ -173,6 +172,17 @@ export default {
 
 <style lang="scss" scoped>
     #detail::v-deep {
+        .sidebar_wrap {
+            padding-bottom: 20px;
+            height: calc(100vh - #{($header + $footer)});
+            overflow-y: scroll;
+            scrollbar-width: none;
+            position: sticky;
+            top: $header;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
         #toc_wrap {
             background-color: #f1f1f1;
             #toc_title {

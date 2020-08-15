@@ -56,7 +56,7 @@ export default {
         sendComment () {
             this.comment.article = this.article.id
             this.$axios({
-                url: 'api/comment/',
+                url: '/api/comment/',
                 method: 'POST',
                 data: this.comment
             })

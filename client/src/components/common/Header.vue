@@ -6,10 +6,10 @@
             dense
             color='white'
         >
-            <v-row align='center' justify='space-between'>
+            <v-row align='center'>
                 <!-- ハンバーガーボタン設定 -->
-                <v-app-bar-nav-icon @click="drawer = true" class="d-sm-none"></v-app-bar-nav-icon>
-                <router-link to='/' class="header_logo">
+                <v-app-bar-nav-icon @click="drawer = true" class="hamburger_menu d-sm-none"/>
+                <router-link to='/' class="header_logo mx-auto mx-sm-4">
                     <h1>Yoshihiko</h1>
                 </router-link>
                 <div class="header_link_wrap">
@@ -35,6 +35,9 @@
             fixed
             temporary
         >
+            <div class="sidebar_wrap pa-4">
+                <Sidebar/>
+            </div>
             <v-list
                 nav
                 dense
@@ -53,10 +56,13 @@
 
 <script>
 import Search from '@/components/parts/Search'
+import Sidebar from '@/components/common/Sidebar'
+
 export default {
     name: 'Header',
     components: {
         Search,
+        Sidebar,
     },
 
     data: () => ({
@@ -85,6 +91,10 @@ export default {
 
 <style lang="scss">
     #header {
+        .hamburger_menu {
+            position: fixed;
+            left: 0;
+        }
         .header_logo {
             margin-left: 2%;
             font-size: 12px;
@@ -93,6 +103,8 @@ export default {
         }
         .header_link_wrap {
             margin-right: 2%;
+            position: fixed;
+            right: 0;
             display: inline-flex;
             align-items: center;
             .link {

@@ -6,11 +6,11 @@ export default {
 	install: function (Vue, options) {
 		// デフォルト定義
 		const http = axios.create({
-			// baseURL: 'http://localhost:8000/',
+			baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000/' : '',
 			xsrfCookieName: 'csrftoken',
 			xsrfHeaderName: 'X-CSRFTOKEN',
 			timeout: 10000,
-		})
+        })
 		// リクエストのデフォルト定義
 		http.interceptors.request.use((config) => {
             if (Vue.prototype.$session.has('token')) {

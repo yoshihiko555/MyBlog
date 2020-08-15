@@ -31,7 +31,7 @@
                         class="recent_thumbnail"
                         :alt='article.title'
                     ></v-img>
-                    <h2 class="text-subtitle-1 recent_title">{{ article.title }}</h2>
+                    <h2 class="text-subtitle-1 recent_title">{{ article.title | truncate(14) }}</h2>
                     <p class="recent_create">{{ article.created_at }}</p>
                 </router-link>
                 <v-divider/>
@@ -114,16 +114,6 @@ export default {
 
 <style lang="scss">
     #sidebar_wrap {
-        padding-bottom: 20px;
-        height: calc(100vh - #{($header + $footer)});
-        overflow-y: scroll;
-        position: sticky;
-        top: $header;
-        scrollbar-width: none;
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
         .sns_wrap {
             margin-bottom: 0%;
         }
@@ -152,14 +142,18 @@ export default {
                     position: absolute;
                     top: 0;
                     margin-left: 3%;
+                    font-size: 0.8em !important;
                 }
 
                 .recent_create {
                     color: #333;
                     display: inline-block;
                     position: absolute;
-                    top: 30%;
+                    // top: 30%;
+                    bottom: 0;
+                    margin-bottom: 0;
                     margin-left: 3%;
+                    font-size: 0.8em;
                 }
             }
         }

@@ -20,7 +20,7 @@
                             counter=60
                         ></v-textarea>
 
-                        <mavon-editor v-model="article.content" language="en" />
+                        <mavon-editor v-model="article.content" ref='editor' language="en" />
                     </v-form>
                 </v-col>
 
@@ -45,7 +45,13 @@
                         filled
                     />
 
-                    <UploadImage/>
+                    <UploadImage
+                        @select='upload'
+                    />
+
+                    <SelectImage
+                        @select='upload'
+                    />
 
                     <h3>サムネイル</h3>
                     <div v-if="!isPreview">
@@ -71,6 +77,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 import CreateCategory from '@/components/parts/CreateCategory'
 import UploadImage from '@/components/parts/UploadImage'
+import SelectImage from '@/components/parts/SelectImage'
 
 const reader = new FileReader()
 
@@ -79,6 +86,7 @@ export default {
     components: {
         CreateCategory,
         UploadImage,
+        SelectImage,
     },
     data: () => ({
         isAuth: false,
@@ -161,6 +169,9 @@ export default {
             this.previewSrc = ''
             this.$refs.input.lazyValue = ''
             this.isPreview = false
+        },
+        upload (image) {
+            this.$refs.editor.value += `![${image.file_name}](${image.file})`
         },
     }
 }

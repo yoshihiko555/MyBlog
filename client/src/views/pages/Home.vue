@@ -27,11 +27,11 @@
 			<!-- 記事一覧 -->
             <v-row class="home_articles_wrap">
                 <v-col cols='12' sm='4' v-for='article in recentArticleList' :key='article.id'>
-                    <v-card tile class="my-5" height=410>
+                    <v-card tile class="my-5" height=470>
                         <v-img :src='article.thumbnail' :alt='article.title' height='200'></v-img>
-                        <v-card-title>{{ article.title }}</v-card-title>
+                        <v-card-title class="home_title">{{ article.title | truncate(30) }}</v-card-title>
 
-                        <v-card-text class="home_lead_text">{{ article.lead_text | truncate(60)}}</v-card-text>
+                        <v-card-text class="home_lead_text">{{ article.lead_text | truncate(60) }}</v-card-text>
 
                         <v-card-actions class="home_article_btn_wrap pa-5">
                             <v-btn
@@ -70,13 +70,8 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
-import Sidebar from '@/components/common/Sidebar'
-
 export default {
     name: 'Home',
-    components: {
-        Sidebar,
-    },
     data: () => ({
         fab: false,
     }),
@@ -115,6 +110,11 @@ export default {
         }
 
         .home_articles_wrap {
+            .home_title {
+                min-height: 130px;
+                align-items: initial;
+                font-weight: 700;
+            }
             .home_lead_text {
                 min-height: 60px;
             }

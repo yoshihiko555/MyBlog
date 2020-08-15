@@ -12,8 +12,8 @@ from .serializers import *
 import logging, environ
 
 log = logging.getLogger(__name__)
-env = environ.Env()
-env.read_env('.env')
+# env = environ.Env()
+# env.read_env('.env')
 
 class ImageFileView(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny,)
@@ -35,7 +35,8 @@ class SendContactView(APIView):
             }
             message = render_to_string('mail/contact_receive.txt', context)
             from_email = ''
-            recipient_list = env.list('TO_EMAIL_LIST')
+            # recipient_list = env.list('TO_EMAIL_LIST')
+            recipient_list = ['md.takizawa@gmail.com', 'syutodayo@yahoo.co.jp']
             send_mail(subject, message, from_email, recipient_list)
             return Response(status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
