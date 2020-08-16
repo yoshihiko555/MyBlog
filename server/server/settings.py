@@ -166,7 +166,6 @@ EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_USE_TLS = True
 
 if DEBUG:
-    print('ここ')
     logging.basicConfig(
         level = logging.INFO,
         format = '''%(levelname)s %(asctime)s %(pathname)s:%(funcName)s:%(lineno)s

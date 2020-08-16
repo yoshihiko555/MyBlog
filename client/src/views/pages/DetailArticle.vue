@@ -154,6 +154,12 @@ export default {
             if (innerToc !== null) {
                 // 目次があれば処理する
                 const cloneToc = innerToc.cloneNode(true)
+                const testEl = cloneToc.querySelector('ul')
+                console.log(cloneToc)
+                console.log(testEl.childNodes)
+                // for (const el of testEl) {
+                //     // console.log(el.parentNode)
+                // }
                 this.$refs.toc.appendChild(cloneToc)
                 this.isToc = true
             }
@@ -187,17 +193,29 @@ export default {
             background-color: #f1f1f1;
             #toc_title {
                 font-size: 24px;
-                border-bottom: solid 0.5px #bbb;
+                border-bottom: solid 0.5px #9c9c9c;
             }
-            #toc {
+            #toc .toc{
+                // 共通部分
                 ul {
                     list-style: none;
-
                     li {
                         a {
+                            display: block;
+                            padding: 10px 0;
                             color: #555;
                             text-decoration: none;
+                            transition: .3s all ease-in-out;
+                            &:hover {
+                                color: #a5a5a5;
+                            }
                         }
+                    }
+                }
+                // h1要素
+                &>ul {
+                    &>li {
+                        border-bottom: solid 0.5px #bbb;
                     }
                 }
             }
@@ -208,6 +226,50 @@ export default {
             }
             img {
                 width: 100%;
+            }
+            h1, h2, h3, p {
+                margin-bottom: 16px;
+            }
+            h1 {
+                position: relative;
+                padding-bottom: .3em;
+                margin-top: 30px;
+                border-bottom: 1px solid #ccc;
+                &::after {
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    z-index: 2;
+                    content: '';
+                    width: 20%;
+                    height: 3px;
+                    background-color: #333;
+                }
+            }
+            h2 {
+                padding-bottom: .3em;
+                margin-top: 30px;
+                border-bottom: 1px solid #ccc;
+            }
+            h3 {
+                padding: .25em 0 .25em .75em;
+                margin-top: 30px;
+                border-left: 6px solid #ccc;
+                font-size: 20px;
+            }
+            p {
+                letter-spacing: .3em;
+            }
+            pre {
+                margin: 30px 0;
+                padding: 2%;
+                background-color: #404040;
+                overflow-x: scroll;
+
+                code {
+                    color: #e6e6e6;
+                    background-color: initial;
+                }
             }
         }
 

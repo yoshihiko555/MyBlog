@@ -171,6 +171,7 @@ export default {
             this.isPreview = false
         },
         upload (image) {
+            console.log('ファイルアップ')
             this.$refs.editor.value += `![${image.file_name}](${image.file})`
         },
     }
