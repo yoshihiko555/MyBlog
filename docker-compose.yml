@@ -4,8 +4,10 @@ services:
         build:
             context: ./server
             dockerfile: Dockerfile-server
-        image: dj-server
+        image: drf-base-image
         container_name: server
+        working_dir: /home/blog/server/
+        command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
         ports:
             - '8000:8000'
         volumes:
@@ -16,8 +18,9 @@ services:
         build:
             context: ./client
             dockerfile: Dockerfile-client
-        image: vue-client
+        image: vue-base-image
         container_name: client
+        working_dir: /home/blog
         ports:
             - '8080:8080'
         volumes:

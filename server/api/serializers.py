@@ -87,7 +87,7 @@ class ArticleSerializer(serializers.ModelSerializer):
                 # 関連記事が存在しない場合は、同じカテゴリーの記事を5件返却
                 return ArticleSubSerializer(Article.objects
                                             .exclude(id=obj.id)
-                                            .filter(category=obj.category)
+                                            .filter(category=obj.category, is_public=True)
                                             .order_by('-created_at')[0:5],
                                             context=self.context,
                                             many=True).data
