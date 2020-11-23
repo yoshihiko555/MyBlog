@@ -14,5 +14,10 @@ module.exports = {
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+      'no-tabs': 'off',
+      'indent': 'off',
+      'comma-dangle': 'off',
+      'no-mixed-spaces-and-tabs': 'off'
+  }
 }

@@ -46,22 +46,8 @@
 # 
 # CMD gunicorn server.wsgi:application --bind 0.0.0.0:$PORT
 
-FROM python:3
+FROM drf-base:latest
 
-# バイナリレイヤ下の標準出力とエラー出力を抑制する環境変数
-ENV PYTHONUNBUFFERED 1
-
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
-	net-tools \
-	sudo \
-	bzip2 \
-	curl \
-	gcc \
-	python3-dev \
-	vim
-RUN apt-get clean
-
-ADD . .
+ADD ./requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt

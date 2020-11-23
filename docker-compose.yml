@@ -4,8 +4,8 @@ services:
         build:
             context: ./server
             dockerfile: Dockerfile-server
-        image: drf-base-image
-        container_name: server
+        image: blog-drf
+        container_name: blog-api
         working_dir: /home/blog/server/
         command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
         ports:
@@ -15,14 +15,12 @@ services:
         tty: true
 
     client:
-        build:
-            context: ./client
-            dockerfile: Dockerfile-client
-        image: vue-base-image
-        container_name: client
+        image: vue-base
+        container_name: blog-web
         working_dir: /home/blog
         ports:
             - '8080:8080'
+            - '3000:3000'
         volumes:
             - .:/home/blog
         tty: true

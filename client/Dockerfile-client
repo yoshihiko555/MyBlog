@@ -10,5 +10,4 @@ RUN apt-get install -y --no-install-recommends \
     vim
 RUN apt-get clean
 
-# RUN npm install -g yarn
 RUN npm install -g @vue/cli
