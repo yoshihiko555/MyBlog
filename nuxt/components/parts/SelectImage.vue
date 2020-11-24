@@ -30,8 +30,6 @@
 </template>
 
 <script>
-const reader = new FileReader()
-
 export default {
     name: 'SelectImage',
     data: () => ({

@@ -131,7 +131,7 @@ export default {
                 this.updateDetailArticle(res.data)
 
                 // コメントが存在するか判定
-                this.isComment = (res.data.comments.length) ? true : false
+                this.isComment = (res.data.comments.length)
 
                 // Ttile & Description設定
                 this.setTitle(res.data.title)

@@ -12,7 +12,7 @@
                         outlined
                         dense
                         :loading='loading'
-                    ></v-text-field>
+                    />
                 </v-col>
             </v-row>
 
@@ -23,7 +23,7 @@
                     <v-col cols='12' class="text-center">
                         <h2 class="mb-3 text-subtitle-1">Search Result For</h2>
                         <h3 class="mb-3 search_text">{{ searchText }}</h3>
-                        <v-divider></v-divider>
+                        <v-divider />
                     </v-col>
                 </v-row>
 
@@ -41,13 +41,13 @@
                     >
                         <v-row>
                             <v-col cols='4' class="pa-0 search_result_img_wrap">
-                                <v-img :src='article.thumbnail' alt='article.title' height=200></v-img>
+                                <v-img :src='article.thumbnail' alt='article.title' height=200 />
                                 <span class="search_result_category pa-1">{{ article.category_name }}</span>
                             </v-col>
                             <v-col cols='8' class="pl-4">
                                 <h4 class="search_result_title">{{ article.title }}</h4>
-                                <p class="search_result_created mb-3">{{ article.created_at}}</p>
-                                <p class="search_result_content">{{ article.lead_text}}</p>
+                                <p class="search_result_created mb-3">{{ article.created_at }}</p>
+                                <p class="search_result_content">{{ article.lead_text }}</p>
                             </v-col>
                         </v-row>
                     </v-card>
@@ -72,7 +72,7 @@
 
             <!-- ロード中画面表示 -->
             <div v-else>
-                <Loading/>
+                <Loading />
             </div>
         </v-container>
     </div>
@@ -94,6 +94,18 @@ export default {
         loading: false,
         pagination: {},
     }),
+    computed: {
+        ...mapGetters([
+            'searchText',
+            'searchResultList',
+        ]),
+    },
+    watch: {
+        searchRetryText (val) {
+            this.loading = true
+            this.inSearch(val)
+        }
+    },
     created () {
         this.search()
         // const searchText = this.$route.query.searchText || ''
@@ -121,18 +133,6 @@ export default {
         console.log(to)
         this.search(to.query.searchText, to.query.page)
         next()
-    },
-    watch: {
-        searchRetryText (val) {
-            this.loading = true
-            this.inSearch(val)
-        }
-    },
-    computed: {
-        ...mapGetters([
-            'searchText',
-            'searchResultList',
-        ]),
     },
     methods: {
         ...mapActions([
@@ -184,8 +184,8 @@ export default {
                 this.updateSearchText(searchText)
 
                 // 検索ワードの整形
-                var trimedTextList = [...new Set(searchText.split(/\s+/))]
-                var searchWord = trimedTextList.join(',')
+                const trimedTextList = [...new Set(searchText.split(/\s+/))]
+                const searchWord = trimedTextList.join(',')
                 params.searchText = searchWord
                 console.log('検索文字列 : ' + searchWord)
             } else {
@@ -221,11 +221,11 @@ export default {
             // this.$route.query.push({ page: page })
             const query = {
                 ...this.$route.query,
-                page: page,
+                page,
             }
             this.$router.push({
                 name: 'SearchResult',
-                query: query
+                query
             })
             // this.$axios({
     		// 	url: '/api/article/',

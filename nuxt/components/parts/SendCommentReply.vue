@@ -26,7 +26,7 @@
 				placeholder='Content'
 			/>
 			<v-card-actions>
-				<v-spacer/>
+				<v-spacer />
 				<v-btn
 					@click='send'
 				>作成</v-btn>
@@ -36,8 +36,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
     name: 'SendCommentReply',
     props: {

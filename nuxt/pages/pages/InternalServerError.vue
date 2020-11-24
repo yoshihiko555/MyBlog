@@ -6,7 +6,6 @@
 
 <script>
 export default {
-    name: 'Internal Server Error',
     data: () => ({
     }),
     created () {

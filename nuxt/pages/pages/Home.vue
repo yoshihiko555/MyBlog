@@ -28,7 +28,7 @@
             <v-row class="home_articles_wrap">
                 <v-col cols='12' sm='4' v-for='article in recentArticleList' :key='article.id'>
                     <v-card tile class="my-5" height=470>
-                        <v-img :src='article.thumbnail' :alt='article.title' height='200'></v-img>
+                        <v-img :src='article.thumbnail' :alt='article.title' height='200' />
                         <v-card-title class="home_title">{{ article.title | truncate(30) }}</v-card-title>
 
                         <v-card-text class="home_lead_text">{{ article.lead_text | truncate(60) }}</v-card-text>
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'Home',
