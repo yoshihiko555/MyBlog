@@ -39,5 +39,7 @@ module.exports = {
       'vue/singleline-html-element-content-newline': 'off',
       // vueの細かい属性の記述順を許容
       'vue/attributes-order': 'off',
+      // requiredのデフォルト値の設定を許容
+      'vue/require-default-prop': 'off'
   }
 }

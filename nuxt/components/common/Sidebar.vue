@@ -2,7 +2,7 @@
     <div id='sidebar_wrap'>
         <!-- プロフィール部分 -->
         <h1 class="sidebar_logo mb-2">Yoshihiko</h1>
-        <v-img src='@/static/img/pithuy.jpeg' alt='Acount Profile' class="mb-5"></v-img>
+        <v-img src='@/static/img/pithuy.jpeg' alt='Acount Profile' class="mb-5" />
         <p>This is my personal blog where I share a lot of stuffs about life and work everything I do in between.</p>
 
 		<!-- SNS系ボタン -->
@@ -13,7 +13,7 @@
             <v-btn icon href='https://www.linkedin.com/in/shuto-takizawa-a269b116b/' target='blank'><v-icon>mdi-linkedin</v-icon></v-btn>
         </div>
 
-        <v-divider/>
+        <v-divider />
 
         <!-- 最新記事一覧 -->
         <div class="recent_wrap my-3">
@@ -30,13 +30,12 @@
                         :src='article.thumbnail'
                         class="recent_thumbnail"
                         :alt='article.title'
-                    ></v-img>
+                    />
                     <h2 class="text-subtitle-1 recent_title">{{ article.title | truncate(14) }}</h2>
                     <p class="recent_create">{{ article.created_at }}</p>
                 </router-link>
-                <v-divider/>
+                <v-divider />
             </div>
-
         </div>
 
         <!-- カテゴリー一覧 -->
@@ -56,7 +55,7 @@
                 </v-chip>
             </v-chip-group>
 
-            <v-divider/>
+            <v-divider />
         </div>
     </div>
 </template>

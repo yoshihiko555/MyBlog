@@ -14,9 +14,6 @@ export default {
     // VuetifyLogo
   },
   created () {
-      const test = 'sample'
-      const obg = { test, sample: 'hoge' }
-      console.log(obg)
   }
 }
 </script>

@@ -24,7 +24,7 @@
                                 :comment='comment'
                             />
                         </div>
-                        <v-divider/>
+                        <v-divider />
                     </v-col>
                 </v-row>
             </div>
@@ -44,9 +44,11 @@ export default {
     },
     props: {
         comments: {
+            type: Array,
             required: true,
         },
         isComment: {
+            type: Boolean,
             required: true,
         }
     },

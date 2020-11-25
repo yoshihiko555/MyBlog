@@ -14,10 +14,12 @@
 				placeholder='Category Name'
 			/>
 			<v-card-actions>
-				<v-spacer/>
+				<v-spacer />
 				<v-btn
 					@click='update'
-				>更新</v-btn>
+				>
+                    更新
+                </v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>

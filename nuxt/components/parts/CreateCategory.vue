@@ -23,10 +23,12 @@
 				placeholder='Category Name'
 			/>
 			<v-card-actions>
-				<v-spacer/>
+				<v-spacer />
 				<v-btn
 					@click='create'
-				>作成</v-btn>
+				>
+                    作成
+                </v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>

@@ -12,7 +12,7 @@
         >
             <v-row>
                 <v-col cols='4' class="">
-                    <v-img :src='article.thumbnail_url' :alt='article.title'/>
+                    <v-img :src='article.thumbnail_url' :alt='article.title' />
                 </v-col>
                 <v-col cols='8' class="pl-4">
                     <h4>{{ article.title }}</h4>
@@ -29,6 +29,7 @@ export default {
     name: 'RelatedArticles',
     props: {
     	articles: {
+            type: Array,
     		required: true,
     	}
     },

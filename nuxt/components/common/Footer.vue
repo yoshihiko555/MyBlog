@@ -3,7 +3,6 @@
         color='white'
     >
         <v-row justify='end'>
-            <h1>AAAAAA</h1>
             <small>Yoshihiko All Rights Reserved</small>
         </v-row>
     </v-footer>
@@ -11,10 +10,7 @@
 
 <script>
 export default {
-    name: 'Footer',
-
     data: () => ({
-
     })
 }
 </script>

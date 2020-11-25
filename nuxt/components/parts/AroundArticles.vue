@@ -10,7 +10,7 @@
                         flat
                         :to='{ name: "DetailArticle", params: { title: previous.title }}'
                     >
-						<v-img :src='previous.thumbnail_url' :alt='previous.title'/>
+						<v-img :src='previous.thumbnail_url' :alt='previous.title' />
 						<p>{{ previous.title }}</p>
                     </v-card>
 				</div>
@@ -28,7 +28,7 @@
                         tile
                         :to='{ name: "DetailArticle", params: { title: next.title }}'
                     >
-						<v-img :src='next.thumbnail_url' :alt='next.title'/>
+						<v-img :src='next.thumbnail_url' :alt='next.title' />
 						<p>{{ next.title }}</p>
                     </v-card>
 				</div>
@@ -45,10 +45,10 @@ export default {
     name: 'AroundArticles',
     props: {
     	previous: {
-    		type: Object,
+            type: Object,
     	},
     	next: {
-    		type: Object
+            type: Object,
     	}
     },
     data: () => ({

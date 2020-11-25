@@ -12,15 +12,15 @@
                             v-model='article.title'
                             placeholder='title'
                             counter=255
-                        ></v-text-field>
+                        />
 
                         <v-textarea
                             v-model='article.lead_text'
                             placeholder='lead_text'
                             counter=60
-                        ></v-textarea>
+                        />
 
-                        <mavon-editor v-model="article.content" ref='editor' language="en"/>
+                        <mavon-editor v-model="article.content" ref='editor' language="en" />
                     </v-form>
                 </v-col>
 
@@ -28,14 +28,18 @@
                     <v-btn
                         class="ope_btn mb-4"
                         @click='create(true)'
-                    >投稿</v-btn>
+                    >
+                        投稿
+                    </v-btn>
 
                     <v-btn
                         class="ope_btn mb-4"
                         @click='create(false)'
-                    >下書き</v-btn>
+                    >
+                        下書き
+                    </v-btn>
 
-                    <CreateCategory/>
+                    <CreateCategory />
 
                     <v-select
                         v-model="article.category"
@@ -55,7 +59,7 @@
 
                     <h3>サムネイル</h3>
                     <div v-show="isShow">
-                        <v-img :src='previewSrc'/>
+                        <v-img :src='previewSrc' />
                         <v-btn
                             @click="deleteImage"
                         >
@@ -97,14 +101,14 @@ export default {
         file: null,
         previewSrc: '',
     }),
-    created () {
-        if (!this.$session.has('token')) this.$router.push('/admin/signin')
-        else this.isAuth = this.$session.has('token')
-    },
     computed: {
         ...mapGetters([
             'categoryList',
         ])
+    },
+    created () {
+        if (!this.$session.has('token')) this.$router.push('/admin/signin')
+        else this.isAuth = this.$session.has('token')
     },
     methods: {
         ...mapActions([

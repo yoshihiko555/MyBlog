@@ -23,7 +23,9 @@
         </v-form>
         <v-btn
             @click='reset'
-        >reset</v-btn>
+        >
+            reset
+        </v-btn>
         </v-container>
     </v-card>
 </template>

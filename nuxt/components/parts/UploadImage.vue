@@ -39,10 +39,12 @@
             />
 
 			<v-card-actions>
-				<v-spacer/>
+				<v-spacer />
 				<v-btn
 					@click='upload'
-				>Upload</v-btn>
+				>
+                    Upload
+                </v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>

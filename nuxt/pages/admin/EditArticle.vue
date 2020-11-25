@@ -12,13 +12,13 @@
                             v-model='article.title'
                             placeholder='title'
                             counter=255
-                        ></v-text-field>
+                        />
 
                         <v-textarea
                             v-model='article.lead_text'
                             placeholder='lead_text'
                             counter=60
-                        ></v-textarea>
+                        />
 
                         <mavon-editor v-model="article.content" ref='editor' language="en" />
                     </v-form>
@@ -28,14 +28,18 @@
                     <v-btn
                         class="ope_btn mb-4"
                         @click='update(true)'
-                    >投稿</v-btn>
+                    >
+                        投稿
+                    </v-btn>
 
                     <v-btn
                         class="ope_btn mb-4"
                         @click='update(false)'
-                    >下書き</v-btn>
+                    >
+                        下書き
+                    </v-btn>
 
-                    <CreateCategory/>
+                    <CreateCategory />
 
                     <v-select
                         v-model="article.category"
@@ -55,10 +59,10 @@
 
                     <h3>サムネイル</h3>
                     <div v-if="!isPreview">
-                        <v-img :src='article.thumbnail'/>
+                        <v-img :src='article.thumbnail' />
                     </div>
                     <div v-else>
-                        <v-img :src='previewSrc'/>
+                        <v-img :src='previewSrc' />
                     </div>
                     <v-file-input
                         ref='input'
@@ -95,6 +99,11 @@ export default {
         file: null,
         previewSrc: '',
     }),
+    computed: {
+        ...mapGetters([
+            'categoryList',
+        ])
+    },
     created () {
         if (!this.$session.has('token')) {
             this.$router.push('/admin/signin')
@@ -102,11 +111,6 @@ export default {
             this.isAuth = this.$session.has('token')
             this.getArticle(this.$route.params.title)
         }
-    },
-    computed: {
-        ...mapGetters([
-            'categoryList',
-        ])
     },
     methods: {
         ...mapActions([

@@ -32,7 +32,7 @@
             <v-row>
                 <v-col cols='6'>
                     <h2>カテゴリー管理</h2>
-                    <CreateCategory/>
+                    <CreateCategory />
                     <v-btn to='/admin/category'>
                         カテゴリー一覧
                     </v-btn>

@@ -29,7 +29,9 @@
 				<v-spacer />
 				<v-btn
 					@click='send'
-				>作成</v-btn>
+				>
+                    作成
+                </v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>

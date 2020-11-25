@@ -47,14 +47,14 @@ export default {
     data: () => ({
         isAuth: false,
     }),
-    created () {
-        if (!this.$session.has('token')) this.$router.push('/admin/signin')
-        else this.isAuth = this.$session.has('token')
-    },
     computed: {
         ...mapGetters([
             'categoryList',
         ])
+    },
+    created () {
+        if (!this.$session.has('token')) this.$router.push('/admin/signin')
+        else this.isAuth = this.$session.has('token')
     },
     methods: {
         showEdit (category) {
