@@ -175,6 +175,7 @@ if DEBUG:
     MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
     CORS_ORIGIN_WHITELIST = (
         'http://localhost:8080',
+        'http://localhost:3000',
     )
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:

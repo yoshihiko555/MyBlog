@@ -1,6 +1,9 @@
 <template>
     <div id='sample' class="main">
         <h1>Sample</h1>
+        <p>count:{{ test }}</p>
+        <button @click='up'>UP</button>
+        <button @click='fetch'>FETCH</button>
     </div>
 </template>
 
@@ -13,7 +16,30 @@ export default {
     // Logo,
     // VuetifyLogo
   },
+  computed: {
+      test () {
+          return this.$store.getters.test
+      }
+  },
   created () {
+    //   console.log(this.$store.getters)
+  },
+  methods: {
+      up () {
+          this.$store.commit('up')
+      },
+      fetch () {
+        this.$axios({
+            url: '/api/article/recent_articles/',
+            method: 'GET'
+        })
+        .then(res => {
+            console.log(res)
+        })
+        .catch(e => {
+            console.log(e)
+        })
+      }
   }
 }
 </script>
