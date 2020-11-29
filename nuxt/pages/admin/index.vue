@@ -54,8 +54,8 @@ export default {
         isAuth: false,
     }),
     created () {
-        if (!this.$session.has('token')) this.$router.push('/admin/signin')
-        else this.isAuth = this.$session.has('token')
+        // if (!this.$session.has('token')) this.$router.push('/admin/signin')
+        // else this.isAuth = this.$session.has('token')
     }
 }
 </script>

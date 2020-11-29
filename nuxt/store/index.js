@@ -5,6 +5,7 @@ export const state = () => ({
     searchText: '',
     searchResult: [],
     detailArticle: {},
+    sample: 0,
 })
 
 export const getters = {
@@ -41,37 +42,40 @@ export const mutations = {
     setCategory (state, payload) {
         const category = state.categorys.find(category => category.id === payload.id)
         category.name = payload.name
+    },
+    upSample (state, payload) {
+        state.sample++
     }
 }
 
 export const actions = {
     // 最新記事更新
     updateRecentArticles (ctx, kwargs) {
-        // Vue.prototype.$axios({
-        //     url: '/api/article/recent_articles/',
-        //     method: 'GET',
-        // })
-        // .then(res => {
-        //     console.log('最新記事一覧', res)
-        //     this.commit('setRecentArticles', res.data)
-        // })
-        // .catch(e => {
-        //     console.log(e)
-        // })
+        this.$axios({
+            url: '/api/article/recent_articles/',
+            method: 'GET'
+        })
+        .then(res => {
+            console.log('最新記事一覧', res)
+            this.commit('setRecentArticles', res.data)
+        })
+        .catch(e => {
+            console.log(e)
+        })
     },
     // カテゴリー一覧更新
     updateCategorys (ctx, kwargs) {
-        // Vue.prototype.$axios({
-        //     url: '/api/category/',
-        //     method: 'GET',
-        // })
-        // .then(res => {
-        //     console.log('カテゴリー一覧', res)
-        //     this.commit('setCategorys', res.data)
-        // })
-        // .catch(e => {
-        //     console.log(e)
-        // })
+        this.$axios({
+            url: '/api/category/',
+            method: 'GET',
+        })
+        .then(res => {
+            console.log('カテゴリー一覧', res)
+            this.commit('setCategorys', res.data)
+        })
+        .catch(e => {
+            console.log(e)
+        })
     },
     updateSearchText (ctx, kwargs) {
         this.commit('setSearchText', kwargs)
@@ -84,18 +88,18 @@ export const actions = {
     },
     // カテゴリー情報更新
     updateCategory (ctx, kwargs) {
-        // Vue.prototype.$axios({
-        //     url: `/api/category/${kwargs.id}/`,
-        //     method: 'PUT',
-        //     data: {
-        //         name: kwargs.name,
-        //     }
-        // })
-        // .then(res => {
-        //     this.commit('setCategory', res.data)
-        // })
-        // .catch(e => {
-        //     console.log(e)
-        // })
+        this.$axios({
+            url: `/api/category/${kwargs.id}/`,
+            method: 'PUT',
+            data: {
+                name: kwargs.name,
+            }
+        })
+        .then(res => {
+            this.commit('setCategory', res.data)
+        })
+        .catch(e => {
+            console.log(e)
+        })
     }
 }

@@ -45,19 +45,26 @@ export default {
     }),
     methods: {
         signin () {
-            this.$axios({
-                url: '/auth/',
-                method: 'POST',
-                data: this.inputData
-            })
+            this.$auth.loginWith('local', { data: this.inputData })
             .then(res => {
                 console.log(res)
-                this.$session.set('token', res.data.token)
-                this.$router.push('/admin')
             })
             .catch(e => {
                 console.log(e)
             })
+            // this.$axios({
+            //     url: '/auth/',
+            //     method: 'POST',
+            //     data: this.inputData
+            // })
+            // .then(res => {
+            //     console.log(res)
+            //     this.$session.set('token', res.data.token)
+            //     this.$router.push('/admin')
+            // })
+            // .catch(e => {
+            //     console.log(e)
+            // })
         },
         reset () {
             console.log(this.$session)

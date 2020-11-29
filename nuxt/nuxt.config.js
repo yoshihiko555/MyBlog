@@ -25,6 +25,9 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+      '@/plugins/filter.js',
+    //   { src: '@/plugins/storeStorage.js', ssr: false },
+      { src: '@/plugins/cookieStorage.js' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -42,19 +45,39 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/auth',
   ],
+  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+  axios: {
+    baseURL: 'http://localhost:8000',
+    get: {
+        xsrfCookieName: 'csrftoken',
+        xsrfHeaderName: 'X-CSRFTOKEN',
+    }
+  },
   styleResources: {
     scss: [
         '@/assets/scss/prepends.scss',
     ]
   },
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {
-      baseURL: 'http://localhost:8000'
+  auth: {
+    redirect: {
+        login: '/',
+        logout: '/',
+        callback: false,
+        home: '/admin'
+    },
+    strategies: {
+        local: {
+            endpoints: {
+                login: { url: '/auth/', method: "POST", propertyName: 'token' },
+                // user
+                logout: false
+            }
+        }
+    }
   },
-
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
@@ -80,5 +103,8 @@ export default {
   server: {
       host: '0.0.0.0',
       port: 3000
+  },
+  router: {
+      middleware: ['global']
   }
 }
