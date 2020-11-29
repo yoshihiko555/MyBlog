@@ -7,11 +7,11 @@
             <div v-if="comments.length > 0">
             <v-row v-for="comment in comments" :key='comment.id'>
                 <v-col cols='8'>
-                    <router-link
+                    <Nuxt-link
                         :to='{ name: "DetailArticle", params: { title: comment.article_title }}'
                     >
                         <p>Article: {{ comment.article_title }}</p>
-                    </router-link>
+                    </Nuxt-link>
                     <p>Name: {{ comment.name }}</p>
                     <p>Content: {{ comment.content }}</p>
                 </v-col>

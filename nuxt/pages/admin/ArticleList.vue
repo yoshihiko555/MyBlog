@@ -7,11 +7,11 @@
             <div v-if="articles.length > 0">
                 <v-row v-for="article in articles" :key='article.id'>
                     <v-col cols='8'>
-                        <router-link
+                        <Nuxt-link
                             :to='{ name: "DetailArticle", params: { title: article.title }}'
                         >
                             <p>Article: {{ article.title }}</p>
-                        </router-link>
+                        </Nuxt-link>
                     </v-col>
 
                     <v-col cols='4'>

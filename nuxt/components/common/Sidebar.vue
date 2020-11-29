@@ -23,7 +23,7 @@
                 :key='article.id'
                 class="recent_article_wrap"
             >
-                <router-link
+                <Nuxt-link
                     :to='{ name: "DetailArticle", params: { title: article.title }}'
                 >
                     <v-img
@@ -33,7 +33,7 @@
                     />
                     <h2 class="text-subtitle-1 recent_title">{{ article.title | truncate(14) }}</h2>
                     <p class="recent_create">{{ article.created_at }}</p>
-                </router-link>
+                </Nuxt-link>
                 <v-divider />
             </div>
         </div>
