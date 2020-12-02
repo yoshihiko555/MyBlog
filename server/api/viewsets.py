@@ -23,7 +23,7 @@ from .models import *
 from .filters import *
 from .paginations import *
 from .permissions import IsAdminOrReadOnly
-
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 import re, logging
 
 log = logging.getLogger(__name__)
@@ -57,7 +57,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAdminOrReadOnly,)
+    # permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = (SessionAuthentication,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
@@ -102,3 +104,5 @@ class CommentReplyViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny,)
     queryset = CommentReply.objects.all()
     serializer_class = CommentReplySerializer
+
+# class SampleViewSet(viewsets.)

@@ -51,10 +51,10 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: 'http://localhost:8000',
-    get: {
-        xsrfCookieName: 'csrftoken',
-        xsrfHeaderName: 'X-CSRFTOKEN',
-    }
+    // get: {
+    //     xsrfCookieName: 'csrftoken',
+    //     xsrfHeaderName: 'X-CSRFTOKEN',
+    // }
   },
   styleResources: {
     scss: [
@@ -72,7 +72,7 @@ export default {
         local: {
             endpoints: {
                 login: { url: '/auth/', method: "POST", propertyName: 'token' },
-                // user
+                user: { url: '/api/user/', method: 'GET', propertyName: false },
                 logout: false
             }
         }

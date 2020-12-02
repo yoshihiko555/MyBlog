@@ -26,6 +26,11 @@
         >
             reset
         </v-btn>
+        <v-btn
+            @click='test'
+        >
+            test
+        </v-btn>
         </v-container>
     </v-card>
 </template>
@@ -41,10 +46,12 @@ export default {
         },
         rules: {
             required: v => !!v || '必須項目です',
-        }
+        },
+        token: '',
     }),
     methods: {
         signin () {
+            console.log(this.$auth)
             this.$auth.loginWith('local', { data: this.inputData })
             .then(res => {
                 console.log(res)
@@ -59,8 +66,9 @@ export default {
             // })
             // .then(res => {
             //     console.log(res)
-            //     this.$session.set('token', res.data.token)
-            //     this.$router.push('/admin')
+            //     this.token = res.data.token
+            //     // this.$session.set('token', res.data.token)
+            //     // this.$router.push('/admin')
             // })
             // .catch(e => {
             //     console.log(e)
@@ -69,6 +77,26 @@ export default {
         reset () {
             console.log(this.$session)
             this.$session.destroy()
+        },
+        test () {
+            // this.$axios.defaults.
+            this.$axios({
+                url: '/api/category/',
+                method: 'POST',
+				headers: {
+					Authorization: `JWT ${this.token}`,
+					'Content-Type': 'application/json'
+				},
+                data: {
+                    name: 'sample'
+                }
+            })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(e => {
+                console.log(e)
+            })
         }
     }
 }

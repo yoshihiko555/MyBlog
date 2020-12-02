@@ -38,6 +38,7 @@
                     </v-btn>
                 </v-col>
             </v-row>
+            <v-btn @click='sample'>test</v-btn>
         </v-container>
     </div>
 </template>
@@ -51,11 +52,28 @@ export default {
     	CreateCategory,
     },
     data: () => ({
-        isAuth: false,
+        isAuth: true,
     }),
     created () {
         // if (!this.$session.has('token')) this.$router.push('/admin/signin')
         // else this.isAuth = this.$session.has('token')
+    },
+    methods: {
+        sample () {
+            this.$axios({
+                url: '/api/user',
+                method: 'POST',
+                data: {
+                    test: 'sample'
+                }
+            })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(e => {
+                console.log(e.response)
+            })
+        }
     }
 }
 </script>
