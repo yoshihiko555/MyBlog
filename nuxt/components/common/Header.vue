@@ -14,16 +14,17 @@
                 </Nuxt-link>
                 <div class="header_link_wrap">
                     <Nuxt-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</Nuxt-link>
+                    <Nuxt-link to='/blog' class="link mx-3 d-none d-sm-inline-block">Blog</Nuxt-link>
                     <Nuxt-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</Nuxt-link>
                     <div v-show='isAuth'>
                     	<Nuxt-link to='/admin' v-show='isAuth' class="link mx-3 d-none d-sm-inline-block">Admin</Nuxt-link>
 	                    <Nuxt-link to='/admin/signin' class="link mx-3 d-none d-sm-inline-block">SignIn</Nuxt-link>
                     </div>
                     <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
-                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn>
+                    <!-- <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn> -->
                     <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://github.com/shutotakizawa' target='blank'><v-icon>mdi-github</v-icon></v-btn>
                     <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.linkedin.com/in/shuto-takizawa-a269b116b/' target='blank'><v-icon>mdi-linkedin</v-icon></v-btn>
-                    <!-- <Search /> -->
+                    <Search />
                 </div>
             </v-row>
         </v-app-bar>
@@ -73,6 +74,10 @@ export default {
             {
                 title: 'About Me',
                 url: '/about',
+            },
+            {
+                title: 'Blog',
+                url: '/blog',
             },
             {
                 title: 'Contact',

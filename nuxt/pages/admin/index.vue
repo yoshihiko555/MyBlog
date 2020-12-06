@@ -39,6 +39,9 @@
                 </v-col>
             </v-row>
             <v-btn @click='sample'>test</v-btn>
+            {{ $auth.loggedIn }}
+            {{ $auth.user }}
+            <v-btn @click='logout'>logout</v-btn>
         </v-container>
     </div>
 </template>
@@ -73,6 +76,9 @@ export default {
             .catch(e => {
                 console.log(e.response)
             })
+        },
+        logout () {
+            this.$auth.logout()
         }
     }
 }

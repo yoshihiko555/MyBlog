@@ -22,15 +22,16 @@
             color='blue-grey darken-1'
             @keyup="onEnter"
             @click:prepend-inner="search"
-        ></v-text-field>
+        />
         <div class="btn_wrap">
             <v-btn
                 @click='dialog = false'
                 class="mt-5 white--text"
                 text
             >
-            <v-icon>mdi-close</v-icon>
-            CLOSE</v-btn>
+                <v-icon>mdi-close</v-icon>
+                CLOSE
+            </v-btn>
         </div>
     </v-dialog>
 </template>

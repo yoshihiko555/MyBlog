@@ -27,7 +27,9 @@ export default {
   plugins: [
       '@/plugins/filter.js',
     //   { src: '@/plugins/storeStorage.js', ssr: false },
-      { src: '@/plugins/cookieStorage.js' }
+      { src: '@/plugins/cookieStorage.js' },
+      '@/plugins/http.js',
+      '@/plugins/mixin.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
