@@ -49,22 +49,48 @@ export const mutations = {
 }
 
 export const actions = {
+	// 初回アクセス時のみサーバサイドで実行される
+	nuxtServerInit (param) {
+		console.log('nuxtServerInit Start!!')
+		this.$axios({
+			url: '/api/article/recent_articles/',
+			method: 'GET',
+		})
+		.then(res => {
+			console.log(res)
+			// ここでstoreに保存する
+		})
+		.catch(e => {
+			console.log(e.response)
+		})
+	},
     // 最新記事更新
-    updateRecentArticles (ctx, kwargs) {
-        this.$axios({
-            url: '/api/article/recent_articles/',
-            method: 'GET'
-        })
-        .then(res => {
-            console.log('最新記事一覧', res)
-            this.commit('setRecentArticles', res.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
-    },
+	updateRecentArticles (ctx, kwargs) {
+    	console.log('最新記事取得開始')
+//    	console.log('CTX', ctx)
+//    	console.log('THIS', this)
+//    	const { res } = await this.$axios({
+//            url: '/api/article/recent_articles/',
+//            method: 'GET'
+//    	})
+//    	console.log(res)
+		this.$axios({
+			url: '/api/article/recent_articles/',
+			method: 'GET'
+		})
+		.then(res => {
+			console.log('最新記事一覧', res)
+			this.commit('setRecentArticles', res.data)
+		})
+		.catch(e => {
+			console.log(e)
+		})
+	},
     // カテゴリー一覧更新
     updateCategorys (ctx, kwargs) {
+    	console.log('最新カテゴリー取得開始')
+    	console.log(ctx)
+    	console.log(this)
         this.$axios({
             url: '/api/category/',
             method: 'GET',

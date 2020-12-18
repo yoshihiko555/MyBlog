@@ -49,14 +49,25 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/auth',
+    '@nuxtjs/proxy',
   ],
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: 'http://localhost:8000',
+     baseURL: process.browser ? 'http://localhost:8000' : 'http://localhost:3000',
+    // proxy: true,
     // get: {
     //     xsrfCookieName: 'csrftoken',
     //     xsrfHeaderName: 'X-CSRFTOKEN',
     // }
+  },
+  proxy: {
+	  '/api': {
+		  // serverはDockerの名前空間を指定
+		  target: 'http://server:8000',
+		  pathRewrite: {
+			  '^/api/': '/api/'
+		  }
+	  }
   },
   styleResources: {
     scss: [
@@ -108,5 +119,11 @@ export default {
   },
   router: {
       middleware: ['global']
-  }
+  },
+  watchers: {
+	  webpack: {
+		  poll: true
+	  }
+  },
+  loading: '~/components/LoadingPage'
 }

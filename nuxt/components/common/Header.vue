@@ -14,6 +14,7 @@
                 </Nuxt-link>
                 <div class="header_link_wrap">
                     <Nuxt-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</Nuxt-link>
+                    <Nuxt-link to='/works' class="link mx-3 d-none d-sm-inline-block">Works</Nuxt-link>
                     <Nuxt-link to='/blog' class="link mx-3 d-none d-sm-inline-block">Blog</Nuxt-link>
                     <Nuxt-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</Nuxt-link>
                     <div v-show='isAuth'>

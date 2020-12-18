@@ -1,3 +1,3 @@
 export default (ctx) => {
-    console.log('グローバルミドルウェア')
+    // console.log('グローバルミドルウェア')
 }

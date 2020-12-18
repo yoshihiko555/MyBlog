@@ -21,7 +21,7 @@ else:
     # 開発
     DEBUG = True
     ALLOWED_HOSTS = [
-        'localhost',
+        '*',
     ]
 
 # Application definition
