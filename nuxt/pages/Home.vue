@@ -38,7 +38,7 @@
                                 outlined
                                 tile
                                 color='blue-grey darken-1'
-                                :to='{ name: "DetailArticle", params: { title: article.title }}'
+                                :to='{ name: "post-title", params: { title: article.title }}'
                             >
                                 ReadMore
                             </v-btn>

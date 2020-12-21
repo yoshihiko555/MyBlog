@@ -7,7 +7,7 @@ services:
         image: blog-drf
         container_name: blog-api
         working_dir: /home/blog/server/
-        # command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
+        command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
         ports:
             - '8000:8000'
         volumes:

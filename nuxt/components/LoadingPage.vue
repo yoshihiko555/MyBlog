@@ -1,7 +1,9 @@
 <template>
 	<div v-if='loading' class="loading-page">
-		<p>loading...</p>
-		<p>ローディングのパーセント：{{ sample }}</p>
+        <div>
+            <p>loading...</p>
+            <p>ローディングのパーセント：{{ sample }}</p>
+        </div>
 	</div>
 </template>
 
@@ -18,8 +20,6 @@
 		methods: {
 			start () {
 				console.log('loading Start')
-				console.log(this.$nuxt.$loading)
-				console.log(this.$root)
 				this.loading = true
 			},
 			finish () {
@@ -45,7 +45,7 @@
     font-family: sans-serif;
     z-index: 100;
 
-		p {
+		div {
 	        position: absolute;
 		    top: 50%;
 		    left: 50%;

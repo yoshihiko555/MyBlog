@@ -24,7 +24,7 @@
                 class="recent_article_wrap"
             >
                 <Nuxt-link
-                    :to='{ name: "DetailArticle", params: { title: article.title }}'
+                    :to='{ name: "post-title", params: { title: article.title }}'
                 >
                     <v-img
                         :src='article.thumbnail'

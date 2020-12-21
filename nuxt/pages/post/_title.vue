@@ -88,7 +88,6 @@ import SendComment from '@/components/parts/SendComment'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-    name: 'DetailArticle',
     components: {
         Sidebar,
         RelatedArticles,
@@ -96,8 +95,50 @@ export default {
         Comment,
         SendComment,
     },
+    async asyncData ({ $axios, params }) {
+            console.log('!!!!!')
+            console.log(params.title)
+            const res = await $axios.get(`/api/article/${params.title}/`)
+            return { article: res.data }
+            // await $axios({
+            //     url: `/api/article/${params.title}/`,
+            //     method: 'GET'
+            // })
+            // .then(res => {
+            //     console.log('aaa')
+            //     return { article: res.data }
+            // })
+            // .catch(e => {
+            //     console.log('bbb')
+            // })
+            // await $axios({
+            //     url: `/api/article/${title}/`,
+            //     method: 'GET'
+            // })
+            // .then(res => {
+            //     console.log('記事詳細', res)
+            //     this.article = res.data
+            //     this.updateDetailArticle(res.data)
+
+            //     // コメントが存在するか判定
+            //     this.isComment = (res.data.comments.length)
+
+            //     // Ttile & Description設定
+            //     this.setTitle(res.data.title)
+            //     this.setDescription(res.data.lead_text)
+
+            //     // 目次関連の処理
+            //     this.$nextTick(() => this.moveToc())
+
+            //     this.isShow = true
+            // })
+            // .catch(e => {
+            //     console.log(e)
+            //     this.isShow = false
+            // })
+    },
     data: () => ({
-        article: {},
+        // article: {},
         isShow: false,
         isComment: false,
         isToc: false,
@@ -109,7 +150,7 @@ export default {
         ])
     },
     created () {
-        this.getArticle(this.$route.params.title)
+        // this.getArticle(this.$route.params.title)
     },
     beforeRouteUpdate (to, from, next) {
         if (to.params.title !== from.params.title) this.getArticle(to.params.title)
@@ -119,8 +160,8 @@ export default {
         ...mapActions([
             'updateDetailArticle',
         ]),
-        getArticle (title) {
-            this.$axios({
+        async getArticle (title) {
+            await this.$axios({
                 url: `/api/article/${title}/`,
                 method: 'GET'
             })

@@ -67,7 +67,13 @@ export default {
 		  pathRewrite: {
 			  '^/api/': '/api/'
 		  }
-	  }
+      },
+      '/media': {
+        target: 'http://localhost:8000',
+        pathRewrite: {
+            '^/media/': '/media/'
+        }
+      }
   },
   styleResources: {
     scss: [

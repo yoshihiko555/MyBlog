@@ -51,30 +51,38 @@ export default new Vuex.Store({
     actions: {
         // 最新記事更新
         updateRecentArticles (ctx, kwargs) {
-            Vue.prototype.$axios({
-                url: '/api/article/recent_articles/',
-                method: 'GET',
-            })
-            .then(res => {
-                console.log('最新記事一覧', res)
-                this.commit('setRecentArticles', res.data)
-            })
-            .catch(e => {
-                console.log(e)
+            return new Promise((resolve, reject) => {
+                Vue.prototype.$axios({
+                    url: '/api/article/recent_articles/',
+                    method: 'GET',
+                })
+                .then(res => {
+                    console.log('最新記事一覧', res)
+                    this.commit('setRecentArticles', res.data)
+                    resolve()
+                })
+                .catch(e => {
+                    console.log(e)
+                    reject()
+                })
             })
         },
         // カテゴリー一覧更新
         updateCategorys (ctx, kwargs) {
-            Vue.prototype.$axios({
-                url: '/api/category/',
-                method: 'GET',
-            })
-            .then(res => {
-                console.log('カテゴリー一覧', res)
-                this.commit('setCategorys', res.data)
-            })
-            .catch(e => {
-                console.log(e)
+            return new Promise((resolve, reject) => {
+                Vue.prototype.$axios({
+                    url: '/api/category/',
+                    method: 'GET',
+                })
+                .then(res => {
+                    console.log('カテゴリー一覧', res)
+                    this.commit('setCategorys', res.data)
+                    resolve()
+                })
+                .catch(e => {
+                    console.log(e)
+                    reject()
+                })
             })
         },
         updateSearchText (ctx, kwargs) {

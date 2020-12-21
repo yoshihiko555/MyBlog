@@ -8,7 +8,7 @@
             link
             flat
             tile
-            :to='{ name: "DetailArticle", params: { title: article.title }}'
+            :to='{ name: "post-title", params: { title: article.title }}'
         >
             <v-row>
                 <v-col cols='4' class="">

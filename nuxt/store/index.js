@@ -19,6 +19,7 @@ export const getters = {
 export const mutations = {
     setRecentArticles (state, payload) {
         state.recentArticles = payload
+        // console.log('ここに来た', state)
     },
     setCategorys (state, payload) {
         state.categorys = payload
@@ -43,60 +44,66 @@ export const mutations = {
         const category = state.categorys.find(category => category.id === payload.id)
         category.name = payload.name
     },
-    upSample (state, payload) {
-        state.sample++
+    setSample (state, payload) {
+        state.sample = payload
     }
 }
 
 export const actions = {
 	// 初回アクセス時のみサーバサイドで実行される
-	nuxtServerInit (param) {
-		console.log('nuxtServerInit Start!!')
-		this.$axios({
-			url: '/api/article/recent_articles/',
-			method: 'GET',
-		})
-		.then(res => {
-			console.log(res)
-			// ここでstoreに保存する
-		})
-		.catch(e => {
-			console.log(e.response)
-		})
-	},
+	async nuxtServerInit ({ commit, dispatch }) {
+        console.log('nuxtServerInit Start!!')
+        commit('setSample', 1)
+        await dispatch('updateRecentArticles')
+        await dispatch('updateCategorys')
+        console.log('最新記事処理終了後')
+		// this.$axios({
+		// 	url: '/api/article/recent_articles/',
+		// 	method: 'GET',
+		// })
+		// .then(res => {
+		// 	console.log(res)
+		// 	// ここでstoreに保存する
+		// })
+		// .catch(e => {
+		// 	console.log(e.response)
+		// })
+    },
+    nuxtClientInit (param) {
+        console.log('nuxtClientInit Start!!!')
+        // console.log(param)
+    },
     // 最新記事更新
-	updateRecentArticles (ctx, kwargs) {
+	async updateRecentArticles (ctx, kwargs) {
     	console.log('最新記事取得開始')
-//    	console.log('CTX', ctx)
-//    	console.log('THIS', this)
+       	// console.log('CTX', ctx)
 //    	const { res } = await this.$axios({
 //            url: '/api/article/recent_articles/',
 //            method: 'GET'
 //    	})
 //    	console.log(res)
-		this.$axios({
+		await this.$axios({
 			url: '/api/article/recent_articles/',
 			method: 'GET'
 		})
 		.then(res => {
-			console.log('最新記事一覧', res)
-			this.commit('setRecentArticles', res.data)
+            // console.log('最新記事一覧', res)
+            console.log('最新記事取得成功')
+			ctx.commit('setRecentArticles', res.data)
 		})
 		.catch(e => {
 			console.log(e)
 		})
 	},
     // カテゴリー一覧更新
-    updateCategorys (ctx, kwargs) {
+    async updateCategorys (ctx, kwargs) {
     	console.log('最新カテゴリー取得開始')
-    	console.log(ctx)
-    	console.log(this)
-        this.$axios({
+        await this.$axios({
             url: '/api/category/',
             method: 'GET',
         })
         .then(res => {
-            console.log('カテゴリー一覧', res)
+            // console.log('カテゴリー一覧', res)
             this.commit('setCategorys', res.data)
         })
         .catch(e => {

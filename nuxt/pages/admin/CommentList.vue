@@ -8,7 +8,7 @@
             <v-row v-for="comment in comments" :key='comment.id'>
                 <v-col cols='8'>
                     <Nuxt-link
-                        :to='{ name: "DetailArticle", params: { title: comment.article_title }}'
+                        :to='{ name: "post-title", params: { title: comment.article_title }}'
                     >
                         <p>Article: {{ comment.article_title }}</p>
                     </Nuxt-link>

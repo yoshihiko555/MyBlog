@@ -8,7 +8,7 @@
                         link
                         tile
                         flat
-                        :to='{ name: "DetailArticle", params: { title: previous.title }}'
+                        :to='{ name: "post-title", params: { title: previous.title }}'
                     >
 						<v-img :src='previous.thumbnail_url' :alt='previous.title' />
 						<p>{{ previous.title }}</p>
@@ -26,7 +26,7 @@
                         link
                         flat
                         tile
-                        :to='{ name: "DetailArticle", params: { title: next.title }}'
+                        :to='{ name: "post-title", params: { title: next.title }}'
                     >
 						<v-img :src='next.thumbnail_url' :alt='next.title' />
 						<p>{{ next.title }}</p>
