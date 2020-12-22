@@ -1,6 +1,6 @@
 <template>
   <v-app>
-        <div v-if="!loading">
+        <div v-if="initFlg">
             <Header/>
                 <transition name='fade'>
                     <router-view/>
@@ -16,6 +16,8 @@ import Header from '@/components/common/Header'
 import Footer from '@/components/common/Footer'
 import LoadingPage from '@/components/common/LoadingPage'
 
+import { mapGetters } from 'vuex'
+
 export default {
     name: 'App',
 
@@ -26,8 +28,12 @@ export default {
     },
 
     data: () => ({
-        loading: true
-    })
+    }),
+    computed: {
+    	...mapGetters([
+    		'initFlg',
+    	])
+    }
 }
 </script>
 

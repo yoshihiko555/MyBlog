@@ -6,9 +6,15 @@
                 <v-col cols='12 py-0 px-sm-4 px-md-0'>
                     <section class="home_main_wrap">
                         <div class="home_main_content">
-                            <h2>Hello<br>Welcome to my blog</h2>
-                            <p>Sending useful information centered on programming</p>
-                            <v-btn to='/about' x-large outlined tile class="home_about_btn">About Me</v-btn>
+                        	<transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
+                            	<h2 data-delay='0'>Hello<br>Welcome to my blog</h2>
+                            </transition>
+                            <transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
+                            	<p data-delay='500'>Sending useful information centered on programming</p>
+                            </transition>
+                            <transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
+                            	<v-btn to='/about' x-large outlined tile class="delay-2 home_about_btn" data-delay='1000'>About Me</v-btn>
+                            </transition>
                         </div>
                         <div class="guide_blog_wrap text-center">
                             <p class="mb-0">My Articles</p>
@@ -22,6 +28,34 @@
                         </div>
                     </section>
                 </v-col>
+            </v-row>
+
+            <!-- ポートフォリオ一覧 -->
+            <v-row class='max-width'>
+            	<v-col cols='12' sm='4' class='pa-0'>
+            		<v-img src='@/static/img/about_header.jpg' height='200' />
+            	</v-col>
+            	<v-col cols='12' sm='4' class='pa-0'>
+            		<v-img src='@/static/img/about_header.jpg' height='200' />
+            	</v-col>
+            	<v-col cols='12' sm='4' class='pa-0'>
+            		<v-img src='@/static/img/about_header.jpg' height='200' />
+            	</v-col>
+            	<v-col cols='12' sm='4' class='pa-0'>
+            		<v-img src='@/static/img/about_header.jpg' height='200' />
+            	</v-col>
+            	<v-col cols='12' sm='4' class='pa-0'>
+            		<v-img src='@/static/img/about_header.jpg' height='200' />
+            	</v-col>
+            	<v-col cols='12' sm='4' class='pa-0'>
+            		<ImgCard>
+            			<template #img>
+            				<img src='@/static/img/about_header.jpg' height='200' />
+            			</template>
+            			<template #title>Coopy</template>
+            			<template #description>ブログサービス</template>
+            		</ImgCard>
+            	</v-col>
             </v-row>
 
 			<!-- 記事一覧 -->
@@ -64,14 +98,23 @@
             <v-icon>mdi-chevron-up</v-icon>
             </v-btn>
         </transition>
+
+        <!-- 動く背景 -->
+<!--         <TheHomeBackGround /> -->
     </div>
 </template>
 
 <script>
+import TheHomeBackGround from '@/components/common/TheHomeBackGround'
+import ImgCard from '@/components/parts/ImgCard'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'Home',
+    components: {
+    	TheHomeBackGround,
+    	ImgCard,
+    },
     data: () => ({
         fab: false,
     }),
@@ -86,6 +129,13 @@ export default {
             const top = window.pageYOffset || e.target.scrollTop || 0
             this.fab = top > 850
         },
+    	beforeAppear (el) {
+        	const msec = el.dataset.delay
+    		el.style.transitionDelay = `${msec}ms`
+    	},
+    	afterAppear (el) {
+    		el.style.transitionDelay = ''
+    	}
     },
 }
 </script>
@@ -131,6 +181,28 @@ export default {
         .fade-enter, .fade-leave-to {
             opacity: 0;
             transform: scale(0);
+        }
+
+        .down_fade-enter-active, .down_fade-enter-active {
+        	transition: opacity .5s ease-in-out, transform .6s ease-in;
+        }
+
+        .down_fade-enter {
+        	opacity: 0;
+        	transform: translateY(-20px);
+        }
+
+        .down_fade-leave-to {
+        	opacity: 0;
+        	transform: translateY(-20px) scale(0.97);
+        }
+
+        .max-width {
+        	margin: 0;
+			width: 100vw;
+		    position: relative;
+		    left: 50%;
+		    transform: translateX(-50%);
         }
     }
 </style>

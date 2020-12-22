@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "lodash": "^4.17.19",
     "mavon-editor": "^2.9.0",
+    "three": "^0.123.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-session": "^1.0.0",

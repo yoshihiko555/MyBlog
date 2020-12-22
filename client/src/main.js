@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { mapActions } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 import http from '@/plugins/http'
 import truncate from '@/filters/truncate'
 import { globalMixins } from '@/mixins'
@@ -29,14 +29,27 @@ new Vue({
     router,
     store,
     vuetify,
-    created () {
-        // 最新記事取得処理
-        this.updateRecentArticles()
+    async created () {
+    	// 一度初期化フラグを折っておく
+    	this.setInitFlg(false)
 
-        // カテゴリー取得処理
-        this.updateCategorys()
+    	try {
+    		// 最新記事取得処理
+    		await this.updateRecentArticles()
+    		// カテゴリー取得処理
+    		await this.updateCategorys()
+
+    		// 正常にデータが取得できたので、初期化フラグを立てる
+    		this.setInitFlg(true)
+    	} catch (e) {
+    		console.error('初期化に失敗した')
+    		console.error(e)
+    	}
     },
     methods: {
+    	...mapMutations([
+    		'setInitFlg',
+    	]),
         ...mapActions([
             'updateRecentArticles',
             'updateCategorys',

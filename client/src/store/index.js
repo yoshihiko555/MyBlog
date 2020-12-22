@@ -12,6 +12,7 @@ export default new Vuex.Store({
         searchText: '',
         searchResult: [],
         detailArticle: {},
+        initFlg: false,
     },
     getters: {
         recentArticleList: state => state.recentArticles,
@@ -19,6 +20,7 @@ export default new Vuex.Store({
         searchText: state => state.searchText,
         searchResultList: state => state.searchResult,
         detailArticle: state => state.detailArticle,
+        initFlg: state => state.initFlg
     },
     mutations: {
         setRecentArticles (state, payload) {
@@ -46,6 +48,10 @@ export default new Vuex.Store({
         setCategory (state, payload) {
             const category = state.categorys.find(category => category.id === payload.id)
             category.name = payload.name
+        },
+        setInitFlg (state, payload) {
+        	console.log('初期化完了フラグ', payload)
+        	state.initFlg = payload
         }
     },
     actions: {
@@ -59,11 +65,10 @@ export default new Vuex.Store({
                 .then(res => {
                     console.log('最新記事一覧', res)
                     this.commit('setRecentArticles', res.data)
-                    resolve()
+                    resolve(res)
                 })
                 .catch(e => {
-                    console.log(e)
-                    reject()
+                    reject(e)
                 })
             })
         },
@@ -77,11 +82,10 @@ export default new Vuex.Store({
                 .then(res => {
                     console.log('カテゴリー一覧', res)
                     this.commit('setCategorys', res.data)
-                    resolve()
+                    resolve(res)
                 })
                 .catch(e => {
-                    console.log(e)
-                    reject()
+                    reject(e)
                 })
             })
         },
