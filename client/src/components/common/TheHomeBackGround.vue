@@ -39,6 +39,7 @@ export default {
 	    justify-content: center;
 	    align-items: center;
 		opacity: .3;
+        pointer-events: none;
 	}
 
 	.v-enter-active, .v-leave-active {

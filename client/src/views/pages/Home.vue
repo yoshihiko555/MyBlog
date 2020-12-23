@@ -53,7 +53,7 @@
             	<v-col cols='12' sm='4' class='pa-0'>
             		<ImgCard url='https://ics.media/tutorial-three/points/'>
             			<template #img>
-            				<img src='@/static/img/about_header.jpg' height='200' />
+            				<img src='@/static/img/about_header.jpg' />
             			</template>
             			<template #title>Coopy</template>
             			<template #description>ブログサービス</template>
