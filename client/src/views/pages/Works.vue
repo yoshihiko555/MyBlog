@@ -7,6 +7,7 @@
 
 <script>
 import SampleThree from '@/components/parts/SampleThree'
+
 export default {
 	components: {
 		SampleThree,

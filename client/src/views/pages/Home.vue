@@ -17,11 +17,11 @@
                             </transition>
                         </div>
                         <div class="guide_blog_wrap text-center">
-                            <p class="mb-0">My Articles</p>
+                            <p class="mb-0">Scroll</p>
                             <v-btn
                                 text
                                 class="mb-5"
-                                @click="$vuetify.goTo('.home_articles_wrap', { easing: 'easeInOutCubic', duration: 600 })"
+                                @click="$vuetify.goTo('.home-works-wrap', { easing: 'easeInOutCubic', duration: 600 })"
                             >
                                 <v-icon>mdi-chevron-down</v-icon>
                             </v-btn>
@@ -31,9 +31,9 @@
             </v-row>
 
             <!-- ポートフォリオ一覧 -->
-            <v-row class='max-width'>
-            	<v-col cols='12' sm='4' class='pa-0'>
-            		<v-img src='@/static/img/about_header.jpg' height='200' />
+            <v-row class='home-works-wrap max-width'>
+            	<v-col cols='12' class='text-center'>
+            		<h3>Works</h3>
             	</v-col>
             	<v-col cols='12' sm='4' class='pa-0'>
             		<v-img src='@/static/img/about_header.jpg' height='200' />
@@ -48,7 +48,10 @@
             		<v-img src='@/static/img/about_header.jpg' height='200' />
             	</v-col>
             	<v-col cols='12' sm='4' class='pa-0'>
-            		<ImgCard>
+            		<v-img src='@/static/img/about_header.jpg' height='200' />
+            	</v-col>
+            	<v-col cols='12' sm='4' class='pa-0'>
+            		<ImgCard url='https://ics.media/tutorial-three/points/'>
             			<template #img>
             				<img src='@/static/img/about_header.jpg' height='200' />
             			</template>
@@ -60,6 +63,9 @@
 
 			<!-- 記事一覧 -->
             <v-row class="home_articles_wrap">
+               	<v-col cols='12' class='text-center'>
+            		<h3>Articles</h3>
+            	</v-col>
                 <v-col cols='12' sm='4' v-for='article in recentArticleList' :key='article.id'>
                     <v-card tile class="my-5" height=470>
                         <v-img :src='article.thumbnail' :alt='article.title' height='200'></v-img>
