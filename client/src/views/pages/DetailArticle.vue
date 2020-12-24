@@ -177,7 +177,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
     #detail::v-deep {
+
         .sidebar_wrap {
             padding-bottom: 20px;
             height: calc(100vh - #{($height-header + $height-footer)});
@@ -185,56 +187,32 @@ export default {
             scrollbar-width: none;
             position: sticky;
             top: $height-header;
+
             &::-webkit-scrollbar {
                 display: none;
             }
         }
-        #toc_wrap {
-            background-color: #f1f1f1;
-            #toc_title {
-                font-size: 24px;
-                border-bottom: solid 0.5px #9c9c9c;
-            }
-            #toc .toc{
-                // 共通部分
-                ul {
-                    list-style: none;
-                    li {
-                        a {
-                            display: block;
-                            padding: 10px 0;
-                            color: #555;
-                            text-decoration: none;
-                            transition: .3s all ease-in-out;
-                            &:hover {
-                                color: #a5a5a5;
-                            }
-                        }
-                    }
-                }
-                // h1要素
-                &>ul {
-                    &>li {
-                        border-bottom: solid 0.5px #bbb;
-                    }
-                }
-            }
-        }
+
         #article_main {
+
             .toc {
                 display: none;
             }
+
             img {
                 width: 100%;
             }
+
             h1, h2, h3, p {
                 margin-bottom: 16px;
             }
+
             h1 {
                 position: relative;
                 padding-bottom: .3em;
                 margin-top: 30px;
                 border-bottom: 1px solid #ccc;
+
                 &::after {
                     position: absolute;
                     bottom: -2px;
@@ -246,20 +224,24 @@ export default {
                     background-color: #333;
                 }
             }
+
             h2 {
                 padding-bottom: .3em;
                 margin-top: 30px;
                 border-bottom: 1px solid #ccc;
             }
+
             h3 {
                 padding: .25em 0 .25em .75em;
                 margin-top: 30px;
                 border-left: 6px solid #ccc;
                 font-size: 20px;
             }
+
             p {
                 letter-spacing: .3em;
             }
+
             pre {
                 margin: 30px 0;
                 padding: 2%;
@@ -273,12 +255,55 @@ export default {
             }
         }
 
-        .fade-enter-active, .fade-leave-active {
+        #toc_wrap {
+            background-color: #f1f1f1;
+
+            #toc_title {
+                font-size: 24px;
+                border-bottom: solid 0.5px #9c9c9c;
+            }
+
+            #toc .toc {
+
+                // 共通部分
+                ul {
+                    list-style: none;
+
+                    li {
+
+                        a {
+                            display: block;
+                            padding: 10px 0;
+                            color: #555;
+                            text-decoration: none;
+                            transition: .3s all ease-in-out;
+                            &:hover {
+                                color: #a5a5a5;
+                            }
+                        }
+                    }
+                }
+
+                // h1要素
+                & > ul {
+
+                    & > li {
+                        border-bottom: solid 0.5px #bbb;
+                    }
+                }
+            }
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
             transition: 0.5s;
         }
-        .fade-enter, .fade-leave-to {
+
+        .fade-enter,
+        .fade-leave-to {
             opacity: 0;
             transform: scale(0);
         }
     }
+
 </style>

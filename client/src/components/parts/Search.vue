@@ -73,15 +73,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .v-dialog__content {
+
+    .v-dialog__content::v-deep {
         align-items: start;
-        ::v-deep .v-dialog {
+
+        .v-dialog {
             margin: 0;
             border-radius: 0;
             box-shadow: none;
 
             .v-input {
                 border-radius: 0;
+
                 .v-input__slot {
                     margin: 0;
                 }

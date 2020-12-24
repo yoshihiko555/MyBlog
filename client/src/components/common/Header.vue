@@ -1,5 +1,5 @@
 <template>
-    <div id="header">
+    <div>
         <v-app-bar
             app
             flat
@@ -91,45 +91,48 @@ export default {
 }
 </script>
 
-<style lang="scss">
-    #header {
-        .hamburger_menu {
-            position: fixed;
-            left: 0;
-        }
-        .header_logo {
-            margin-left: 2%;
-            font-size: 12px;
+<style lang="scss" scoped>
+
+    .hamburger_menu {
+        position: fixed;
+        left: 0;
+    }
+
+    .header_logo {
+        margin-left: 2%;
+        font-size: 12px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .header_link_wrap {
+        margin-right: 2%;
+        position: fixed;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+
+        .link {
             color: #333;
             text-decoration: none;
-        }
-        .header_link_wrap {
-            margin-right: 2%;
-            position: fixed;
-            right: 0;
-            display: inline-flex;
-            align-items: center;
-            .link {
-                color: #333;
-                text-decoration: none;
-                position: relative;
+            position: relative;
+            transition: .3s;
+
+            &::after {
+                position: absolute;
+                bottom: 0;
+                left: 2%;
+                content: '';
+                width: 0;
+                height: 1px;
+                background-color: #333;
                 transition: .3s;
+            }
 
-                &::after {
-                    position: absolute;
-                    bottom: 0;
-                    left: 2%;
-                    content: '';
-                    width: 0;
-                    height: 1px;
-                    background-color: #333;
-                    transition: .3s;
-                }
-
-                &:hover::after {
-                    width: 100%;
-                }
+            &:hover::after {
+                width: 100%;
             }
         }
     }
+
 </style>

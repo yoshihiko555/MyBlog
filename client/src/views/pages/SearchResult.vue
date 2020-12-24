@@ -1,5 +1,5 @@
 <template>
-    <div id='search_result_wrap' class="main">
+    <div class="main">
         <v-container>
             <!-- 検索ワード入力 -->
             <v-row>
@@ -248,8 +248,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-#search_result_wrap {
+<style lang="scss" scoped>
+
     .search_text {
         min-height: 30px;
     }
@@ -261,6 +261,7 @@ export default {
         >.row {
             width: 100%;
             margin: 0;
+
             .search_result_img_wrap {
                 position: relative;
 
@@ -277,14 +278,16 @@ export default {
             .search_result_title {
                 font-size: 1.4em;
             }
+
             .search_result_created {
                 font-size: .8em;
                 color: #555;
             }
         }
+
         &:hover {
             background-color: rgba(190, 190, 190, .2);
         }
     }
-}
+
 </style>

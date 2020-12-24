@@ -24,7 +24,14 @@ module.exports = {
         .splitChunks(false)
 
         config.plugin('StyleLintPlugin')
-        .use(StyleLintPlugin, [{ configFile: 'stylelint.config.js' }])
+        .use(StyleLintPlugin, [{
+            configFile: 'stylelint.config.js',
+            files: [
+                // '**/*.{vue, css, scss}'
+                '**/*.vue',
+                '**/*.scss',
+            ],
+        }])
 
         config.devServer
         .public('http://0.0.0.0:8080')

@@ -179,17 +179,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
     .article_operation_wrap {
         height: calc(100vh - #{($height-header + $height-footer)});
         position: sticky;
         top: $height-header;
+
         &::v-deep {
+
             .ope_btn {
                 width: 100%;
             }
         }
     }
+
     .v-note-wrapper {
         z-index: inherit !important;
     }
+
 </style>

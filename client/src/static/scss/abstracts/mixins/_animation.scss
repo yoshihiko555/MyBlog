@@ -3,14 +3,12 @@
 // **************************
 
 /** 右線の点滅 **/
-@mixin _r-line-blink {
-
-	padding-right: 1em;
+@mixin r-line-blink {
+    padding-right: 1em;
 	animation: blink .5s alternate infinite;
 
 	@keyframes blink {
-		from{ box-shadow: inset -3px 0px 0px #333; }
-		to{ box-shadow: inset -3px 0px 0px transparent; }
+		from { box-shadow: inset -3px 0 0 #{$color-theme}; }
+		to { box-shadow: inset -3px 0 0 transparent; }
 	}
-
 }

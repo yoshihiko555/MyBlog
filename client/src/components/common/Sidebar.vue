@@ -112,57 +112,58 @@ export default {
 }
 </script>
 
-<style lang="scss">
-    #sidebar_wrap {
-        .sns_wrap {
-            margin-bottom: 0%;
+<style lang="scss" scoped>
+
+    .sns_wrap {
+        margin-bottom: 0%;
+    }
+
+    .recent_wrap {
+
+        .recent_title {
+            font-family: 'Inconsolata', monospace;
+            font-weight: 500;
         }
 
-        .recent_wrap {
+        .recent_article_wrap {
+            position: relative;
+            height: 80px;
+            margin-bottom: 5%;
+
+            .recent_thumbnail {
+                width: 40%;
+                height: 100%;
+                display: inline-block;
+            }
 
             .recent_title {
-                font-family: 'Inconsolata', monospace;
-                font-weight: 500;
+                color: #333;
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                margin-left: 3%;
+                font-size: 0.8em !important;
             }
 
-            .recent_article_wrap {
-                position: relative;
-                height: 80px;
-                margin-bottom: 5%;
-
-                .recent_thumbnail {
-                    width: 40%;
-                    height: 100%;
-                    display: inline-block;
-                }
-
-                .recent_title {
-                    color: #333;
-                    display: inline-block;
-                    position: absolute;
-                    top: 0;
-                    margin-left: 3%;
-                    font-size: 0.8em !important;
-                }
-
-                .recent_create {
-                    color: #333;
-                    display: inline-block;
-                    position: absolute;
-                    // top: 30%;
-                    bottom: 0;
-                    margin-bottom: 0;
-                    margin-left: 3%;
-                    font-size: 0.8em;
-                }
-            }
-        }
-
-        .categorys_wrap {
-            .category_title {
-                font-family: 'Inconsolata', monospace;
-                font-weight: 500;
+            .recent_create {
+                color: #333;
+                display: inline-block;
+                position: absolute;
+                // top: 30%;
+                bottom: 0;
+                margin-bottom: 0;
+                margin-left: 3%;
+                font-size: 0.8em;
             }
         }
     }
+
+    .categorys_wrap {
+
+        .category_title {
+            font-family: 'Inconsolata', monospace;
+            font-weight: 500;
+        }
+    }
+
 </style>

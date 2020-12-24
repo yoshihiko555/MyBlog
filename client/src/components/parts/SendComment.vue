@@ -83,12 +83,15 @@ export default {
 </script>
 
 <style lang="scss">
+
 	#send_comment_form {
 		width: 100%;
-	}
-    .send_comment_notify{
+    }
+
+    .send_comment_notify {
         h4, p {
             color: #fff !important;
         }
     }
+
 </style>

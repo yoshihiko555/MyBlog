@@ -138,6 +138,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 	.home_main_wrap {
 	    position: relative;
 	    display: flex;
@@ -156,11 +157,13 @@ export default {
 	}
 
 	.home_articles_wrap {
+
 	    .home_title {
 	        min-height: 130px;
 	        align-items: initial;
 	        font-weight: 700;
-	    }
+        }
+
 	    .home_lead_text {
 	        min-height: 60px;
 	    }
@@ -171,21 +174,24 @@ export default {
 	    }
 	}
 
-	.fade-enter-active, .fade-leave-active {
+    .fade-enter-active,
+    .fade-leave-active {
 	    transition: 0.5s;
-	}
-	.fade-enter, .fade-leave-to {
+    }
+
+    .fade-enter,
+    .fade-leave-to {
 	    opacity: 0;
 	    transform: scale(0);
 	}
 
-	.down_fade-enter-active, .down_fade-enter-active {
+    .down_fade-enter-active {
 	    transition: opacity .5s ease-in-out, transform .6s ease-in;
 	}
 
 	.down_fade-enter {
-	opacity: 0;
-	transform: translateY(-20px);
+        opacity: 0;
+        transform: translateY(-20px);
 	}
 
 	.down_fade-leave-to {
@@ -209,8 +215,9 @@ export default {
 	}
 
 	@keyframes bound {
+
 	    0% {
-	        transform: translateY(0px);
+	        transform: translateY(0);
 	    }
 
 	    50% {
@@ -218,7 +225,8 @@ export default {
 	    }
 
 	    100% {
-	        transform: translateY(0px);
+	        transform: translateY(0);
 	    }
-	}
+    }
+
 </style>

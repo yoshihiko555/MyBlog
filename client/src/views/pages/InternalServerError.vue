@@ -16,6 +16,6 @@ export default {
 
 <style lang="scss" scoped>
 	h1 {
-		@include _r-line-blink;
+		@include r-line-blink;
 	}
 </style>

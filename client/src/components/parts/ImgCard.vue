@@ -25,6 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 	.card-wrap {
 		position: relative;
         overflow: hidden;
@@ -33,25 +34,6 @@ export default {
         background: $color-theme;
         text-align: center;
         cursor: pointer;
-
-        &:hover {
-            img {
-                opacity: .4;
-            }
-            .card-text-wrap {
-                .card-title, .card-desc {
-                    opacity: 1;
-                    -webkit-transform: translate3d(0,0,0);
-                    transform: translate3d(0,0,0);
-                }
-
-                &::before, &::after {
-                    opacity: 1;
-                    -webkit-transform: scale(1);
-                    transform: scale(1);
-                }
-            }
-        }
 
         img {
             position: relative;
@@ -83,8 +65,8 @@ export default {
                 padding-top: 35%;
                 -webkit-transition: -webkit-transform 0.35s;
                 transition: transform 0.35s;
-                -webkit-transform: translate3d(0,-20px,0);
-                transform: translate3d(0,-20px,0);
+                -webkit-transform: translate3d(0, -20px, 0);
+                transform: translate3d(0, -20px, 0);
             }
 
             .card-desc {
@@ -93,8 +75,8 @@ export default {
                 opacity: 0;
                 -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
                 transition: opacity 0.35s, transform 0.35s;
-                -webkit-transform: translate3d(0,20px,0);
-                transform: translate3d(0,20px,0);
+                -webkit-transform: translate3d(0, 20px, 0);
+                transform: translate3d(0, 20px, 0);
                 letter-spacing: 1px;
                 font-size: 68.5%;
             }
@@ -112,7 +94,8 @@ export default {
                 height: 100%;
             }
 
-            &::before, &::after {
+            &::before,
+            &::after {
                 pointer-events: none;
                 position: absolute;
                 top: 30px;
@@ -130,16 +113,41 @@ export default {
             &::before {
                 border-top: 1px solid #fff;
                 border-bottom: 1px solid #fff;
-                -webkit-transform: scale(0,1);
-                transform: scale(0,1);
+                -webkit-transform: scale(0, 1);
+                transform: scale(0, 1);
             }
 
             &::after {
                 border-right: 1px solid #fff;
                 border-left: 1px solid #fff;
-                -webkit-transform: scale(1,0);
-                transform: scale(1,0);
+                -webkit-transform: scale(1, 0);
+                transform: scale(1, 0);
+            }
+        }
+
+        &:hover {
+
+            img {
+                opacity: .4;
+            }
+
+            .card-text-wrap {
+
+                .card-title,
+                .card-desc {
+                    opacity: 1;
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+
+                &::before,
+                &::after {
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                }
             }
         }
     }
+
 </style>
