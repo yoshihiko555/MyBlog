@@ -180,9 +180,9 @@ export default {
 
 <style lang="scss" scoped>
     .article_operation_wrap {
-        height: calc(100vh - #{($header + $footer)});
+        height: calc(100vh - #{($height-header + $height-footer)});
         position: sticky;
-        top: $header;
+        top: $height-header;
         &::v-deep {
             .ope_btn {
                 width: 100%;

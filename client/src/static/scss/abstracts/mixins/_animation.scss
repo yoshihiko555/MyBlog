@@ -1,0 +1,16 @@
+// **************************
+// 共通アニメーションを記述
+// **************************
+
+/** 右線の点滅 **/
+@mixin _r-line-blink {
+
+	padding-right: 1em;
+	animation: blink .5s alternate infinite;
+
+	@keyframes blink {
+		from{ box-shadow: inset -3px 0px 0px #333; }
+		to{ box-shadow: inset -3px 0px 0px transparent; }
+	}
+
+}

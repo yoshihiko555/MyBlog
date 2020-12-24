@@ -5,6 +5,7 @@ __pycache__
 media
 db.sqlite3
 /server/static/
+.settings/
 # server/templates/mail/contact_receive.txt
 
 # local env files

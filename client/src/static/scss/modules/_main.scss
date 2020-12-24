@@ -1,0 +1,7 @@
+// *************************************
+// メインブロックに関するスタイルを定義
+// *************************************
+.main {
+  margin-top: $height-header;
+  min-height: calc(100vh - #{($height-header + $height-footer)}) !important;
+}

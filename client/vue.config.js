@@ -1,3 +1,5 @@
+const StyleLintPlugin = require('stylelint-webpack-plugin')
+
 module.exports = {
   transpileDependencies: [
     'vuetify'
@@ -12,9 +14,17 @@ module.exports = {
         }
     }
   },
+//  plugins: [
+//	  new StyleLintPlugin({
+//		 configFile: 'stylelint.config.js'
+//	  }),
+//  ],
   chainWebpack: config => {
         config.optimization
         .splitChunks(false)
+
+        config.plugin('StyleLintPlugin')
+        .use(StyleLintPlugin, [{ configFile: 'stylelint.config.js' }])
 
         config.devServer
         .public('http://0.0.0.0:8080')
@@ -27,7 +37,7 @@ module.exports = {
             aggregateTimeout: 300
         })
         .headers({ 'Access-Control-Allow-Origin': ['\*'] })
-    
+
         config.resolve.alias
         .set('vue$', 'vue/dist/vue.esm.js')
     }

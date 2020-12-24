@@ -1,5 +1,5 @@
 <template>
-    <div id="error_500" class="main error_page">
+    <div id="error_500" class="main d-flex justify-center align-center">
         <h1>500 Internal Server Error</h1>
     </div>
 </template>
@@ -14,5 +14,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	h1 {
+		@include _r-line-blink;
+	}
 </style>

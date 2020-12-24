@@ -14,7 +14,7 @@ export default {
 	props: {
 		url: {
 			type: String,
-			default: '/works',
+			default: 'https://ics.media/tutorial-three/points/',
 		}
 	},
     data: () => ({
@@ -28,9 +28,9 @@ export default {
 	.card-wrap {
 		position: relative;
         overflow: hidden;
-        height: 300px;
+        max-height: 400px;
         width: 100%;
-        background: #9e5406;
+        background: $color-theme;
         text-align: center;
         cursor: pointer;
 

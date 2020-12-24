@@ -180,11 +180,11 @@ export default {
     #detail::v-deep {
         .sidebar_wrap {
             padding-bottom: 20px;
-            height: calc(100vh - #{($header + $footer)});
+            height: calc(100vh - #{($height-header + $height-footer)});
             overflow-y: scroll;
             scrollbar-width: none;
             position: sticky;
-            top: $header;
+            top: $height-header;
             &::-webkit-scrollbar {
                 display: none;
             }

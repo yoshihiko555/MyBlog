@@ -1,5 +1,5 @@
 <template>
-    <div id="home" class="main">
+    <div class="main">
         <v-container>
         	<!-- メインコンテンツ -->
             <v-row>
@@ -13,19 +13,21 @@
                             	<p data-delay='500'>Sending useful information centered on programming</p>
                             </transition>
                             <transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
-                            	<v-btn to='/about' x-large outlined tile class="delay-2 home_about_btn" data-delay='1000'>About Me</v-btn>
+                            	<v-btn to='/about' x-large outlined tile class="home_about_btn" data-delay='1000'>About Me</v-btn>
                             </transition>
                         </div>
-                        <div class="guide_blog_wrap text-center">
-                            <p class="mb-0">Scroll</p>
-                            <v-btn
-                                text
-                                class="mb-5"
-                                @click="$vuetify.goTo('.home-works-wrap', { easing: 'easeInOutCubic', duration: 600 })"
-                            >
-                                <v-icon>mdi-chevron-down</v-icon>
-                            </v-btn>
-                        </div>
+                        <transition name='down_fade' appear>
+	                        <div class="guide_blog_wrap text-center">
+	                            <p class="mb-0">Scroll</p>
+	                            <v-btn
+	                                text
+	                                class="mb-5 bound"
+	                                @click="$vuetify.goTo('.home-works-wrap', { easing: 'easeInOutCubic', duration: 600 })"
+	                            >
+	                                <v-icon>mdi-chevron-down</v-icon>
+	                            </v-btn>
+	                        </div>
+                        </transition>
                     </section>
                 </v-col>
             </v-row>
@@ -35,30 +37,16 @@
             	<v-col cols='12' class='text-center'>
             		<h3>Works</h3>
             	</v-col>
-            	<v-col cols='12' sm='4' class='pa-0'>
-            		<v-img src='@/static/img/about_header.jpg' height='200' />
-            	</v-col>
-            	<v-col cols='12' sm='4' class='pa-0'>
-            		<v-img src='@/static/img/about_header.jpg' height='200' />
-            	</v-col>
-            	<v-col cols='12' sm='4' class='pa-0'>
-            		<v-img src='@/static/img/about_header.jpg' height='200' />
-            	</v-col>
-            	<v-col cols='12' sm='4' class='pa-0'>
-            		<v-img src='@/static/img/about_header.jpg' height='200' />
-            	</v-col>
-            	<v-col cols='12' sm='4' class='pa-0'>
-            		<v-img src='@/static/img/about_header.jpg' height='200' />
-            	</v-col>
-            	<v-col cols='12' sm='4' class='pa-0'>
-            		<ImgCard url='https://ics.media/tutorial-three/points/'>
+
+            	<v-col cols='12' sm='4' class='pa-0' v-for='site in sites' :key='site.id'>
+            		<ImgCard :url='site.url'>
             			<template #img>
             				<img src='@/static/img/about_header.jpg' />
             			</template>
-            			<template #title>Coopy</template>
-            			<template #description>ブログサービス</template>
-            		</ImgCard>
-            	</v-col>
+            			<template #title>{{ site.name }}</template>
+            			<template #description>{{ site.description }}</template>
+           			</ImgCard>
+      			</v-col>
             </v-row>
 
 			<!-- 記事一覧 -->
@@ -86,6 +74,7 @@
                     </v-card>
                 </v-col>
             </v-row>
+
         </v-container>
 
         <!-- TOPへのボタン -->
@@ -111,9 +100,10 @@
 </template>
 
 <script>
-import TheHomeBackGround from '@/components/common/TheHomeBackGround'
+import TheHomeBackGround from '@/components/verification/TheHomeBackGround'
 import ImgCard from '@/components/parts/ImgCard'
 import { mapGetters, mapActions } from 'vuex'
+import Con from '@/static/js/const'
 
 export default {
     name: 'Home',
@@ -123,6 +113,7 @@ export default {
     },
     data: () => ({
         fab: false,
+        sites: Con.SITES
     }),
     computed: {
         ...mapGetters([
@@ -146,69 +137,88 @@ export default {
 }
 </script>
 
-<style lang="scss">
-    #home {
-        .home_main_wrap {
-            position: relative;
-            display: flex;
-            min-height: calc(100vh - (#{$header} + 12px));
+<style lang="scss" scoped>
+	.home_main_wrap {
+	    position: relative;
+	    display: flex;
+	    min-height: calc(100vh - (#{$height-header} + 12px));
 
-            .home_main_content {
-                align-self: center;
-            }
+	    .home_main_content {
+	        align-self: center;
+	    }
 
-            .guide_blog_wrap {
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
+	    .guide_blog_wrap {
+	        position: absolute;
+	        bottom: 0;
+	        left: 50%;
+	        transform: translateX(-50%);
+	    }
+	}
 
-        .home_articles_wrap {
-            .home_title {
-                min-height: 130px;
-                align-items: initial;
-                font-weight: 700;
-            }
-            .home_lead_text {
-                min-height: 60px;
-            }
+	.home_articles_wrap {
+	    .home_title {
+	        min-height: 130px;
+	        align-items: initial;
+	        font-weight: 700;
+	    }
+	    .home_lead_text {
+	        min-height: 60px;
+	    }
 
-            .home_article_btn_wrap {
-                justify-content: center;
-                align-items: center;
-            }
-        }
+	    .home_article_btn_wrap {
+	        justify-content: center;
+	        align-items: center;
+	    }
+	}
 
-        .fade-enter-active, .fade-leave-active {
-            transition: 0.5s;
-        }
-        .fade-enter, .fade-leave-to {
-            opacity: 0;
-            transform: scale(0);
-        }
+	.fade-enter-active, .fade-leave-active {
+	    transition: 0.5s;
+	}
+	.fade-enter, .fade-leave-to {
+	    opacity: 0;
+	    transform: scale(0);
+	}
 
-        .down_fade-enter-active, .down_fade-enter-active {
-        	transition: opacity .5s ease-in-out, transform .6s ease-in;
-        }
+	.down_fade-enter-active, .down_fade-enter-active {
+	    transition: opacity .5s ease-in-out, transform .6s ease-in;
+	}
 
-        .down_fade-enter {
-        	opacity: 0;
-        	transform: translateY(-20px);
-        }
+	.down_fade-enter {
+	opacity: 0;
+	transform: translateY(-20px);
+	}
 
-        .down_fade-leave-to {
-        	opacity: 0;
-        	transform: translateY(-20px) scale(0.97);
-        }
+	.down_fade-leave-to {
+	    opacity: 0;
+	    transform: translateY(-20px) scale(0.97);
+	}
 
-        .max-width {
-        	margin: 0;
-			width: 100vw;
-		    position: relative;
-		    left: 50%;
-		    transform: translateX(-50%);
-        }
-    }
+	.max-width {
+	    margin: 0;
+	    width: 100vw;
+	    position: relative;
+	    left: 50%;
+	    transform: translateX(-50%);
+	}
+
+	.bound {
+	    animation-name: bound;
+	    animation-duration: 1s;
+	    animation-timing-function: ease-in-out;
+	    animation-iteration-count: infinite;
+	}
+
+	@keyframes bound {
+	    0% {
+	        transform: translateY(0px);
+	    }
+
+	    50% {
+	        transform: translateY(-3px);
+	    }
+
+	    100% {
+	        transform: translateY(0px);
+	    }
+	}
 </style>

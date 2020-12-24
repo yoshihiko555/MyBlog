@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TheHomeBackGround from '@/components/common/TheHomeBackGround'
+import TheHomeBackGround from '@/components/verification/TheHomeBackGround'
 export default {
 	components: {
 		TheHomeBackGround,

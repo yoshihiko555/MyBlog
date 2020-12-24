@@ -14,7 +14,7 @@ import mavonEditor from 'mavon-editor'
 // CSS
 import 'vuesax/dist/vuesax.css'
 import 'mavon-editor/dist/css/index.css'
-require('@/static/scss/main.scss')
+require('@/static/scss/style.scss')
 
 Vue.config.productionTip = false
 

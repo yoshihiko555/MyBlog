@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import SampleThree from '@/components/parts/SampleThree'
+import SampleThree from '@/components/verification/SampleThree'
 
 export default {
 	components: {
