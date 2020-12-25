@@ -78,7 +78,7 @@
         </v-container>
 
         <!-- TOPへのボタン -->
-        <transition name="fade">
+        <transition name="fade2">
             <v-btn
                 v-scroll='onScroll'
                 v-show='fab'
@@ -174,16 +174,8 @@ export default {
 	    }
 	}
 
-    .fade-enter-active,
-    .fade-leave-active {
-	    transition: 0.5s;
-    }
-
-    .fade-enter,
-    .fade-leave-to {
-	    opacity: 0;
-	    transform: scale(0);
-	}
+	@include fade(fade2);
+	@include scale(fade2);
 
     .down_fade-enter-active {
 	    transition: opacity .5s ease-in-out, transform .6s ease-in;

@@ -14,11 +14,6 @@ module.exports = {
         }
     }
   },
-//  plugins: [
-//	  new StyleLintPlugin({
-//		 configFile: 'stylelint.config.js'
-//	  }),
-//  ],
   chainWebpack: config => {
         config.optimization
         .splitChunks(false)

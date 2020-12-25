@@ -12,3 +12,45 @@
 		to { box-shadow: inset -3px 0 0 transparent; }
 	}
 }
+
+// **************************
+// Vueアニメーションを記述
+// **************************
+
+/** フェード **/
+@mixin fade ($name: 'fade') {
+    .#{$name}-enter-active,
+    .#{$name}-leave-active {
+        transition: .3s;
+    }
+
+    .#{$name}-enter,
+    .#{$name}-laeve-to {
+        opacity: 0;
+    }
+}
+
+/** スケール **/
+@mixin scale ($name: 'scale') {
+    .#{$name}-enter-active,
+    .#{$name}-leave-active {
+        transition: .3s;
+    }
+
+    .#{$name}-enter,
+    .#{$name}-leave-to {
+        transform: scale(0);
+    }
+}
+
+/** ダウン **/
+@mixin down ($name: 'down') {
+    .#{$name}-enter-active,
+    .#{$name}-leave-active {
+        transition: transform .6s ease-in;
+    }
+
+    .#{$name}-enter {
+        transform: translateY(-20px);
+    }
+}

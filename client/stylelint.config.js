@@ -29,5 +29,6 @@ module.exports = {
         "media-feature-colon-space-after": "always",
         'selector-pseudo-element-no-unknown': null,
         'selector-list-comma-newline-after': null,
+        'at-rule-empty-line-before': null,
 	}
 }
