@@ -13,6 +13,7 @@ import DetailArticle from '../views/pages/DetailArticle.vue'
 import SearchResult from '../views/pages/SearchResult.vue'
 import NotFound from '../views/pages/NotFound.vue'
 import InternalServerError from '../views/pages/InternalServerError.vue'
+import Test from '../views/pages/Test.vue'
 
 // Admin
 import Admin from '../views/admin/Admin.vue'
@@ -109,6 +110,15 @@ const main = [
         meta: {
         	title: 'お探しのページが見つかりませんでした。',
         	description: 'お探しのページが見つかりませんでした。',
+        }
+    },
+    {
+        path: '/test',
+        name: 'Test',
+        component: Test,
+        meta: {
+        	title: 'テストページ',
+        	description: 'これはテストのページです。',
         }
     },
 ]

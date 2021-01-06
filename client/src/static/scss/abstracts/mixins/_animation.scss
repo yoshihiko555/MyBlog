@@ -17,11 +17,110 @@
 // Vueアニメーションを記述
 // **************************
 
-/** フェード **/
-@mixin fade ($name: 'fade') {
+@mixin base ($name, $mixinName) {
+    @debug 'デバックスタート';
+    // $functions: meta.module-functions(foo);
+    // $functions2: meta.module-functions(functions);
+    // @debug $functions;
+    // @debug $functions2;
+    // $function: map.get($functions, 'test');
+    // @debug meta.call($function);
+    // @debug foo.test();
+    // @debug test();
+    // @debug functions.func();
+    // @debug func();
+
+    // 動的に、ミックスインを呼び出して汎用的なアニメーションの使用を検討してみたけど、
+    // なかなかうまくいかない。。。
+    // 動的に関数を呼び出すことはできたけど。。。
+
+    // 各アニメーションのトランジションをマップ形式で定義
+    $anime-map: (
+        fade: (
+            anime-name: opacity,
+            property: 0,
+            time: .3s,
+            enter: true,
+            leave: true,
+        ),
+        down: (
+            anime-name: transform,
+            property: translateY(-20px),
+            time:  .6s,
+            enter: true,
+            leave: false,
+        ),
+        scale: (
+            anime-name: transform,
+            property: scale(0),
+            time:  .3s,
+            enter: true,
+            leave: true,
+        ),
+    );
+
+    // プレースホルダで、プロパティを定義してみた
+    %fade {
+        opacity: 0;
+    }
+
+    %down {
+        transform: translateY(-20px);
+    }
+
+    // 空のリストを作成
+    // このリストに付与したいアニメーションのトランジション設定を格納してみた
+    $transitions: ();
+    @each $var in $mixinName {
+        $transition: map-get($map: $anime-map, $key: $var);
+        @debug $transition;
+        $transitions: append(
+            $list: $transitions,
+            $val:
+                map-get($map: $transition, $key: 'anime-name')
+                + ' '
+                + map-get($map: $transition, $key: 'time'),
+            $separator: comma
+        );
+        @debug $transitions;
+        // $transitions: append($transitions, $transition);
+
+        @if map-get($map: $transition, $key: 'enter') {
+            @debug 'true';
+            .#{$name}-enter {
+                // プレースホルダで定義したプロパティを動的に読み込もうとしたけど失敗
+                // @extend #{$mixinName};
+                #{map-get($map: $transition, $key: 'anime-name')}: map-get($map: $transition, $key: 'property');
+            }
+        }
+        @else {
+            @debug 'false';
+        }
+
+        @if map-get($map: $transition, $key: 'leave') {
+            @debug 'true';
+            .#{$name}-laeve-to {
+                // @extend #{$mixinName};
+                #{map-get($map: $transition, $key: 'anime-name')}: map-get($map: $transition, $key: 'property');
+            }
+        }
+        @else {
+            @debug 'false';
+        }
+    }
+
     .#{$name}-enter-active,
     .#{$name}-leave-active {
-        transition: .3s;
+        // ここのトランジションはうまくいったみたい
+        transition: $transitions;
+    }
+}
+
+/** フェード **/
+@mixin fade ($name: 'fade', $sec: '0.3s') {
+    .#{$name}-enter-active,
+    .#{$name}-leave-active {
+        transition: opacity .3s;
     }
 
     .#{$name}-enter,
@@ -34,7 +133,7 @@
 @mixin scale ($name: 'scale') {
     .#{$name}-enter-active,
     .#{$name}-leave-active {
-        transition: .3s;
+        transition: transform .3s;
     }
 
     .#{$name}-enter,

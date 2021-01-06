@@ -52,3 +52,15 @@
 	// }
 	// @return $res;
 }
+
+@function fade () {
+    @return opacity .3s;
+}
+
+@function down () {
+    @return transform .6s;
+}
+
+@function func () {
+    @return 'test';
+}

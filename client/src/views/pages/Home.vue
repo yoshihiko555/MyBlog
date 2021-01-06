@@ -78,7 +78,7 @@
         </v-container>
 
         <!-- TOPへのボタン -->
-        <transition name="fade2">
+        <transition name="to-top">
             <v-btn
                 v-scroll='onScroll'
                 v-show='fab'
@@ -139,10 +139,13 @@ export default {
 
 <style lang="scss" scoped>
 
+	@include fade('to-top');
+	// @include scale('to-top');
+
 	.home_main_wrap {
 	    position: relative;
 	    display: flex;
-	    min-height: calc(100vh - (#{$height-header} + 12px));
+	    min-height: calc(100vh - (#{$height-header} + 10px));
 
 	    .home_main_content {
 	        align-self: center;
@@ -173,9 +176,6 @@ export default {
 	        align-items: center;
 	    }
 	}
-
-	@include fade(fade2);
-	@include scale(fade2);
 
     .down_fade-enter-active {
 	    transition: opacity .5s ease-in-out, transform .6s ease-in;
