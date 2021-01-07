@@ -13,143 +13,93 @@
 	}
 }
 
+/** バウンド **/
+@mixin bound {
+    animation-name: bound;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    @keyframes bound {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-3px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+}
+
 // **************************
 // Vueアニメーションを記述
 // **************************
 
-@mixin base ($name, $mixinName) {
-    @debug 'デバックスタート';
-    // $functions: meta.module-functions(foo);
-    // $functions2: meta.module-functions(functions);
-    // @debug $functions;
-    // @debug $functions2;
-    // $function: map.get($functions, 'test');
-    // @debug meta.call($function);
-    // @debug foo.test();
-    // @debug test();
-    // @debug functions.func();
-    // @debug func();
+/** アニメーションのプロパティを定義 **/
+$anime-propertys: (
+    fade: (
+        anime-name: opacity,
+        property: 0,
+        time: .3s,
+        function: ease-in-out,
+        enter: true,
+        leave: true,
+    ),
+    down: (
+        anime-name: transform,
+        property: translateY(-20px),
+        time:  .6s,
+        function: linear,
+        enter: true,
+        leave: false,
+    ),
+    scale: (
+        anime-name: transform,
+        property: scale(0),
+        time:  .3s,
+        function: ease-in-out,
+        enter: true,
+        leave: true,
+    ),
+);
 
-    // 動的に、ミックスインを呼び出して汎用的なアニメーションの使用を検討してみたけど、
-    // なかなかうまくいかない。。。
-    // 動的に関数を呼び出すことはできたけど。。。
-
-    // 各アニメーションのトランジションをマップ形式で定義
-    $anime-map: (
-        fade: (
-            anime-name: opacity,
-            property: 0,
-            time: .3s,
-            enter: true,
-            leave: true,
-        ),
-        down: (
-            anime-name: transform,
-            property: translateY(-20px),
-            time:  .6s,
-            enter: true,
-            leave: false,
-        ),
-        scale: (
-            anime-name: transform,
-            property: scale(0),
-            time:  .3s,
-            enter: true,
-            leave: true,
-        ),
-    );
-
-    // プレースホルダで、プロパティを定義してみた
-    %fade {
-        opacity: 0;
-    }
-
-    %down {
-        transform: translateY(-20px);
-    }
+@mixin vue-animation ($tran-name, $anime-name) {
 
     // 空のリストを作成
-    // このリストに付与したいアニメーションのトランジション設定を格納してみた
     $transitions: ();
-    @each $var in $mixinName {
-        $transition: map-get($map: $anime-map, $key: $var);
-        @debug $transition;
+
+    @each $var in $anime-name {
+        $transition: map-get($map: $anime-propertys, $key: $var);
         $transitions: append(
             $list: $transitions,
             $val:
                 map-get($map: $transition, $key: 'anime-name')
                 + ' '
-                + map-get($map: $transition, $key: 'time'),
+                + map-get($map: $transition, $key: 'time')
+                + ' '
+                + map-get($map: $transition, $key: 'function'),
             $separator: comma
         );
-        @debug $transitions;
-        // $transitions: append($transitions, $transition);
 
         @if map-get($map: $transition, $key: 'enter') {
-            @debug 'true';
-            .#{$name}-enter {
-                // プレースホルダで定義したプロパティを動的に読み込もうとしたけど失敗
-                // @extend #{$mixinName};
+            .#{$tran-name}-enter {
                 #{map-get($map: $transition, $key: 'anime-name')}: map-get($map: $transition, $key: 'property');
             }
-        }
-        @else {
-            @debug 'false';
         }
 
         @if map-get($map: $transition, $key: 'leave') {
-            @debug 'true';
-            .#{$name}-laeve-to {
-                // @extend #{$mixinName};
+            .#{$tran-name}-leave-to {
                 #{map-get($map: $transition, $key: 'anime-name')}: map-get($map: $transition, $key: 'property');
             }
         }
-        @else {
-            @debug 'false';
-        }
     }
 
-    .#{$name}-enter-active,
-    .#{$name}-leave-active {
-        // ここのトランジションはうまくいったみたい
+    .#{$tran-name}-enter-active,
+    .#{$tran-name}-leave-active {
         transition: $transitions;
-    }
-}
-
-/** フェード **/
-@mixin fade ($name: 'fade', $sec: '0.3s') {
-    .#{$name}-enter-active,
-    .#{$name}-leave-active {
-        transition: opacity .3s;
-    }
-
-    .#{$name}-enter,
-    .#{$name}-laeve-to {
-        opacity: 0;
-    }
-}
-
-/** スケール **/
-@mixin scale ($name: 'scale') {
-    .#{$name}-enter-active,
-    .#{$name}-leave-active {
-        transition: transform .3s;
-    }
-
-    .#{$name}-enter,
-    .#{$name}-leave-to {
-        transform: scale(0);
-    }
-}
-
-/** ダウン **/
-@mixin down ($name: 'down') {
-    .#{$name}-enter-active,
-    .#{$name}-leave-active {
-        transition: transform .6s ease-in;
-    }
-
-    .#{$name}-enter {
-        transform: translateY(-20px);
     }
 }

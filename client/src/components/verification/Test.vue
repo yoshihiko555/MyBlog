@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <h1>Test</h1>
-        <SampleThree />
+<!--         <SampleThree /> -->
         <p class='vue-1'>Sample1</p>
         <p class='vue-2'>Sample2</p>
         <p class='vue-3'>Sample3</p>
@@ -68,11 +68,11 @@ export default {
     	$array2: ($map, $map2);
 
     	&::before {
-    		content: sample();
+    		//content: sample();
     	}
 
     	&::after {
-	    	content: sample($array);
+	    	//content: sample($array);
     	}
     }
 
@@ -89,6 +89,6 @@ export default {
     //     }
     // }
 
-    @include base($name: 'anime', $mixinName: ('fade', 'down'));
+    @include vue-animation($tran-name: 'anime', $anime-name: ('fade', 'down'));
 
 </style>

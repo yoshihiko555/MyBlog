@@ -6,14 +6,14 @@ import { setTitle, setDescription } from '@/mixins'
 import Home from '../views/pages/Home.vue'
 import About from '../views/pages/About.vue'
 import Contact from '../views/pages/Contact.vue'
-import Works from '../views/pages/Works.vue'
 import Blog from '../views/pages/Blog.vue'
 import ContactComplete from '../views/pages/ContactComplete.vue'
 import DetailArticle from '../views/pages/DetailArticle.vue'
 import SearchResult from '../views/pages/SearchResult.vue'
 import NotFound from '../views/pages/NotFound.vue'
 import InternalServerError from '../views/pages/InternalServerError.vue'
-import Test from '../views/pages/Test.vue'
+
+import Test from '../components/verification/Test.vue'
 
 // Admin
 import Admin from '../views/admin/Admin.vue'
@@ -55,15 +55,6 @@ const main = [
         meta: {
         	title: 'Contact',
         	description: 'Contact Me',
-        }
-    },
-    {
-        path: '/works',
-        name: 'Works',
-        component: Works,
-        meta: {
-        	title: 'Works',
-        	description: 'My Works',
         }
     },
     {

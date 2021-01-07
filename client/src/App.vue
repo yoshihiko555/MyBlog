@@ -2,7 +2,7 @@
   <v-app>
         <div v-if="initFlg">
             <Header/>
-                <transition name='fade' mode="out-in">
+                <transition name='top-fade' mode="out-in">
                     <router-view/>
                 </transition>
             <Footer/>
@@ -46,4 +46,5 @@ export default {
 </script>
 
 <style lang="scss">
+	@include vue-animation($tran-name: 'top-fade', $anime-name: ('fade'));
 </style>

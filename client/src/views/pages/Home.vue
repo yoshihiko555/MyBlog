@@ -38,7 +38,7 @@
             		<h3>Works</h3>
             	</v-col>
 
-            	<v-col cols='12' sm='4' class='pa-0' v-for='site in sites' :key='site.id'>
+            	<v-col cols='12' sm='6' md='4' class='pa-0' v-for='site in sites' :key='site.id'>
             		<ImgCard :url='site.url'>
             			<template #img>
             				<img src='@/static/img/about_header.jpg' />
@@ -139,8 +139,7 @@ export default {
 
 <style lang="scss" scoped>
 
-	@include fade('to-top');
-	// @include scale('to-top');
+	@include vue-animation($tran-name: 'to-top', $anime-name: ('fade', 'scale'));
 
 	.home_main_wrap {
 	    position: relative;
@@ -200,25 +199,7 @@ export default {
 	}
 
 	.bound {
-	    animation-name: bound;
-	    animation-duration: 1s;
-	    animation-timing-function: ease-in-out;
-	    animation-iteration-count: infinite;
+		@include bound;
 	}
-
-	@keyframes bound {
-
-	    0% {
-	        transform: translateY(0);
-	    }
-
-	    50% {
-	        transform: translateY(-3px);
-	    }
-
-	    100% {
-	        transform: translateY(0);
-	    }
-    }
 
 </style>

@@ -14,7 +14,6 @@
                 </router-link>
                 <div class="header_link_wrap">
                     <router-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</router-link>
-                    <router-link to='/works' class="link mx-3 d-none d-sm-inline-block">Works</router-link>
                     <router-link to='/blog' class="link mx-3 d-none d-sm-inline-block">Blog</router-link>
                     <router-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</router-link>
                     <div v-show='isAuth'>
@@ -78,6 +77,10 @@ export default {
             {
                 title: 'About Me',
                 url: '/about',
+            },
+            {
+                title: 'Blog',
+                url: '/blog',
             },
             {
                 title: 'Contact',
