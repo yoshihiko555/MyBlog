@@ -4,7 +4,10 @@
 		<v-card
 			v-for='article in articles'
 			:key='article.id'
-			class='article_wrap'
+			tile
+			flat
+			class='article_wrap my-2'
+			:to='{ name: "DetailArticle", params: { title: article.title }}'
 		>
 			<v-row>
 				<v-col cols='4' class='pa-0'>

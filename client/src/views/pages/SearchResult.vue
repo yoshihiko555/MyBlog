@@ -1,81 +1,76 @@
 <template>
-    <div class="main">
-        <v-container>
-            <!-- 検索ワード入力 -->
-            <v-row>
-                <v-col cols='12'>
-                    <v-text-field
-                        v-model="searchRetryText"
-                        prepend-inner-icon='mdi-magnify'
-                        placeholder='Search...'
-                        color='blue-grey darken-1'
-                        outlined
-                        dense
-                        :loading='loading'
-                    ></v-text-field>
-                </v-col>
-            </v-row>
+    <v-container class="main">
+		<!-- 検索ワード入力 -->
+		<v-row>
+			<v-col cols='12'>
+				<v-text-field
+					v-model="searchRetryText"
+					prepend-inner-icon='mdi-magnify'
+					placeholder='Search...'
+					color='blue-grey darken-1'
+					outlined
+					dense
+					:loading='loading'
+				></v-text-field>
+			</v-col>
+		</v-row>
 
-            <!-- 検索完了画面 -->
-            <div v-if="!loading">
-                <!-- 検索ワード表示 -->
-                <v-row>
-                    <v-col cols='12' class="text-center">
-                        <h2 class="mb-3 text-subtitle-1">Search Result For</h2>
-                        <h3 class="mb-3 search_text">{{ searchText }}</h3>
-                        <v-divider></v-divider>
-                    </v-col>
-                </v-row>
+		<!-- 検索完了画面 -->
+		<div v-if="!loading">
+			<!-- 検索ワード表示 -->
+			<v-row>
+				<v-col cols='12' class="text-center">
+					<h2 class="text-subtitle-1">Search Result For</h2>
+					<h3 class="mb-3 search_text">{{ searchText }}</h3>
+				</v-col>
+			</v-row>
 
-                <div v-if="searchResultList.length > 0">
-                    <!-- 検索結果:あり -->
-                    <v-card
-                        v-for='article in searchResultList'
-                        :key='article.id'
-                        class="search_article_wrap py-4"
-                        link
-                        flat
-                        tile
-                        outlined
-                        :to='{ name: "DetailArticle", params: { title: article.title }}'
-                    >
-                        <v-row>
-                            <v-col cols='4' class="pa-0 search_result_img_wrap">
-                                <v-img :src='article.thumbnail' alt='article.title' height=200></v-img>
-                                <span class="search_result_category pa-1">{{ article.category_name }}</span>
-                            </v-col>
-                            <v-col cols='8' class="pl-4">
-                                <h4 class="search_result_title">{{ article.title }}</h4>
-                                <p class="search_result_created mb-3">{{ article.created_at}}</p>
-                                <p class="search_result_content">{{ article.lead_text}}</p>
-                            </v-col>
-                        </v-row>
-                    </v-card>
+			<div v-if="searchResultList.length > 0">
+				<!-- 検索結果:あり -->
+				<v-card
+					v-for='article in searchResultList'
+					:key='article.id'
+					class="search_article_wrap py-4"
+					flat
+					tile
+					:to='{ name: "DetailArticle", params: { title: article.title }}'
+				>
+					<v-row>
+						<v-col cols='4' class="pa-0 search_result_img_wrap">
+							<v-img :src='article.thumbnail' alt='article.title' height=200></v-img>
+							<span class="search_result_category pa-1">{{ article.category_name }}</span>
+						</v-col>
+						<v-col cols='8' class="pl-4">
+							<h4 class="search_result_title">{{ article.title }}</h4>
+							<p class="search_result_created mb-3">{{ article.created_at}}</p>
+							<p class="search_result_content">{{ article.lead_text}}</p>
+						</v-col>
+					</v-row>
+				</v-card>
 
-                    <!-- ページネーション -->
-                    <v-pagination
-                        v-model="pagination.current_page"
-                        :page='pagination.current_page'
-                        :length='pagination.total_pages'
-                        color='blue-grey lighten-1'
-                        class="mt-5"
-                        total-visible=5
-                        @input='changePage'
-                    />
-                </div>
+				<!-- ページネーション -->
+				<v-pagination
+					v-model="pagination.current_page"
+					:page='pagination.current_page'
+					:length='pagination.total_pages'
+					color='blue-grey lighten-1'
+					class="pagination-wrap mt-5"
+					total-visible=5
+					@input='changePage'
+				/>
+			</div>
 
-                <div v-else>
-                    <!-- 検索結果:なし -->
-                    <h2>記事が見つかりません</h2>
-                </div>
-            </div>
+			<div v-else>
+				<!-- 検索結果:なし -->
+				<h2>記事が見つかりません</h2>
+			</div>
+		</div>
 
-            <!-- ロード中画面表示 -->
-            <div v-else>
-                <Loading/>
-            </div>
-        </v-container>
-    </div>
+		<!-- ロード中画面表示 -->
+		<div v-else>
+			<Loading/>
+		</div>
+	</v-container>
 </template>
 
 <script>
@@ -289,5 +284,9 @@ export default {
             background-color: rgba(190, 190, 190, .2);
         }
     }
+
+	.pagination-wrap::v-deep {
+		button { text-align: center; }
+	}
 
 </style>

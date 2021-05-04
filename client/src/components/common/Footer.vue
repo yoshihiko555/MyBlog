@@ -19,5 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+	.v-footer {
+		height: $height-footer;
+	}
 </style>

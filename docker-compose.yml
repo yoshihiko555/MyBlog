@@ -17,7 +17,8 @@ services:
     client:
         image: vue-base
         container_name: blog-web
-        working_dir: /home/blog
+        working_dir: /home/blog/client
+        command: yarn serve
         ports:
             - '8080:8080'
             - '3000:3000'

@@ -1,11 +1,11 @@
 <template>
   <v-app>
         <div v-if="initFlg">
-            <Header/>
+            <Header />
                 <transition name='top-fade' mode="out-in">
                     <router-view/>
                 </transition>
-            <Footer/>
+            <Footer />
         </div>
         <LoadingPage v-else/>
   </v-app>

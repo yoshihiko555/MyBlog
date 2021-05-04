@@ -2,15 +2,15 @@
     <div id='sidebar_wrap'>
         <!-- プロフィール部分 -->
         <h1 class="sidebar_logo mb-2">Yoshihiko</h1>
-        <v-img src='@/static/img/pithuy.jpeg' alt='Acount Profile' class="mb-5"></v-img>
-        <p>This is my personal blog where I share a lot of stuffs about life and work everything I do in between.</p>
+        <!-- <v-img src='@/static/img/pithuy.jpeg' alt='Acount Profile' class="mb-5"></v-img> -->
+        <!-- <p>This is my personal blog where I share a lot of stuffs about life and work everything I do in between.</p> -->
 
 		<!-- SNS系ボタン -->
         <div class="sns_wrap mb-5">
             <v-btn icon href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
-            <v-btn icon href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn>
-            <v-btn icon href='https://github.com/shutotakizawa' target='blank'><v-icon>mdi-github</v-icon></v-btn>
-            <v-btn icon href='https://www.linkedin.com/in/shuto-takizawa-a269b116b/' target='blank'><v-icon>mdi-linkedin</v-icon></v-btn>
+            <!-- <v-btn icon href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn> -->
+            <v-btn icon href='https://github.com/yoshihiko555' target='blank'><v-icon>mdi-github</v-icon></v-btn>
+            <!-- <v-btn icon href='https://www.linkedin.com/in/shuto-takizawa-a269b116b/' target='blank'><v-icon>mdi-linkedin</v-icon></v-btn> -->
         </div>
 
         <v-divider/>

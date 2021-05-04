@@ -1,34 +1,34 @@
 <template>
     <div>
-        <v-app-bar
-            app
-            flat
-            dense
-            color='white'
-        >
-            <v-row align='center'>
-                <!-- ハンバーガーボタン設定 -->
-                <v-app-bar-nav-icon @click="drawer = true" class="hamburger_menu d-sm-none"/>
-                <router-link to='/' class="header_logo mx-auto mx-sm-4">
-                    <h1>Yoshihiko</h1>
-                </router-link>
-                <div class="header_link_wrap">
-                    <router-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</router-link>
-                    <router-link to='/blog' class="link mx-3 d-none d-sm-inline-block">Blog</router-link>
-                    <router-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</router-link>
-                    <div v-show='isAuth'>
-                    	<router-link to='/admin' v-show='isAuth' class="link mx-3 d-none d-sm-inline-block">Admin</router-link>
-	                    <router-link to='/admin/signin' class="link mx-3 d-none d-sm-inline-block">SignIn</router-link>
-                    </div>
-                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
-                    <!-- <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.instagram.com/yoshihiko.style/?hl=ja' target='blank'><v-icon>mdi-instagram</v-icon></v-btn> -->
-                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://github.com/shutotakizawa' target='blank'><v-icon>mdi-github</v-icon></v-btn>
-                    <v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://www.linkedin.com/in/shuto-takizawa-a269b116b/' target='blank'><v-icon>mdi-linkedin</v-icon></v-btn>
-                    <Search />
-                </div>
-            </v-row>
+		<v-app-bar
+			app
+			flat
+			color='white'
+			class="container pa-0"
+			height='50px'
+		>
+			<!-- ハンバーガーメニューのボタン -->
+			<v-app-bar-nav-icon @click="drawer = true" class="d-sm-none"/>
 
-        </v-app-bar>
+			<router-link to='/'>
+				<img src="@/static/img/logo.svg" alt="logo" width="30px" height="30px">
+			</router-link>
+
+			<div>
+				<router-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</router-link>
+				<router-link to='/blog' class="link mx-3 d-none d-sm-inline-block">Blog</router-link>
+				<router-link to='/works' class="link mx-3 d-none d-sm-inline-block">Works</router-link>
+				<router-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</router-link>
+				<div v-show='isAuth'>
+					<router-link to='/admin' v-show='isAuth' class="link mx-3 d-none d-sm-inline-block">Admin</router-link>
+					<router-link to='/admin/signin' class="link mx-3 d-none d-sm-inline-block">SignIn</router-link>
+				</div>
+				<v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
+				<v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://github.com/yoshihiko555' target='blank'><v-icon>mdi-github</v-icon></v-btn>
+				<Search />
+			</div>
+
+		</v-app-bar>
 
         <!-- ハンバーガーメニュー設定 -->
         <v-navigation-drawer
@@ -75,12 +75,16 @@ export default {
                 url: '/',
             },
             {
-                title: 'About Me',
+                title: 'About',
                 url: '/about',
             },
             {
                 title: 'Blog',
                 url: '/blog',
+            },
+            {
+                title: 'Works',
+                url: '/works',
             },
             {
                 title: 'Contact',
@@ -108,34 +112,32 @@ export default {
         text-decoration: none;
     }
 
-    .header_link_wrap {
-        margin-right: 2%;
-        position: fixed;
-        right: 0;
-        display: inline-flex;
-        align-items: center;
+	.link {
+		color: #333;
+		text-decoration: none;
+		position: relative;
+		transition: .3s;
 
-        .link {
-            color: #333;
-            text-decoration: none;
-            position: relative;
-            transition: .3s;
+		&::after {
+			position: absolute;
+			bottom: 0;
+			left: 2%;
+			content: '';
+			width: 0;
+			height: 1px;
+			background-color: #333;
+			transition: .3s;
+		}
 
-            &::after {
-                position: absolute;
-                bottom: 0;
-                left: 2%;
-                content: '';
-                width: 0;
-                height: 1px;
-                background-color: #333;
-                transition: .3s;
-            }
+		&:hover::after {
+			width: 100%;
+		}
+	}
 
-            &:hover::after {
-                width: 100%;
-            }
-        }
-    }
+	.v-toolbar::v-deep {
+		.v-toolbar__content {
+			justify-content: space-between;
+		}
+	}
 
 </style>

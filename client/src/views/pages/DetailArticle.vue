@@ -1,82 +1,80 @@
 <template>
-    <div id="detail" class="main">
-        <v-container v-show='isShow'>
-            <v-row>
-                <v-col cols='12' sm='3' class="d-none d-sm-block sidebar_wrap">
-                    <Sidebar/>
-                </v-col>
+    <v-container id="detail" class="main" v-show='isShow'>
+		<v-row>
+			<v-col cols='12' sm='3' class="d-none d-sm-block sidebar_wrap">
+				<Sidebar/>
+			</v-col>
 
-                <v-col cols='12' sm='8' offset-md='1'>
-                    <v-card
-                        tile
-                        flat
-                        id="detail_article_wrap"
-                        class="mb-5"
-                    >
-                        <v-btn
-                            depressed
-                            :to='{ name: "SearchResult", query: { category: article.category_name }}'
-                        >
-                            {{ article.category_name }}
-                        </v-btn>
-                        <v-card-subtitle class="text-center">
-                            {{ article.created_at }}
-                        </v-card-subtitle>
+			<v-col cols='12' sm='8' offset-md='1'>
+				<v-card
+					tile
+					flat
+					id="detail_article_wrap"
+					class="mb-5"
+				>
+					<v-btn
+						depressed
+						:to='{ name: "SearchResult", query: { category: article.category_name }}'
+					>
+						{{ article.category_name }}
+					</v-btn>
+					<v-card-subtitle class="text-center">
+						{{ article.created_at }}
+					</v-card-subtitle>
 
-                        <v-card-title class="justify-center">
-                            {{ article.title }}
-                        </v-card-title>
-                        <v-img :src='article.thumbnail' :alt='article.title' height=500></v-img>
-                        <div id='toc_wrap' class='my-8 mx-4 pa-4' v-show='isToc'>
-                            <h4 id="toc_title" class="text-center mb-4 pb-2">Contents</h4>
-                            <nav
-                                id='toc'
-                                ref='toc'
-                                @click='toScroll'
-                            />
-                        </div>
+					<v-card-title class="justify-center">
+						{{ article.title }}
+					</v-card-title>
+					<v-img :src='article.thumbnail' :alt='article.title' height=500></v-img>
+					<div id='toc_wrap' class='my-8 mx-4 pa-4' v-show='isToc'>
+						<h4 id="toc_title" class="text-center mb-4 pb-2">Contents</h4>
+						<nav
+							id='toc'
+							ref='toc'
+							@click='toScroll'
+						/>
+					</div>
 
-                        <v-card-text id='article_main' ref='main' v-html='article.conversion_content'/>
+					<v-card-text id='article_main' ref='main' v-html='article.conversion_content'/>
 
-                    </v-card>
+				</v-card>
 
-                    <AroundArticles
-                    	:previous='article.previous'
-                    	:next='article.next'
-                    />
+				<AroundArticles
+					:previous='article.previous'
+					:next='article.next'
+				/>
 
-                    <RelatedArticles
-                    	:articles='article.related_articles'
-                    />
+				<RelatedArticles
+					:articles='article.related_articles'
+				/>
 
-                    <Comment
-                        :comments='article.comments'
-                        :is-comment='isComment'
-                    />
-                    <SendComment
-                        :article='article'
-                    />
-                </v-col>
-            </v-row>
-        </v-container>
+				<Comment
+					:comments='article.comments'
+					:is-comment='isComment'
+				/>
+				<SendComment
+					:article='article'
+				/>
+			</v-col>
+		</v-row>
 
-        <!-- TOPへのボタン -->
-        <transition name="fade">
-            <v-btn
-                v-scroll='onScroll'
-                v-show='fab'
-                fixed
-                bottom
-                right
-                icon
-                x-large
-                color='blue-grey darken-1'
-                @click='$vuetify.goTo(0)'
-            >
-            <v-icon>mdi-chevron-up</v-icon>
-            </v-btn>
-        </transition>
-    </div>
+		<!-- TOPへのボタン -->
+		<transition name="fade">
+			<v-btn
+				v-scroll='onScroll'
+				v-show='fab'
+				fixed
+				bottom
+				right
+				icon
+				x-large
+				color='blue-grey darken-1'
+				@click='$vuetify.goTo(0)'
+			>
+			<v-icon>mdi-chevron-up</v-icon>
+			</v-btn>
+		</transition>
+	</v-container>
 </template>
 
 <script>

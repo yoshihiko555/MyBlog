@@ -1,6 +1,15 @@
 <template>
 	<figure class='card-wrap'>
 		<slot name='img' />
+		<!-- とりあえず、githubのリンクはつけたけど、押しづらい気がする -->
+		<v-btn
+			v-if='github'
+			:href='github'
+			icon
+			small
+			class="github-btn"
+			target='blank'
+		><v-icon>mdi-github</v-icon></v-btn>
 		<figcaption class='card-text-wrap'>
 			<p class='card-title'><slot name='title'>Title</slot></p>
 			<p class='card-desc'><slot name='description'>Description</slot></p>
@@ -15,6 +24,10 @@ export default {
 		url: {
 			type: String,
 			default: 'https://ics.media/tutorial-three/points/',
+		},
+		github: {
+			type: String,
+			default: null,
 		}
 	},
     data: () => ({
@@ -29,7 +42,7 @@ export default {
 	.card-wrap {
 		position: relative;
         overflow: hidden;
-        max-height: 400px;
+        height: 350px;
         width: 100%;
         background: $color-theme;
         text-align: center;
@@ -43,6 +56,7 @@ export default {
             opacity: .7;
             -webkit-transition: opacity 0.35s;
             transition: opacity 0.35s;
+			object-fit: cover;
         }
 
         .card-text-wrap {
@@ -149,5 +163,17 @@ export default {
             }
         }
     }
+
+	.github-btn {
+		position: absolute;
+		top: 1%;
+		right: 1%;
+		z-index: 1100;
+		transition: .3s;
+
+		.v-icon::before {
+			color: #333;
+		}
+	}
 
 </style>

@@ -7,6 +7,7 @@ import Home from '../views/pages/Home.vue'
 import About from '../views/pages/About.vue'
 import Contact from '../views/pages/Contact.vue'
 import Blog from '../views/pages/Blog.vue'
+import Works from '../views/pages/Works.vue'
 import ContactComplete from '../views/pages/ContactComplete.vue'
 import DetailArticle from '../views/pages/DetailArticle.vue'
 import SearchResult from '../views/pages/SearchResult.vue'
@@ -64,6 +65,15 @@ const main = [
         meta: {
         	title: 'Blog',
         	description: 'My Blog',
+        }
+    },
+    {
+        path: '/works',
+        name: 'Works',
+        component: Works,
+        meta: {
+        	title: 'Works',
+        	description: 'My Works',
         }
     },
     {
