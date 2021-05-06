@@ -3,7 +3,7 @@
         color='white'
     >
         <v-row justify='end'>
-            <small>Yoshihiko All Rights Reserved</small>
+			<small class="pr-2">Yoshihiko All Rights Reserved</small>
         </v-row>
     </v-footer>
 </template>

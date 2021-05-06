@@ -1,7 +1,8 @@
 <template>
-	<figure class='card-wrap'>
+	<figure class='card-wrap' :style='{height: height + "px"}'>
 		<slot name='img' />
 		<!-- とりあえず、githubのリンクはつけたけど、押しづらい気がする -->
+		<!-- 文字のアニメーションの位置調整は後でやる -->
 		<v-btn
 			v-if='github'
 			:href='github'
@@ -32,6 +33,18 @@ export default {
 	},
     data: () => ({
     }),
+	computed: {
+		height () {
+			switch (this.$vuetify.breakpoint.name) {
+				case 'xs': return 400
+				case 'sm': return 250
+				case 'md': return 300
+				case 'lg': return 380
+				case 'xl': return 450
+				default: return 320
+			}
+		}
+	},
     methods: {
     }
 }
@@ -42,7 +55,7 @@ export default {
 	.card-wrap {
 		position: relative;
         overflow: hidden;
-        height: 350px;
+        // height: 350px;
         width: 100%;
         background: $color-theme;
         text-align: center;

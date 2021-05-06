@@ -6,7 +6,6 @@ export default Object.freeze({
 	SITES: [
 		// Coopy
 		{
-			id: 1,
 			name: 'Coopy',
 			description: 'ブログサービス',
 			img: require('@/static/img/works/coopy.png'),
@@ -16,7 +15,6 @@ export default Object.freeze({
 
 		// Bandue
 		{
-			id: 2,
 			name: 'Bandue',
 			description: 'ソーシャルネットワークサービス',
 			img: require('@/static/img/works/bandue.png'),
@@ -47,70 +45,76 @@ export default Object.freeze({
 
 	SKILLS: [
 		{
-			id: 1,
-			name: 'HTML/CSS',
+			name: 'HTML',
 			period: 3,
 			percent: 90,
+			icon: require('@/static/img/icon/html5.svg'),
 		},
 		{
-			id: 2,
-			name: 'JavaScript',
+			name: 'CSS',
 			period: 3,
 			percent: 90,
+			icon: require('@/static/img/icon/css3.svg'),
 		},
 		{
-			id: 3,
 			name: 'SCSS',
 			period: 2,
 			percent: 50,
+			icon: require('@/static/img/icon/sass.svg'),
 		},
 		{
-			id: 4,
-			name: 'TypeScript',
-			period: 1,
-			percent: 30,
+			name: 'JavaScript',
+			period: 3,
+			percent: 90,
+			icon: require('@/static/img/icon/javascript.svg'),
 		},
 		{
-			id: 5,
-			name: 'Python',
-			period: 2,
-			percent: 50,
+			name: 'jQuery',
+			period: 3,
+			percent: 90,
+			icon: require('@/static/img/icon/jquery.svg'),
 		},
 		{
-			id: 6,
-			name: 'Java',
-			period: 2,
-			percent: 50,
-		},
-		{
-			id: 7,
-			name: 'Docker',
-			period: 1,
-			percent: 40,
-		},
-		{
-			id: 8,
 			name: 'Vue',
 			period: 2,
 			percent: 60,
+			icon: require('@/static/img/icon/vue.svg'),
 		},
 		{
-			id: 9,
 			name: 'React',
-			period: 1,
-			percent: 30,
+			period: 0.5,
+			percent: 20,
+			icon: require('@/static/img/icon/react.svg'),
 		},
 		{
-			id: 10,
-			name: 'Django',
+			name: 'TypeScript',
+			period: 0.5,
+			percent: 20,
+			icon: require('@/static/img/icon/typescript.svg'),
+		},
+		{
+			name: 'Java',
 			period: 2,
 			percent: 50,
+			icon: require('@/static/img/icon/java.svg'),
 		},
 		{
-			id: 11,
-			name: 'Nuxt',
-			period: 1,
-			percent: 30,
+			name: 'Python',
+			period: 2,
+			percent: 40,
+			icon: require('@/static/img/icon/python.svg'),
+		},
+		{
+			name: 'Django',
+			period: 2,
+			percent: 40,
+			icon: require('@/static/img/icon/django.svg'),
+		},
+		{
+			name: 'Docker',
+			period: 1.5,
+			percent: 50,
+			icon: require('@/static/img/icon/docker.svg'),
 		},
 	]
 })
