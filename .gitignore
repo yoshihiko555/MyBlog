@@ -2,10 +2,12 @@
 node_modules
 dist/
 __pycache__
-media
+media/upload/
 db.sqlite3
-/server/static/
+server/static/
+server/templates/index.html
 .settings/
+migrations/
 # server/templates/mail/contact_receive.txt
 
 # local env files
