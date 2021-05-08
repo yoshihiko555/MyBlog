@@ -3,6 +3,7 @@
 # DBファイルの削除
 rm -rf ./api/migrations
 rm -rf db.sqlite3
+rm -rf ./media/images
 
 # マイグレーション
 # read -p "Please enter the app name:" app_name

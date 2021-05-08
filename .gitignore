@@ -5,7 +5,7 @@ __pycache__
 media/upload/
 db.sqlite3
 server/static/
-server/templates/index.html
+server/templates/*.html
 .settings/
 migrations/
 # server/templates/mail/contact_receive.txt
