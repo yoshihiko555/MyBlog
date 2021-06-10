@@ -2,7 +2,8 @@
 node_modules
 dist/
 __pycache__
-media/upload/
+server/media/upload/
+server/media/images/
 db.sqlite3
 server/static/
 server/templates/*.html
@@ -29,6 +30,8 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+*.project
+*.pydevproject
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

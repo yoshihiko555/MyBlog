@@ -85,6 +85,7 @@ import Comment from '@/components/common/Comment'
 import SendComment from '@/components/parts/SendComment'
 
 import { mapGetters, mapActions } from 'vuex'
+import hljs from 'highlight.js'
 
 export default {
     name: 'DetailArticle',
@@ -136,7 +137,10 @@ export default {
                 this.setDescription(res.data.lead_text)
 
                 // 目次関連の処理
-                this.$nextTick(() => this.moveToc())
+                this.$nextTick(() => {
+					this.moveToc()
+					this.highlight()
+				})
 
                 this.isShow = true
             })
@@ -162,6 +166,13 @@ export default {
                 this.isToc = true
             }
         },
+		highlight () {
+			this.$refs.main.querySelectorAll('pre code').forEach(el => {
+				const lg = el.className.substring(el.className.indexOf('-') + 1)
+				el.classList.add(lg)
+				hljs.highlightBlock(el)
+			})
+		},
         onScroll (e) {
             if (typeof window === 'undefined') return
             const top = window.pageYOffset || e.target.scrollTop || 0
@@ -243,13 +254,15 @@ export default {
             pre {
                 margin: 30px 0;
                 padding: 2%;
-                background-color: #404040;
-                overflow-x: scroll;
+				background-color: #404040;
+                overflow-x: auto;
 
                 code {
-                    color: #e6e6e6;
-                    background-color: initial;
-                }
+					padding: 0;
+					color: #e6e6e6;
+					font-size: 100%;
+					background-color: initial;
+				}
             }
         }
 

@@ -14,6 +14,7 @@ import mavonEditor from 'mavon-editor'
 // CSS
 import 'vuesax/dist/vuesax.css'
 import 'mavon-editor/dist/css/index.css'
+import 'highlight.js/styles/a11y-dark.css'
 require('@/static/scss/style.scss')
 
 Vue.config.productionTip = false
