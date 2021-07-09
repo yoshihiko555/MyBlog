@@ -20,7 +20,7 @@
                             counter=60
                         ></v-textarea>
 
-                        <mavon-editor v-model="article.content" ref='editor' language="en"/>
+                        <mavon-editor v-model="article.content" ref='editor' language="ja" />
                     </v-form>
                 </v-col>
 
