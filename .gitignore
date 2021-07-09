@@ -9,7 +9,6 @@ server/static/
 server/templates/*.html
 .settings/
 migrations/
-# server/templates/mail/contact_receive.txt
 
 # local env files
 .env.local

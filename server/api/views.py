@@ -28,19 +28,34 @@ class SendContactView(APIView):
     def post(self, request, format=None):
         serializer = ContactSerializer(data=request.data)
         if serializer.is_valid():
-            subject = serializer.data['title']
             context = {
                 'name': serializer.data['name'],
                 'email': serializer.data['email'],
+                'title': serializer.data['title'],
                 'content': serializer.data['content'],
             }
-            message = render_to_string('mail/contact_receive.txt', context)
             from_email = ''
-            # recipient_list = env.list('TO_EMAIL_LIST')
-            recipient_list = ['md.takizawa@gmail.com', 'syutodayo@yahoo.co.jp']
-            send_mail(subject, message, from_email, recipient_list)
+            recipient_list = ['yoshihiko05410@gmail.com']
+            receive = self.getReceiveObject(context)
+            response = self.getResponseObject(context)
+            send_mail(receive['subject'], receive['text'], from_email, recipient_list, html_message=receive['html'])
+            send_mail(response['subject'], response['text'], from_email, [serializer.data['email']], html_message=response['html'])
             return Response(status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def getReceiveObject(self, context):
+      return {
+        'subject': 'サイトからお問い合わせがあります。',
+        'text': render_to_string('mail/txt/contact_receive.txt', context),
+        'html': render_to_string('mail/html/contact_receive.html', context)
+      }
+
+    def getResponseObject(self, context):
+      return {
+        'subject': '【yoshihiko】お問い合わせ完了',
+        'text': render_to_string('mail/txt/contact_response.txt', context),
+        'html': render_to_string('mail/html/contact_response.html', context)
+      }
 
 class UserView(APIView):
     # permission_classes = (permissions.AllowAny,)

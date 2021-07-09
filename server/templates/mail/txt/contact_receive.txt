@@ -1,0 +1,15 @@
+
+名前 : {{ name }}様
+
+E-Mail : {{ email }}
+
+タイトル : {{ title }}
+内容 :
+{{ content }}
+
+=====================================
+
+  Name : yoshihiko
+  Web Site : https://yoshihiko.tech
+
+=====================================
