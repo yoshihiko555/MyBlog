@@ -14,7 +14,7 @@ import mavonEditor from 'mavon-editor'
 // CSS
 import 'vuesax/dist/vuesax.css'
 import 'mavon-editor/dist/css/index.css'
-import 'highlight.js/styles/a11y-dark.css'
+import 'highlight.js/styles/nord.css'
 require('@/static/scss/style.scss')
 
 Vue.config.productionTip = false
@@ -38,7 +38,7 @@ new Vue({
     		// 最新記事取得処理
     		await this.updateRecentArticles()
     		// カテゴリー取得処理
-    		await this.updateCategorys()
+    		await this.updateCategoryies()
 
     		// 正常にデータが取得できたので、初期化フラグを立てる
     		this.setInitFlg(true)
@@ -53,7 +53,7 @@ new Vue({
     	]),
         ...mapActions([
             'updateRecentArticles',
-            'updateCategorys',
+            'updateCategoryies',
         ]),
     },
     render: h => h(App)

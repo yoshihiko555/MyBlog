@@ -30,6 +30,7 @@
                         :src='article.thumbnail'
                         class="recent_thumbnail"
                         :alt='article.title'
+						contain
                     ></v-img>
                     <h2 class="text-subtitle-1 recent_title">{{ article.title | truncate(14) }}</h2>
                     <p class="recent_create">{{ article.created_at }}</p>
@@ -40,8 +41,8 @@
         </div>
 
         <!-- カテゴリー一覧 -->
-        <div class="categorys_wrap mt-5">
-            <h2 class="category_title mb-2">Categorys</h2>
+        <div class="categoryies_wrap mt-5">
+            <h2 class="category_title mb-2">Categoryies</h2>
             <v-chip-group
                 column
             >
@@ -158,7 +159,7 @@ export default {
         }
     }
 
-    .categorys_wrap {
+    .categoryies_wrap {
 
         .category_title {
             font-family: 'Inconsolata', monospace;

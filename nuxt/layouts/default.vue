@@ -42,7 +42,7 @@
         // 	// await this.updateRecentArticles()
         // 	const { data } = await this.$axios.get('http://localhost:8000/api/article/recent_articles/')
         // 	console.log('最新記事：', data)
-        // 	// await this.updateCategorys()
+        // 	// await this.updateCategoryies()
         // },
         data () {
             return {
@@ -69,12 +69,12 @@
         },
         created () {
         	// this.updateRecentArticles()
-        	// this.updateCategorys()
+        	// this.updateCategoryies()
         },
         methods: {
         	...mapActions([
         		'updateRecentArticles',
-        		'updateCategorys',
+        		'updateCategoryies',
         	])
         }
     }

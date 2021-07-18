@@ -1,7 +1,7 @@
 
 export const state = () => ({
     recentArticles: [],
-    categorys: {},
+    categoryies: {},
     searchText: '',
     searchResult: [],
     detailArticle: {},
@@ -10,7 +10,7 @@ export const state = () => ({
 
 export const getters = {
     recentArticleList: state => state.recentArticles,
-    categoryList: state => state.categorys,
+    categoryList: state => state.categoryies,
     searchText: state => state.searchText,
     searchResultList: state => state.searchResult,
     detailArticle: state => state.detailArticle,
@@ -21,8 +21,8 @@ export const mutations = {
         state.recentArticles = payload
         // console.log('ここに来た', state)
     },
-    setCategorys (state, payload) {
-        state.categorys = payload
+    setCategoryies (state, payload) {
+        state.categoryies = payload
     },
     setSearchText (state, payload) {
         state.searchText = payload
@@ -33,15 +33,15 @@ export const mutations = {
     setDetailArticle (state, payload) {
         state.detailArticle = payload
     },
-    addCategorys (state, payload) {
-        state.categorys.push(payload)
+    addCategoryies (state, payload) {
+        state.categoryies.push(payload)
     },
     addDetailCommentReply (state, payload) {
         const comment = state.detailArticle.comments.find(comment => comment.id === payload.comment)
         comment.reply.push(payload)
     },
     setCategory (state, payload) {
-        const category = state.categorys.find(category => category.id === payload.id)
+        const category = state.categoryies.find(category => category.id === payload.id)
         category.name = payload.name
     },
     setSample (state, payload) {
@@ -55,7 +55,7 @@ export const actions = {
         console.log('nuxtServerInit Start!!')
         commit('setSample', 1)
         await dispatch('updateRecentArticles')
-        await dispatch('updateCategorys')
+        await dispatch('updateCategoryies')
         console.log('最新記事処理終了後')
 		// this.$axios({
 		// 	url: '/api/article/recent_articles/',
@@ -96,7 +96,7 @@ export const actions = {
 		})
 	},
     // カテゴリー一覧更新
-    async updateCategorys (ctx, kwargs) {
+    async updateCategoryies (ctx, kwargs) {
     	console.log('最新カテゴリー取得開始')
         await this.$axios({
             url: '/api/category/',
@@ -104,7 +104,7 @@ export const actions = {
         })
         .then(res => {
             // console.log('カテゴリー一覧', res)
-            this.commit('setCategorys', res.data)
+            this.commit('setCategoryies', res.data)
         })
         .catch(e => {
             console.log(e)

@@ -183,7 +183,7 @@ if DEBUG:
         'http://localhost:8080',
         'http://localhost:3000',
     )
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
     logging.basicConfig(
         level = logging.INFO,

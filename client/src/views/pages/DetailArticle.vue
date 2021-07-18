@@ -25,7 +25,7 @@
 					<v-card-title class="justify-center">
 						{{ article.title }}
 					</v-card-title>
-					<v-img :src='article.thumbnail' :alt='article.title' height=500></v-img>
+					<v-img :src='article.thumbnail' :alt='article.title' contain></v-img>
 					<div id='toc_wrap' class='my-8 mx-4 pa-4' v-show='isToc'>
 						<h4 id="toc_title" class="text-center mb-4 pb-2">Contents</h4>
 						<nav
@@ -209,7 +209,9 @@ export default {
             }
 
             img {
-                width: 100%;
+				display: block;
+				max-width: 80%;
+				margin: 0 auto;
             }
 
             h1, h2, h3, p {
@@ -248,7 +250,7 @@ export default {
             }
 
             p {
-                letter-spacing: .3em;
+                letter-spacing: .1em;
             }
 
             pre {
@@ -264,6 +266,50 @@ export default {
 					background-color: initial;
 				}
             }
+
+			blockquote {
+				padding: 1em;
+				background-color: #f5f5f5;
+				border-left: 3px solid;
+
+				p { margin: 0; }
+			}
+
+			%list-wrap {
+				margin-bottom: 1em;
+
+				li {
+					margin-bottom: .2em;
+				}
+			}
+			ol {
+				@extend %list-wrap;
+				li { list-style: decimal; }
+			}
+			ul {
+				@extend %list-wrap;
+				li { list-style: disc; }
+			}
+
+			table {
+				margin-bottom: 1em;
+				margin-left: 1em;
+				border-collapse: collapse;
+
+				thead {
+					font-size: 1.1em;
+					border-bottom: .5px solid #f5f5f5;
+				}
+				tbody {
+					tr:nth-child(odd) {
+						background-color: #f5f5f5;
+					}
+				}
+				th, td {
+					padding: .5em;
+					border: .5px solid #e0e0e0;
+				}
+			}
         }
 
         #toc_wrap {
