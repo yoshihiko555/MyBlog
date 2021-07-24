@@ -15,22 +15,10 @@ jobs:
           command: yarn build
           working_directory: ~/workspace/client
       - run:
-          name: confirm
-          command: |
-            pwd
-            ls client/dist/static/css
-      - run:
           name: Copy build files to static files
           shell: bash
           command: bash cpBuildFiles.sh
           working_directory: ~/workspace/scripts
-      - run:
-          name: confirm after
-          command: |
-            pwd
-            ls server
-            ls server/static
-            ls server/templates
       - persist_to_workspace:
           root: ~/workspace
           paths:
@@ -47,13 +35,6 @@ jobs:
       - attach_workspace:
           at: ~/workspace
       - run:
-          name: confirm
-          command: |
-            pwd
-            ls
-            ls server
-            ls server/static/css
-      - run:
           name: create env file
           command: |
             echo DJANGO_ENV=$DJANGO_ENV >> .env
@@ -62,7 +43,6 @@ jobs:
             echo CLOUD_NAME=$CLOUD_NAME >> .env
             echo CLOUDINARY_API_KEY=$CLOUDINARY_API_KEY >> .env
             echo CLOUDINARY_API_SECRET=$CLOUDINARY_API_SECRET >> .env
-            cat .env
           working_directory: ~/workspace/server
       - run:
           name: Build and push Docker image to Heroku

@@ -12,7 +12,6 @@ export default Object.freeze({
 			url: 'https://coopy.herokuapp.com/',
 			github: 'https://github.com/shutotakizawa/coopy',
 		},
-
 		// Bandue
 		{
 			name: 'Bandue',
@@ -20,6 +19,14 @@ export default Object.freeze({
 			img: require('@/static/img/works/bandue.png'),
 			url: 'https://bandue.herokuapp.com/',
 			github: 'https://github.com/shutotakizawa/bandue',
+		},
+		// Myunsplash
+		{
+			name: 'Myunsplash',
+			description: 'お気に入り画像保存サービス',
+			img: require('@/static/img/works/myunsplash.png'),
+			url: 'https://myunsplash-49abd.web.app/',
+			github: 'https://github.com/yoshihiko555/myunsplash',
 		},
 
 		// Offbal
@@ -41,6 +48,7 @@ export default Object.freeze({
 		// 	url: '',
 		// 	github: '',
 		// },
+
 	],
 
 	SKILLS: [
