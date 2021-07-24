@@ -1,0 +1,62 @@
+version: 2.1
+jobs:
+	build:
+		docker:
+			- image: circleci/node
+		working_directory: ~/workspace
+		steps:
+			- checkout
+			- run:
+					name: Library install
+					command: yarn install
+					working_directory: ~/workspace/client
+			- run:
+					name: Vue Build
+					command: yarn build
+					working_directory: ~/workspace/client
+			- run:
+					name: confirm
+					command: |
+						pwd
+						ls dist/static/css
+			- run:
+					name: Copy build files to static files
+					shell: bash
+					command: bash cpBuildFiles.sh
+					working_directory: ~/workspace/scripts
+			- persist_to_workspace:
+					root: ~/workspace
+					paths:
+						- server/staic/*
+						- server/templates/*.html
+	deploy:
+		machine: true
+		working_directory: ~/workspace
+		steps:
+			- checkout
+			- attach_workspace:
+					at: ~/workspace/server
+			- run:
+					name: confirm
+					command: |
+						pwd
+						ls server/static/css
+			- run:
+					name: Build and push Docker image to Heroku
+					command: |
+						sudo curl https://cli-assets.heroku.com/install.sh | sh
+						HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+						HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a yoshihiko web
+						HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a yoshihiko web
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+					filters:
+						branches:
+							only:
+								- master
