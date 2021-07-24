@@ -24,13 +24,24 @@ jobs:
           shell: bash
           command: bash cpBuildFiles.sh
           working_directory: ~/workspace/scripts
+      - run:
+          name: confirm after
+          command: |
+            pwd
+            ls server
+            ls server/static
+            ls server/templates
       - persist_to_workspace:
           root: ~/workspace
           paths:
             - server/static/*
             - server/templates/*.html
   deploy:
-    machine: true
+    # machine: true
+    docker:
+      - image: cimg/base:2021.07
+    environment:
+      SECRET_KEY: $SECRET_KEY
     working_directory: ~/workspace
     steps:
       - checkout
@@ -42,7 +53,7 @@ jobs:
             pwd
             ls
             ls server
-            ls server/static
+            ls server/static/css
       - run:
           name: Build and push Docker image to Heroku
           command: |
