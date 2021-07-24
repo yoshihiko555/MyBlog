@@ -38,10 +38,9 @@ jobs:
             - server/templates/*.html
   deploy:
     machine: true
+    # これだと何故かheroku command installのところでエラーになる
     # docker:
     #   - image: cimg/base:2021.07
-    environment:
-      SECRET_KEY: $SECRET_KEY
     working_directory: ~/workspace
     steps:
       - checkout
@@ -54,6 +53,17 @@ jobs:
             ls
             ls server
             ls server/static/css
+      - run:
+          name: create env file
+          command: |
+            echo DJANGO_ENV=$DJANGO_ENV >> .env
+            echo SECRET_KEY=$SECRET_KEY >> .env
+            echo SENDGRID_API_KEY=$SENDGRID_API_KEY >> .env
+            echo CLOUD_NAME=$CLOUD_NAME >> .env
+            echo CLOUDINARY_API_KEY=$CLOUDINARY_API_KEY >> .env
+            echo CLOUDINARY_API_SECRET=$CLOUDINARY_API_SECRET >> .env
+            cat .env
+          working_directory: ~/workspace/server
       - run:
           name: Build and push Docker image to Heroku
           command: |
