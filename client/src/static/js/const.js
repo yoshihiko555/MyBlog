@@ -28,15 +28,13 @@ export default Object.freeze({
 			url: 'https://myunsplash-49abd.web.app/',
 			github: 'https://github.com/yoshihiko555/myunsplash',
 		},
-
 		// Offbal
 		// {
-		// 	id: 3,
 		// 	name: 'Offbal',
 		// 	description: 'タスク管理サービス',
 		// 	img: '',
 		// 	url: '',
-		// 	github: '',
+		// 	github: 'https://github.com/yoshihiko555/offbal',
 		// },
 
 		// React Chat Demo

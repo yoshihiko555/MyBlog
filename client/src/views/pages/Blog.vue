@@ -11,7 +11,7 @@
 		>
 			<v-row>
 				<v-col cols='4' class='pa-0'>
-					<v-img :src='article.thumbnail' alt='article.title' height=200 />
+					<v-img :src='article.thumbnail' alt='article.title' height=200 contain />
 				</v-col>
 				<v-col cols='8'>
 					<h4>{{ article.title }}</h4>
