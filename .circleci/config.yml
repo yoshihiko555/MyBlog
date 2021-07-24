@@ -40,7 +40,9 @@ jobs:
           name: confirm
           command: |
             pwd
-            ls server/static/css
+            ls
+            ls server
+            ls server/static
       - run:
           name: Build and push Docker image to Heroku
           command: |
