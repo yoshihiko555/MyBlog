@@ -18,7 +18,7 @@ jobs:
           name: confirm
           command: |
             pwd
-            ls dist/static/css
+            ls client/dist/static/css
       - run:
           name: Copy build files to static files
           shell: bash
