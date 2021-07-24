@@ -1,6 +1,6 @@
-FROM drf-base:latest
+FROM python:3
 
-WORKDIR /home/blog/
+WORKDIR /home/
 
 ADD ./server .
 RUN pip install --upgrade pip
