@@ -37,9 +37,9 @@ jobs:
             - server/static/*
             - server/templates/*.html
   deploy:
-    # machine: true
-    docker:
-      - image: cimg/base:2021.07
+    machine: true
+    # docker:
+    #   - image: cimg/base:2021.07
     environment:
       SECRET_KEY: $SECRET_KEY
     working_directory: ~/workspace
