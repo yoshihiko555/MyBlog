@@ -27,7 +27,7 @@ jobs:
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - server/staic/*
+            - server/static/*
             - server/templates/*.html
   deploy:
     machine: true
