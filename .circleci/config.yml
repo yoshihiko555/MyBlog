@@ -35,7 +35,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/workspace/server
+          at: ~/workspace
       - run:
           name: confirm
           command: |
