@@ -11,6 +11,11 @@ jobs:
           command: yarn install
           working_directory: ~/workspace/client
       - run:
+          name: Create env file
+          command:
+            echo VUE_APP_GA_ID=$VUE_APP_GA_ID >> .env
+          working_directory: ~/workspace/client
+      - run:
           name: Vue Build
           command: yarn build
           working_directory: ~/workspace/client

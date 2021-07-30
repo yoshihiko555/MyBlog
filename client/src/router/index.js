@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { setTitle, setDescription } from '@/mixins'
+import VueAnalytics from 'vue-analytics'
 
 // Main
 import Home from '../views/pages/Home.vue'
@@ -179,6 +180,11 @@ const router = new VueRouter({
     	if (savedPosition) return savedPosition
     	else return { x: 0, y: 0 }
     }
+})
+
+Vue.use(VueAnalytics, {
+	id: process.env.VUE_APP_GA_ID,
+	router
 })
 
 router.beforeEach((to, from, next) => {
