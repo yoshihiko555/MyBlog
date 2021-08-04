@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { setTitle, setDescription } from '@/mixins'
-import VueAnalytics from 'vue-analytics'
+import VueGTag from 'vue-gtag'
 
 // Main
 import Home from '../views/pages/Home.vue'
@@ -182,10 +182,9 @@ const router = new VueRouter({
     }
 })
 
-Vue.use(VueAnalytics, {
-	id: process.env.VUE_APP_GA_ID,
-	router
-})
+Vue.use(VueGTag, {
+	config: { id: process.env.VUE_APP_GA_ID }
+}, router)
 
 router.beforeEach((to, from, next) => {
 	setTitle(to.meta.title)
