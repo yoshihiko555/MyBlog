@@ -20,6 +20,17 @@
 				</v-col>
 			</v-row>
 		</v-card>
+
+		<!-- ページネーション -->
+		<v-pagination
+			v-model="pagination.current_page"
+			:page='pagination.current_page'
+			:length='pagination.total_pages'
+			color='blue-grey lighten-1'
+			class="pagination-wrap mt-5"
+			total-visible=5
+			@input='changePage'
+		/>
     </v-container>
 </template>
 
@@ -29,6 +40,7 @@ export default {
 	},
     data: () => ({
     	articles: null,
+		pagination: {},
     }),
     created () {
     	this.$axios({
@@ -37,6 +49,7 @@ export default {
     	})
     	.then(res => {
     		console.log(res)
+			this.pagination = res.data
     		this.articles = res.data.results
     	})
     	.catch(e => {
@@ -44,6 +57,17 @@ export default {
     	})
     },
     methods: {
+		changePage (page) {
+            console.log(this.$route.query)
+            const query = {
+                ...this.$route.query,
+                page: page,
+            }
+            this.$router.push({
+                name: 'SearchResult',
+                query: query
+            })
+    	},
     }
 }
 </script>
@@ -85,5 +109,9 @@ export default {
             background-color: rgba(190, 190, 190, .2);
         }
     }
+
+	.pagination-wrap::v-deep {
+		button { text-align: center; }
+	}
 
 </style>

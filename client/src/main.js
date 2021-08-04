@@ -10,6 +10,7 @@ import vuetify from './plugins/vuetify'
 import Vuesax from 'vuesax'
 import VueSession from 'vue-session'
 import mavonEditor from 'mavon-editor'
+import VueGTag from 'vue-gtag'
 
 // CSS
 import 'vuesax/dist/vuesax.css'
@@ -23,6 +24,9 @@ Vue.use(http)
 Vue.use(Vuesax)
 Vue.use(VueSession)
 Vue.use(mavonEditor)
+Vue.use(VueGTag, {
+	config: { id: process.env.VUE_APP_GA_ID }
+}, router)
 
 Vue.mixin(globalMixins)
 
