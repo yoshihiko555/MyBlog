@@ -22,7 +22,10 @@
 <script>
 import ImgCard from '@/components/parts/ImgCard'
 import Con from '@/static/js/const'
+import { metaInfo } from '@/mixins'
+
 export default {
+	mixins: [metaInfo],
 	components: {
 		ImgCard
 	},

@@ -14,6 +14,7 @@ jobs:
           name: Create env file
           command:
             echo VUE_APP_GA_ID=$VUE_APP_GA_ID >> .env
+            echo VUE_APP_CLOUDINARY_BASEURL=$VUE_APP_CLOUDINARY_BASEURL >> .env
           working_directory: ~/workspace/client
       - run:
           name: Vue Build

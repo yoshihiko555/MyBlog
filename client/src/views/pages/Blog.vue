@@ -18,8 +18,10 @@
 
 <script>
 import ArticleList from '@/components/parts/ArticleList'
+import { metaInfo } from '@/mixins'
 
 export default {
+	mixins: [metaInfo],
 	components: {
 		ArticleList
 	},

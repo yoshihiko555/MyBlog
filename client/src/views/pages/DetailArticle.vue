@@ -86,9 +86,10 @@ import SendComment from '@/components/parts/SendComment'
 
 import { mapGetters, mapActions } from 'vuex'
 import hljs from 'highlight.js'
+import { metaInfo } from '@/mixins'
 
 export default {
-    name: 'DetailArticle',
+	mixins: [metaInfo],
     components: {
         Sidebar,
         RelatedArticles,

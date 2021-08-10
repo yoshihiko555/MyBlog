@@ -101,9 +101,10 @@ import TheHomeBackGround from '@/components/verification/TheHomeBackGround'
 import ImgCard from '@/components/parts/ImgCard'
 import { mapGetters, mapActions } from 'vuex'
 import Con from '@/static/js/const'
+import { metaInfo } from '@/mixins'
 
 export default {
-    name: 'Home',
+	mixins: [metaInfo],
     components: {
     	TheHomeBackGround,
     	ImgCard,

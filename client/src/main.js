@@ -11,6 +11,7 @@ import Vuesax from 'vuesax'
 import VueSession from 'vue-session'
 import mavonEditor from 'mavon-editor'
 import VueGTag from 'vue-gtag'
+import VueMeta from 'vue-meta'
 
 // CSS
 import 'vuesax/dist/vuesax.css'
@@ -24,6 +25,8 @@ Vue.use(http)
 Vue.use(Vuesax)
 Vue.use(VueSession)
 Vue.use(mavonEditor)
+Vue.use(VueMeta)
+
 // 本番環境のみトラッキング処理
 if (process.env.NODE_ENV === 'production') {
 	Vue.use(VueGTag, {
