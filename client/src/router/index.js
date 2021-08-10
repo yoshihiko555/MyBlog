@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { setTitle, setDescription } from '@/mixins'
-// import VueGTag from 'vue-gtag'
 
 // Main
 import Home from '../views/pages/Home.vue'
@@ -181,12 +180,6 @@ const router = new VueRouter({
     	else return { x: 0, y: 0 }
     }
 })
-
-// if (process.env.NODE_ENV === 'prodution') {
-// 	Vue.use(VueGTag, {
-// 		config: { id: process.env.VUE_APP_GA_ID }
-// 	}, router)
-// }
 
 router.beforeEach((to, from, next) => {
 	setTitle(to.meta.title)

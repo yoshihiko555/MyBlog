@@ -27,27 +27,7 @@
 
 			<div v-if="searchResultList.length > 0">
 				<!-- 検索結果:あり -->
-				<v-card
-					v-for='article in searchResultList'
-					:key='article.id'
-					class="search_article_wrap py-4"
-					flat
-					tile
-					:to='{ name: "DetailArticle", params: { title: article.title }}'
-				>
-					<v-row>
-						<v-col cols='4' class="pa-0 search_result_img_wrap">
-							<v-img :src='article.thumbnail' alt='article.title' height=200 contain></v-img>
-							<span class="search_result_category pa-1">{{ article.category_name }}</span>
-						</v-col>
-						<v-col cols='8' class="pl-4">
-							<h4 class="search_result_title">{{ article.title }}</h4>
-							<p class="search_result_created mb-3">{{ article.created_at}}</p>
-							<p class="search_result_content">{{ article.lead_text}}</p>
-						</v-col>
-					</v-row>
-				</v-card>
-
+				<article-list :articles='searchResultList' />
 				<!-- ページネーション -->
 				<v-pagination
 					v-model="pagination.current_page"
@@ -78,11 +58,13 @@ import { mapGetters, mapActions } from 'vuex'
 import _ from 'lodash'
 
 import Loading from '@/components/parts/Loading'
+import ArticleList from '@/components/parts/ArticleList'
 
 export default {
     name: 'SearchResult',
     components: {
         Loading,
+		ArticleList
     },
     data: () => ({
         searchRetryText: '',
@@ -91,29 +73,8 @@ export default {
     }),
     created () {
         this.search()
-        // const searchText = this.$route.query.searchText || ''
-        // const category = this.$route.query.category || ''
-        // var trimedTextList = [...new Set(searchText.split(/\s+/))]
-        // var searchWord = trimedTextList.join(',')
-        // console.log('検索文字列 : ' + searchWord)
-        // this.$axios.get('api/article/', {
-		//     params: {
-        //         searchText: searchWord,
-        //         category: category,
-		//     }
-		// })
-		// .then(res => {
-		//     console.log('検索結果一覧', res)
-		//     this.pagination = res.data
-		//     this.updateSearchResult(res.data.results)
-		// })
-		// .catch(e => {
-		//     console.log(e)
-        // })
     },
     beforeRouteUpdate (to, from, next) {
-        console.log(from)
-        console.log(to)
         this.search(to.query.searchText, to.query.page)
         next()
     },
@@ -135,27 +96,6 @@ export default {
             'updateSearchResult',
         ]),
         inSearch: _.debounce(function search (searchText) {
-            // 空白削除し、カンマ区切りの文字列で送る
-            // var trimedText = this.trim(searchText)
-            // this.updateSearchText(trimedText)
-            // var trimedTextList = [...new Set(trimedText.split(/\s+/))]
-            // var searchWord = trimedTextList.join(',')
-            // console.log('検索文字列 : ' + searchWord)
-            // this.search(searchText)
-            // this.$axios.get('api/article/', {
-            //     params: {
-            //         searchText: searchWord
-            //     }
-            // })
-            // .then(res => {
-            //     console.log('検索結果一覧', res.data)
-            //     this.loading = false
-            //     this.pagination = res.data
-            //     this.updateSearchResult(res.data.results)
-            // })
-            // .catch(e => {
-            //     console.log(e)
-            // })
             this.$router.push({
                 name: 'SearchResult',
                 query: {
@@ -213,7 +153,6 @@ export default {
         },
     	changePage (page) {
             console.log(this.$route.query)
-            // this.$route.query.push({ page: page })
             const query = {
                 ...this.$route.query,
                 page: page,
@@ -222,22 +161,6 @@ export default {
                 name: 'SearchResult',
                 query: query
             })
-            // this.$axios({
-    		// 	url: '/api/article/',
-            //     method: 'GET',
-            //     params: {
-            //         page: page,
-            //         // searchText: this.searchText,
-            //     }
-    		// })
-    		// .then(res => {
-            //     console.log(res)
-            //     this.pagination = res.data
-    		// 	this.updateSearchResult(res.data.results)
-    		// })
-    		// .catch(e => {
-    		// 	console.log(e)
-    		// })
     	},
     },
 }

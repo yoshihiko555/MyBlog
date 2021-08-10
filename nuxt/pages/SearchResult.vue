@@ -108,29 +108,8 @@ export default {
     },
     created () {
         this.search()
-        // const searchText = this.$route.query.searchText || ''
-        // const category = this.$route.query.category || ''
-        // var trimedTextList = [...new Set(searchText.split(/\s+/))]
-        // var searchWord = trimedTextList.join(',')
-        // console.log('検索文字列 : ' + searchWord)
-        // this.$axios.get('api/article/', {
-		//     params: {
-        //         searchText: searchWord,
-        //         category: category,
-		//     }
-		// })
-		// .then(res => {
-		//     console.log('検索結果一覧', res)
-		//     this.pagination = res.data
-		//     this.updateSearchResult(res.data.results)
-		// })
-		// .catch(e => {
-		//     console.log(e)
-        // })
     },
     beforeRouteUpdate (to, from, next) {
-        console.log(from)
-        console.log(to)
         this.search(to.query.searchText, to.query.page)
         next()
     },
@@ -140,27 +119,6 @@ export default {
             'updateSearchResult',
         ]),
         inSearch: _.debounce(function search (searchText) {
-            // 空白削除し、カンマ区切りの文字列で送る
-            // var trimedText = this.trim(searchText)
-            // this.updateSearchText(trimedText)
-            // var trimedTextList = [...new Set(trimedText.split(/\s+/))]
-            // var searchWord = trimedTextList.join(',')
-            // console.log('検索文字列 : ' + searchWord)
-            // this.search(searchText)
-            // this.$axios.get('api/article/', {
-            //     params: {
-            //         searchText: searchWord
-            //     }
-            // })
-            // .then(res => {
-            //     console.log('検索結果一覧', res.data)
-            //     this.loading = false
-            //     this.pagination = res.data
-            //     this.updateSearchResult(res.data.results)
-            // })
-            // .catch(e => {
-            //     console.log(e)
-            // })
             this.$router.push({
                 name: 'SearchResult',
                 query: {
@@ -217,8 +175,6 @@ export default {
             })
         },
     	changePage (page) {
-            console.log(this.$route.query)
-            // this.$route.query.push({ page: page })
             const query = {
                 ...this.$route.query,
                 page,
@@ -227,22 +183,6 @@ export default {
                 name: 'SearchResult',
                 query
             })
-            // this.$axios({
-    		// 	url: '/api/article/',
-            //     method: 'GET',
-            //     params: {
-            //         page: page,
-            //         // searchText: this.searchText,
-            //     }
-    		// })
-    		// .then(res => {
-            //     console.log(res)
-            //     this.pagination = res.data
-    		// 	this.updateSearchResult(res.data.results)
-    		// })
-    		// .catch(e => {
-    		// 	console.log(e)
-    		// })
     	},
     },
 }
