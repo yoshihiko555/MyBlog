@@ -43,8 +43,10 @@
 <script>
 import Con from '@/static/js/const'
 import SkillItem from '@/components/parts/SkillItem'
+import { metaInfo } from '@/mixins'
 
 export default {
+	mixins: [metaInfo],
 	components: {
 		SkillItem
 	},

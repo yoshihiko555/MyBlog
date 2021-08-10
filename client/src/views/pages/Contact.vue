@@ -48,8 +48,10 @@
 </template>
 
 <script>
+import { metaInfo } from '@/mixins'
+
 export default {
-    name: 'Contact',
+	mixins: [metaInfo],
     data: () => ({
         valid: false,
         contact: {
