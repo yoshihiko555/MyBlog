@@ -78,35 +78,13 @@ export default {
         ])
     },
     methods: {
-        ...mapActions([
-            'updateSearchText',
-            'updateSearchResult',
-        ]),
         filterCategory (category) {
-            // this.updateSearchText(category.name)
             this.$router.push({
                 name: 'SearchResult',
                 query: {
                     category: category.name
                 }
             })
-            // this.$axios({
-            //     url: '/api/article/',
-            //     method: 'GET',
-            //     params: {
-            //         category: category.id
-            //     }
-            // })
-            // .then(res => {
-            //     console.log(res)
-            //     this.updateSearchResult(res.data)
-            //     this.$router.push({
-            //         name: 'SearchResult'
-            //     })
-            // })
-            // .catch(e => {
-            //     console.log(e)
-            // })
         },
     },
 

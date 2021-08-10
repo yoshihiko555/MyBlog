@@ -14,14 +14,13 @@
 				<img src="@/static/img/logo.svg" alt="logo" width="30px" height="30px">
 			</router-link>
 
-			<div>
+			<div class='d-flex align-center'>
 				<router-link to='/about' class="link mx-3 d-none d-sm-inline-block">About</router-link>
 				<router-link to='/blog' class="link mx-3 d-none d-sm-inline-block">Blog</router-link>
 				<router-link to='/works' class="link mx-3 d-none d-sm-inline-block">Works</router-link>
 				<router-link to='/contact' class="link mx-3 d-none d-sm-inline-block">Contact</router-link>
 				<div v-show='isAuth'>
 					<router-link to='/admin' v-show='isAuth' class="link mx-3 d-none d-sm-inline-block">Admin</router-link>
-					<router-link to='/admin/signin' class="link mx-3 d-none d-sm-inline-block">SignIn</router-link>
 				</div>
 				<v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://twitter.com/yoshihiko5555' target='blank'><v-icon>mdi-twitter</v-icon></v-btn>
 				<v-btn icon x-small class='mx-1 d-none d-sm-inline-block' href='https://github.com/yoshihiko555' target='blank'><v-icon>mdi-github</v-icon></v-btn>

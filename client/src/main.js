@@ -24,9 +24,12 @@ Vue.use(http)
 Vue.use(Vuesax)
 Vue.use(VueSession)
 Vue.use(mavonEditor)
-Vue.use(VueGTag, {
-	config: { id: process.env.VUE_APP_GA_ID }
-}, router)
+// 本番環境のみトラッキング処理
+if (process.env.NODE_ENV === 'production') {
+	Vue.use(VueGTag, {
+		config: { id: process.env.VUE_APP_GA_ID }
+	}, router)
+}
 
 Vue.mixin(globalMixins)
 
