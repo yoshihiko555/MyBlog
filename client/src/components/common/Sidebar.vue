@@ -41,8 +41,8 @@
         </div>
 
         <!-- カテゴリー一覧 -->
-        <div class="categoryies_wrap mt-5">
-            <h2 class="category_title mb-2">Categoryies</h2>
+        <div class="categories_wrap mt-5">
+            <h2 class="category_title mb-2">Categories</h2>
             <v-chip-group
                 column
             >
@@ -137,7 +137,7 @@ export default {
         }
     }
 
-    .categoryies_wrap {
+    .categories_wrap {
 
         .category_title {
             font-family: 'Inconsolata', monospace;

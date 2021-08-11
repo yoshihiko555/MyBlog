@@ -50,7 +50,7 @@ export default {
             })
             .then(res => {
                 console.log(res)
-                this.$store.commit('addCategoryies', res.data)
+                this.$store.commit('addCategories', res.data)
                 this.clear()
             })
             .catch(e => {

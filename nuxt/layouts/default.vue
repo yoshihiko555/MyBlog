@@ -74,7 +74,7 @@
         methods: {
         	...mapActions([
         		'updateRecentArticles',
-        		'updateCategoryies',
+        		'updateCategories',
         	])
         }
     }
