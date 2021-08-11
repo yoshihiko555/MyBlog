@@ -41,7 +41,7 @@ export const metaInfo = {
 			? this.detailArticle.title
 			: this.$route.meta.title
 		const description = isDetail
-			? this.detailArticle.leadText
+			? this.detailArticle.lead_text
 			: this.$route.meta.description
 		const img = isDetail
 			? `${this.detailArticle.thumbnail}`

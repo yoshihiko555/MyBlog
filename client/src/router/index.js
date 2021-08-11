@@ -38,7 +38,7 @@ const main = [
         meta: {
         	title: 'Home',
         	description: 'Home View',
-			image: 'ogp_default.jpg',
+			image: 'ogp_default',
         }
     },
     {
@@ -48,7 +48,7 @@ const main = [
         meta: {
         	title: 'About',
         	description: 'About Me',
-			image: 'ogp_default.jpg',
+			image: 'ogp_default',
         }
     },
     {
@@ -58,7 +58,7 @@ const main = [
         meta: {
         	title: 'Contact',
         	description: 'Contact Me',
-			image: 'ogp_default.jpg',
+			image: 'ogp_default',
         }
     },
     {
@@ -68,7 +68,7 @@ const main = [
         meta: {
         	title: 'Blog',
         	description: 'My Blog',
-			image: 'ogp_default.jpg',
+			image: 'ogp_default',
         }
     },
     {
@@ -78,7 +78,7 @@ const main = [
         meta: {
         	title: 'Works',
         	description: 'My Works',
-			image: 'ogp_default.jpg',
+			image: 'ogp_default',
         }
     },
     {
@@ -88,7 +88,7 @@ const main = [
         meta: {
         	title: 'ContactComplete',
         	description: 'Send Contact Complete',
-			image: 'ogp_default.jpg',
+			image: 'ogp_default',
         }
     },
     {

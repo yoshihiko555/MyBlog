@@ -48,7 +48,7 @@ new Vue({
     		// 最新記事取得処理
     		await this.updateRecentArticles()
     		// カテゴリー取得処理
-    		await this.updateCategoryies()
+    		await this.updateCategories()
 
     		// 正常にデータが取得できたので、初期化フラグを立てる
     		this.setInitFlg(true)
@@ -63,7 +63,7 @@ new Vue({
     	]),
         ...mapActions([
             'updateRecentArticles',
-            'updateCategoryies',
+            'updateCategories',
         ]),
     },
     render: h => h(App)

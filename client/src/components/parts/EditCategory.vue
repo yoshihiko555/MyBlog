@@ -44,21 +44,6 @@ export default {
         update () {
             this.updateCategory(this.category)
             this.clear()
-            // this.$axios({
-            //     url: `/api/category/${this.category.id}/`,
-            //     method: 'PUT',
-            //     data: {
-            //     	name: this.category.name,
-            //     }
-            // })
-            // .then(res => {
-            //     console.log(res)
-            //     // this.$store.commit('addCategoryies', res.data)
-            //     this.clear()
-            // })
-            // .catch(e => {
-            //     console.log(e.response)
-            // })
         },
         clear () {
             this.dialog = false

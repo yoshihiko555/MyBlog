@@ -8,7 +8,7 @@ export default new Vuex.Store({
     strict: true,
     state: {
         recentArticles: [],
-        categoryies: {},
+        categories: {},
         searchText: '',
         searchResult: [],
         detailArticle: {},
@@ -16,7 +16,7 @@ export default new Vuex.Store({
     },
     getters: {
         recentArticleList: state => state.recentArticles,
-        categoryList: state => state.categoryies,
+        categoryList: state => state.categories,
         searchText: state => state.searchText,
         searchResultList: state => state.searchResult,
         detailArticle: state => state.detailArticle,
@@ -26,8 +26,8 @@ export default new Vuex.Store({
         setRecentArticles (state, payload) {
             state.recentArticles = payload
         },
-        setCategoryies (state, payload) {
-            state.categoryies = payload
+        setCategories (state, payload) {
+            state.categories = payload
         },
         setSearchText (state, payload) {
             state.searchText = payload
@@ -38,15 +38,15 @@ export default new Vuex.Store({
         setDetailArticle (state, payload) {
             state.detailArticle = payload
         },
-        addCategoryies (state, payload) {
-            state.categoryies.push(payload)
+        addCategories (state, payload) {
+            state.categories.push(payload)
         },
         addDetailCommentReply (state, payload) {
             const comment = state.detailArticle.comments.find(comment => comment.id === payload.comment)
             comment.reply.push(payload)
         },
         setCategory (state, payload) {
-            const category = state.categoryies.find(category => category.id === payload.id)
+            const category = state.categories.find(category => category.id === payload.id)
             category.name = payload.name
         },
         setInitFlg (state, payload) {
@@ -73,7 +73,7 @@ export default new Vuex.Store({
             })
         },
         // カテゴリー一覧更新
-        updateCategoryies (ctx, kwargs) {
+        updateCategories (ctx, kwargs) {
             return new Promise((resolve, reject) => {
                 Vue.prototype.$axios({
                     url: '/api/category/',
@@ -81,7 +81,7 @@ export default new Vuex.Store({
                 })
                 .then(res => {
                     console.log('カテゴリー一覧', res)
-                    this.commit('setCategoryies', res.data)
+                    this.commit('setCategories', res.data)
                     resolve(res)
                 })
                 .catch(e => {
