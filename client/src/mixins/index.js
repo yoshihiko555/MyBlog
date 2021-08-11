@@ -1,9 +1,11 @@
+/** サイト名 */
+const SITE_NAME = 'Yoshihiko'
+
 /**
  * Titleの設定
  */
 export const setTitle = pathTitle => {
-	const siteTitle = 'Yoshihiko'
-	const pageTitle = !pathTitle ? siteTitle : `${pathTitle} | ${siteTitle}`
+	const pageTitle = !pathTitle ? SITE_NAME : `${pathTitle} | ${SITE_NAME}`
 	return (window.document.title = pageTitle)
 }
 
@@ -38,7 +40,7 @@ export const metaInfo = {
 	metaInfo () {
 		const isDetail = this.$route.name === 'DetailArticle'
 		const title = isDetail
-			? this.detailArticle.title
+			? `${this.detailArticle.title} | ${SITE_NAME}`
 			: this.$route.meta.title
 		const description = isDetail
 			? this.detailArticle.lead_text
@@ -59,7 +61,8 @@ export const metaInfo = {
 				{ property: 'og:description', content: description },
 				{ property: 'og:type', content: 'website' },
 				{ property: 'og:url', content: location.href },
-				{ property: 'og:img', content: img },
+				{ property: 'og:image', content: img },
+				{ property: 'og:site_name', content: SITE_NAME },
 			]
 		}
 	}
