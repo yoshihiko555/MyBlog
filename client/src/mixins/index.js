@@ -55,11 +55,12 @@ export const metaInfo = {
 				{ property: 'twitter:creator', content: '@anonymous' },
 				{ property: 'twitter:description', content: description },
 				{ property: 'twitter:image', content: img },
+				{ property: 'og:site_name', content: 'yoshihiko' },
 				{ property: 'og:title', content: title },
 				{ property: 'og:description', content: description },
 				{ property: 'og:type', content: 'website' },
 				{ property: 'og:url', content: location.href },
-				{ property: 'og:img', content: img },
+				{ property: 'og:image', content: img },
 			]
 		}
 	}

@@ -61,7 +61,11 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branched:
+              ignore:
+                - nuxt
       - deploy:
           requires:
             - build
@@ -69,3 +73,5 @@ workflows:
             branches:
               only:
                 - master
+              ignore:
+                - nuxt
