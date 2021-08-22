@@ -1,27 +1,36 @@
 version: '3'
 services:
-    server:
-        build:
-            context: ./server
-            dockerfile: Dockerfile-server
-        image: blog-drf
-        container_name: blog-api
-        working_dir: /home/blog/server/
-        command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
-        ports:
-            - '8000:8000'
-        volumes:
-            - .:/home/blog
-        tty: true
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile-server
+    image: blog-drf
+    container_name: server
+    working_dir: /usr/src/
+    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./server:/usr/src
+    tty: true
 
-    client:
-        image: vue-base
-        container_name: blog-web
-        working_dir: /home/blog/client
-        command: yarn serve
-        ports:
-            - '8080:8080'
-            - '3000:3000'
-        volumes:
-            - .:/home/blog
-        tty: true
+  client:
+    image: vue-base
+    container_name: client
+    working_dir: /usr/src
+    # command: yarn serve
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./client:/usr/src
+    tty: true
+
+  nuxt:
+    image: node:16
+    container_name: nuxt-client
+    working_dir: /usr/src
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src
+    tty: true

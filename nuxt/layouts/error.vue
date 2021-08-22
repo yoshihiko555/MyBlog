@@ -1,8 +1,15 @@
 <template>
-    <div class="main error_page">
-        <h1 v-if="error.statusCode === 404">{{ pageNotFound }}</h1>
-        <h1 v-else>{{ otherError }}</h1>
-    </div>
+  <v-app dark>
+    <h1 v-if="error.statusCode === 404">
+      {{ pageNotFound }}
+    </h1>
+    <h1 v-else>
+      {{ otherError }}
+    </h1>
+    <NuxtLink to="/">
+      Home page
+    </NuxtLink>
+  </v-app>
 </template>
 
 <script>
@@ -30,20 +37,8 @@ export default {
 }
 </script>
 
-<style lang='scss' coped>
-    .error_page {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        h1 {
-            padding-right: 15px;
-            animation: type .5s alternate infinite;
-        }
-    }
-
-    @keyframes type {
-        from{box-shadow: inset -3px 0px 0px #333;}
-        to{box-shadow: inset -3px 0px 0px transparent;}
-    }
+<style scoped>
+h1 {
+  font-size: 20px;
+}
 </style>

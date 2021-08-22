@@ -1,107 +1,59 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - nuxt-app',
-    title: 'nuxt-app',
+    titleTemplate: '%s - Yoshihiko',
+    title: 'Yoshihiko',
     htmlAttrs: {
-        lang: 'ja'
+      lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
+  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-      '@/assets/scss/main.scss',
   ],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-      '@/plugins/filter.js',
-    //   { src: '@/plugins/storeStorage.js', ssr: false },
-      { src: '@/plugins/cookieStorage.js' },
-      '@/plugins/http.js',
-      '@/plugins/mixin.js'
   ],
 
-  // Auto import components (https://go.nuxtjs.dev/config-components)
+  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
+    // https://go.nuxtjs.dev/typescript
+    '@nuxt/typescript-build',
+    // https://go.nuxtjs.dev/stylelint
+    '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
   ],
 
-  // Modules (https://go.nuxtjs.dev/config-modules)
+  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources',
-    '@nuxtjs/auth',
-    '@nuxtjs/proxy',
   ],
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {
-     baseURL: process.browser ? 'http://localhost:8000' : 'http://localhost:3000',
-    // proxy: true,
-    // get: {
-    //     xsrfCookieName: 'csrftoken',
-    //     xsrfHeaderName: 'X-CSRFTOKEN',
-    // }
-  },
-  proxy: {
-	  '/api': {
-		  // serverはDockerの名前空間を指定
-		  target: 'http://server:8000',
-		  pathRewrite: {
-			  '^/api/': '/api/'
-		  }
-      },
-      '/media': {
-        target: 'http://localhost:8000',
-        pathRewrite: {
-            '^/media/': '/media/'
-        }
-      }
-  },
-  styleResources: {
-    scss: [
-        '@/assets/scss/prepends.scss',
-    ]
-  },
-  auth: {
-    redirect: {
-        login: '/',
-        logout: '/',
-        callback: false,
-        home: '/admin'
-    },
-    strategies: {
-        local: {
-            endpoints: {
-                login: { url: '/auth/', method: "POST", propertyName: 'token' },
-                user: { url: '/api/user/', method: 'GET', propertyName: false },
-                logout: false
-            }
-        }
-    }
-  },
-  // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {},
+
+  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: false,
+      dark: true,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -116,20 +68,7 @@ export default {
     }
   },
 
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  },
-  server: {
-      host: '0.0.0.0',
-      port: 3000
-  },
-  router: {
-      middleware: ['global']
-  },
-  watchers: {
-	  webpack: {
-		  poll: true
-	  }
-  },
-  loading: '~/components/LoadingPage'
+  }
 }
