@@ -41,7 +41,7 @@ export const metaInfo = {
 		const isDetail = this.$route.name === 'DetailArticle'
 		const title = isDetail
 			? `${this.detailArticle.title} | ${SITE_NAME}`
-			: this.$route.meta.title
+			: `${this.$route.meta.title} | ${SITE_NAME}`
 		const description = isDetail
 			? this.detailArticle.lead_text
 			: this.$route.meta.description
