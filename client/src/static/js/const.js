@@ -29,13 +29,13 @@ export default Object.freeze({
 			github: 'https://github.com/yoshihiko555/myunsplash',
 		},
 		// Offbal
-		// {
-		// 	name: 'Offbal',
-		// 	description: 'タスク管理サービス',
-		// 	img: '',
-		// 	url: '',
-		// 	github: 'https://github.com/yoshihiko555/offbal',
-		// },
+		{
+			name: 'Offbal',
+			description: 'タスク管理サービス',
+			img: require('@/static/img/works/offbal.png'),
+			url: 'https://offbal.herokuapp.com/',
+			github: 'https://github.com/yoshihiko555/offbal',
+		},
 
 		// React Chat Demo
 		// {
