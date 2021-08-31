@@ -12,8 +12,15 @@ export default {
     ]
   },
   css: [
+    '~/assets/scss/styles',
   ],
+  styleResources: {
+    scss: [
+      '~/assets/scss/prepends.scss'
+    ]
+  },
   plugins: [
+    { src: '~/plugins/vuesax.js' }
   ],
   components: true,
   buildModules: [
@@ -25,6 +32,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/style-resources',
   ],
   axios: {},
   pwa: {
@@ -34,8 +42,9 @@ export default {
     }
   },
   build: {
+    parallel: true,
     cache: true,
-    hardSorce: true,
+    hardSource: true,
   },
   server: {
     host: '0.0.0.0',
@@ -43,6 +52,7 @@ export default {
   watchers: {
     webpack: {
       poll: true,
+      ignored: /node_modules/,
     }
   }
 }
