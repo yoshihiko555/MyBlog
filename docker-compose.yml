@@ -26,11 +26,15 @@ services:
     tty: true
 
   nuxt:
-    image: node:16
-    container_name: nuxt-client
+    image: node:14-alpine
+    container_name: nx-client
     working_dir: /usr/src
     ports:
       - '3000:3000'
+      # Node.jsのデバッグ用のポート開く
+      # VSCode上でデバッグしたければ、下記リンクを参考(とりあえずコンソールでいいや)
+      # https://ichiki.me/blog/20200113_nextjs_debug
+      - '9229:9229'
     volumes:
-      - .:/usr/src
+      - ./nuxt:/usr/src
     tty: true

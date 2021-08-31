@@ -1,5 +1,6 @@
 # my ignore files
 _nuxt/
+bk/
 
 # REST server
 __pycache__
