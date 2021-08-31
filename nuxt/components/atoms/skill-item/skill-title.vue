@@ -1,20 +1,12 @@
 <template>
-  <div>
-    <Header />
-    <Nuxt />
-    <Footer />
-  </div>
+  <div>title</div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import Header from '~/components/organisms/header.vue'
-import Footer from '~/components/organisms/footer.vue'
-
 export default Vue.extend({
   components: {
-    Header,
-    Footer,
+
   },
   props: {
 
