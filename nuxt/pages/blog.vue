@@ -1,5 +1,7 @@
 <template>
-  <div>title</div>
+  <div class="container">
+    Hello Blog!!
+  </div>
 </template>
 
 <script lang='ts'>

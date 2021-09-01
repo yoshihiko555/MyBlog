@@ -1,22 +1,34 @@
 <template>
-  <v-row>
-    <v-col cols='12' sm='6' v-for="skill in skills" :key="skill.name">
-      <skill-item :skill='skill' />
-    </v-col>
-  </v-row>
+  <div class="grid grid-cols-2">
+    <div
+      v-for="skill in skills"
+      :key="skill.name"
+    >
+      <skill-item :skill="skill" />
+    </div>
+  </div>
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
-import SkillItem from '~/components/atoms/skill-item/index.vue'
-import { SKILLS } from '~/utils/const'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { SkillType } from '~/utils/const'
+import SkillItem from '~/components/atoms/skill-item.vue'
 
-export default Vue.extend({
+export default defineComponent({
   components: {
-    SkillItem
+    SkillItem,
   },
-  data: () => ({
-    skills: SKILLS,
-  }),
+  props: {
+    skills: {
+      type: Array as PropType<SkillType[]>,
+      required: true,
+    }
+  },
+  setup () {
+
+    return {
+
+    }
+  }
 })
 </script>

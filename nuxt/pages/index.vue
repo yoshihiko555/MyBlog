@@ -1,9 +1,77 @@
 <template>
-  <Tutorial/>
+  <section class="flex">
+    <!-- TODO : タイミングをずらしたフェードイン -->
+    <div class="self-center">
+      <transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
+        <h2 class="text-2xl font-normal mb-4" data-delay='0'>Hello<br />Welcome to my site</h2>
+      </transition>
+      <transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
+        <p class='mb-4' data-delay='500'>Sending useful information centered on programming</p>
+      </transition>
+      <transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
+        <nuxt-link
+          to="/about"
+          class='btn'
+          data-delay='1000'
+        >
+          About me
+        </nuxt-link>
+      </transition>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({})
+import { defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
+  setup() {
+    const beforeAppear = (el: HTMLElement) => {
+      const msec = el.dataset.delay
+      el.style.transitionDelay = `${msec}ms`
+    }
+    const afterAppear = (el: HTMLElement) => {
+      el.style.transitionDelay = ''
+    }
+    return {
+      beforeAppear,
+      afterAppear,
+    }
+  },
+})
 </script>
+
+<style lang="scss" scoped>
+.btn {
+  @apply relative inline-block px-4 py-2 text-lg tracking-widest border border-gray-600 bg-transparent transition-all duration-500 ease-in-out z-0 hover:text-white;
+
+  &::after {
+    @apply absolute top-0 right-0 w-0 h-full bg-gray-600 transition-all duration-500 ease-in-out;
+
+    content: '';
+    z-index: -1;
+  }
+
+  &:hover {
+    @apply px-6;
+  }
+
+  &:hover::after {
+    left: 0;
+    width: 100%;
+  }
+}
+
+.down_fade-enter-active {
+  transition: opacity .5s ease-in-out, transform .6s ease-in;
+}
+
+.down_fade-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.down_fade-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.97);
+}
+</style>

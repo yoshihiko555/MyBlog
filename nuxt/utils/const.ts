@@ -1,12 +1,31 @@
-export const SITE_MAPS = [
-  { url: '/', title: 'Home' },
-  { url: '/about', title: 'About' },
-  { url: '/blog', title: 'Blog' },
-  { url: '/works', title: 'Works' },
-  { url: '/contact', title: 'Contact' },
+// *********************
+// サイトマップ
+// *********************
+export type SiteType = {
+  id: string
+  url: string
+  title: string
+}
+
+export const SITE_MAPS: SiteType[] = [
+  { id: 'home', url: '/', title: 'Home', },
+  { id: 'about', url: '/about', title: 'About', },
+  { id: 'blog', url: '/blog', title: 'Blog' },
+  { id: 'works', url: '/works', title: 'Works' },
+  { id: 'contact', url: '/contact', title: 'Contact' },
 ]
 
-export const SKILLS = [
+// *********************
+// 習得スキル
+// *********************
+export type SkillType = {
+  name: string
+  period: number
+  percent: number
+  icon: File
+}
+
+export const SKILLS: SkillType[] = [
   {
     name: 'HTML',
     period: 3,

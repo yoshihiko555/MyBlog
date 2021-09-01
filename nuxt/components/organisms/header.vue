@@ -1,36 +1,60 @@
 <template>
-  <div class='p-1'>
-    <h1>Header</h1>
+  <div>
+    <vs-navbar>
+      <template #left>
+        <nuxt-link to='/'>
+          <img src='~/assets/img/logo.svg' alt="logo" width="30" height="30" />
+        </nuxt-link>
+      </template>
+      <template #right>
+        <div>
+          <nuxt-link class='link' to='/about'>About</nuxt-link>
+          <nuxt-link class='link' to='/blog'>Blog</nuxt-link>
+          <nuxt-link class='link' to='/works'>Works</nuxt-link>
+          <nuxt-link class='link' to='/contact'>Contact</nuxt-link>
+        </div>
+        <div class="sm:hidden">
+          <vs-button @click='isOpen = !isOpen' icon transparent color="#333333">
+            <i class='bx bx-menu' />
+          </vs-button>
+        </div>
+      </template>
+    </vs-navbar>
+    <vs-sidebar
+      v-model="active"
+      :open.sync="isOpen"
+      right
+    >
+      <vs-sidebar-item
+        v-for="site in sites"
+        :key="site.id"
+        :id="site.id"
+        :to="site.url"
+      >
+        {{ site.title }}
+      </vs-sidebar-item>
+    </vs-sidebar>
   </div>
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
-interface Data {
-  name?: string
-  isAuth: boolean
-  drawer: boolean
-}
-export default Vue.extend({
-  data: (): Data => ({
-    isAuth: false,
-    drawer: false,
-  }),
-  watch: {
-
+import { defineComponent, ref } from '@nuxtjs/composition-api'
+import Sidebar from '~/components/organisms/sidebar.vue'
+import { SITE_MAPS, SiteType } from '~/utils/const'
+export default defineComponent({
+  components: {
+    Sidebar,
   },
-  computed: {
-
-  },
-  created () {
-
-  },
-  mounted () {
-
-  },
-  methods: {
-
-  },
+  setup () {
+    const active = ref<string>('home')
+    const isOpen = ref<boolean>(false)
+    const sites = ref<SiteType[]>(SITE_MAPS)
+    return {
+      active,
+      isOpen,
+      sites,
+    }
+  }
 })
 </script>
 
@@ -55,8 +79,5 @@ export default Vue.extend({
     &:hover::after {
       width: 100%;
     }
-  }
-  .v-toolbar::v-deep .v-toolbar__content {
-    justify-content: space-between;
   }
 </style>

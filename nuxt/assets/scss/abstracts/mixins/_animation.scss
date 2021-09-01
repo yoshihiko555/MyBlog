@@ -67,7 +67,7 @@ $anime-propertys: (
     ),
 );
 
-@mixin vue-animation ($tran-name, $anime-name) {
+@mixin animation ($tran-name, $anime-name) {
 
     // 空のリストを作成
     $transitions: ();

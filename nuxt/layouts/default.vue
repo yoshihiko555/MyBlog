@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="container px-4">
     <Header />
-    <Nuxt />
+    <transition name='fade'>
+      <Nuxt class="main" />
+    </transition>
     <Footer />
   </div>
 </template>
@@ -16,26 +18,12 @@ export default Vue.extend({
     Header,
     Footer,
   },
-  props: {
-
-  },
-  data: () => ({
-
-  }),
-  watch: {
-
-  },
-  computed: {
-
-  },
-  created () {
-
-  },
-  mounted () {
-
-  },
-  methods: {
-
-  },
+  transition: {
+    name: 'fade'
+  }
 })
 </script>
+
+<style lang="scss" scoped>
+  @include animation($tran-name: 'fade', $anime-name: ('fade'))
+</style>

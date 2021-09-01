@@ -25,9 +25,11 @@ export default {
   components: true,
   buildModules: [
     '@nuxt/typescript-build',
+    '@nuxt/image',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/composition-api/module',
+    '@nuxtjs/google-fonts',
   ],
   modules: [
     '@nuxtjs/axios',
@@ -54,5 +56,13 @@ export default {
       poll: true,
       ignored: /node_modules/,
     }
+  },
+  googleFonts: {
+    families: {
+      Roboto: true,
+      Inconsolata: [200, 500],
+      'Noto+Sans+JP': [100, 400, 700],
+    },
+    display: 'swap'
   }
 }
