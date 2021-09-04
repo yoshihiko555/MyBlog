@@ -99,3 +99,12 @@ export const SKILLS: SkillType[] = [
     icon: require('~/assets/img/icon/docker.svg'),
   },
 ]
+
+// *********************
+// サイト設定
+// *********************
+export const SITE_THEME_COLOR = {
+  LIGHT: '#90A4AE',
+  DEFAULT: '#546E7A',
+  DARK: '#263238',
+}

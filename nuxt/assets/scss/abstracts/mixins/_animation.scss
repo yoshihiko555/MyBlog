@@ -8,7 +8,7 @@
 	animation: blink .5s alternate infinite;
 
 	@keyframes blink {
-		from { box-shadow: inset -3px 0 0 #{$color-theme}; }
+		from { box-shadow: inset -3px 0 0 #{$site-theme-color}; }
 		to { box-shadow: inset -3px 0 0 transparent; }
 	}
 }

@@ -11,7 +11,15 @@ module.exports = {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      colors: {
+        'site-theme': {
+          light: '#90A4AE',
+          DEFAULT: '#546E7A',
+          dark: '#263238',
+        }
+      }
+    },
   },
   variants: {
     extend: {},

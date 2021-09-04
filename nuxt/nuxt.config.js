@@ -12,6 +12,8 @@ export default {
     ]
   },
   css: [
+    'vuesax/dist/vuesax.css',
+    'boxicons/css/boxicons.min.css',
     '~/assets/scss/styles',
   ],
   styleResources: {
