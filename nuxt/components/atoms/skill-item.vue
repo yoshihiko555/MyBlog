@@ -1,10 +1,12 @@
 <template>
-  <div class="flex align-center">
-    <img :src='skill.icon' :alt='skill.name' width="30" class="block"/>
-    <div>
-      <h6>{{ skill.name }}</h6>
-      <span>{{ skill.period }}year</span>
-      <div class='root'>
+  <div class="mb-4 flex align-center h-20">
+    <div class='icon text-center h-full'>
+      <img :src='skill.icon' :alt='skill.name' class="p-2 inline-block max-h-full" />
+    </div>
+    <div class='root self-center'>
+      <h6 class='inline-block text-xl mr-2'>{{ skill.name }}</h6>
+      <span class='inline-block text-sm text-gray-300'>{{ skill.period }}year</span>
+      <div class='progress-root'>
         <div
           class="bar"
           role="progressbar"
@@ -30,17 +32,19 @@ export default defineComponent({
       required: true,
     }
   },
-  setup () {
-
-    return {
-
-    }
-  }
 })
 </script>
 
 <style lang="scss" scoped>
+  .icon {
+    flex-basis: 20%;
+  }
+
   .root {
+    flex-basis: 80%;
+  }
+
+  .progress-root {
     height: 1.5rem;
 		overflow: hidden;
 		font-size: 1rem;

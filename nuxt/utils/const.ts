@@ -108,3 +108,56 @@ export const SITE_THEME_COLOR = {
   DEFAULT: '#546E7A',
   DARK: '#263238',
 }
+
+// *********************
+// ポートフォリオ
+// *********************
+export type WorkType = {
+  name: string
+  description: string
+  // img: File
+  img: string
+  siteUrl: string
+  sourceIcon: string
+  sourceUrl: string
+}
+
+export const WORKS: WorkType[] = [
+  // Coopy
+  {
+    name: 'Coopy',
+    description: 'ブログサービス',
+    // img: require('works/coopy.png'),
+    img: '/works/coopy.webp',
+    siteUrl: 'https://coopy.herokuapp.com/',
+    sourceIcon: 'bxl-github',
+    sourceUrl: 'https://github.com/shutotakizawa/coopy',
+  },
+  // Bandue
+  {
+    name: 'Bandue',
+    description: 'ソーシャルネットワークサービス',
+    img: '/works/bandue.webp',
+    siteUrl: 'https://bandue.herokuapp.com/',
+    sourceIcon: 'bxl-github',
+    sourceUrl: 'https://github.com/shutotakizawa/bandue',
+  },
+  // Myunsplash
+  {
+    name: 'Myunsplash',
+    description: 'お気に入り画像保存サービス',
+    img: '/works/myunsplash.webp',
+    siteUrl: 'https://myunsplash-49abd.web.app/',
+    sourceIcon: 'bxl-github',
+    sourceUrl: 'https://github.com/yoshihiko555/myunsplash',
+  },
+  // Offbal
+  // {
+  //   name: 'Offbal',
+  //   description: 'タスク管理サービス',
+  //   img: require('/works/offbal.png'),
+  //   siteUrl: 'https://offbal.herokuapp.com/',
+  //   sourceIcon: 'bxl-gitlab',
+  //   sourceUrl: 'https://gitlab.com/yoshihiko555/offbal',
+  // },
+]

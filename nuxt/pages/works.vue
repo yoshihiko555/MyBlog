@@ -1,47 +1,44 @@
 <template>
   <div class="container">
-    <div class="text-center">
-      <h1>Works</h1>
-    </div>
-    <div class="max-width">
-
+    <h1 class='site-title text-center'>Works</h1>
+    <div class="m-0 w-screen relative left-1/2 transform -translate-x-1/2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <work-card v-for="work in works" :key="work.name" :siteUrl="work.siteUrl" :sourceUrl="work.sourceUrl">
+        <template #image>
+          <nuxt-img :src="work.img" :alt='work.name' format="webp" />
+        </template>
+        <template #icon>
+          <i class='bx' :class='work.sourceIcon' />
+        </template>
+        <template #title>
+          {{ work.name }}
+        </template>
+        <template #description>
+          {{ work.description }}
+        </template>
+      </work-card>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
-export default Vue.extend({
+import { defineComponent } from '@nuxtjs/composition-api'
+import WorkCard from '~/components/atoms/work-card.vue'
+import { WORKS, WorkType } from '~/utils/const'
+type Data = {
+  works: WorkType[]
+}
+export default defineComponent({
   components: {
-
+    WorkCard,
   },
-  props: {
-
-  },
-  data: () => ({
-
-  }),
-  watch: {
-
-  },
-  computed: {
-
-  },
-  created () {
-
-  },
-  mounted () {
-
-  },
-  methods: {
-
-  },
+  setup (): Data {
+    return {
+      works: WORKS,
+    }
+  }
 })
 </script>
 
 <style lang="scss" scoped>
-  .max-width {
-    margin: 0;
-    width: 100vw;
-  }
+
 </style>

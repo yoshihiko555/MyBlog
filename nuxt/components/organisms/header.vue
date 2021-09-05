@@ -7,7 +7,7 @@
         </nuxt-link>
       </template>
       <template #right>
-        <div>
+        <div class='hidden sm:inline-block'>
           <nuxt-link class='link' to='/about'>About</nuxt-link>
           <nuxt-link class='link' to='/blog'>Blog</nuxt-link>
           <nuxt-link class='link' to='/works'>Works</nuxt-link>
@@ -38,21 +38,27 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { defineComponent, ref, Ref } from '@nuxtjs/composition-api'
 import Sidebar from '~/components/organisms/sidebar.vue'
 import { SITE_MAPS, SiteType } from '~/utils/const'
+
+type Data = {
+  active: Ref<string>
+  isOpen: Ref<boolean>
+  sites: SiteType[]
+}
+
 export default defineComponent({
   components: {
     Sidebar,
   },
-  setup () {
+  setup (): Data {
     const active = ref<string>('home')
     const isOpen = ref<boolean>(false)
-    const sites = ref<SiteType[]>(SITE_MAPS)
     return {
       active,
       isOpen,
-      sites,
+      sites: SITE_MAPS,
     }
   }
 })
@@ -60,20 +66,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .link {
-    color: #333;
-    text-decoration: none;
+    @apply mx-1 px-1;
     position: relative;
     transition: .3s;
 
     &::after {
-      position: absolute;
-      bottom: 0;
-      left: 2%;
+      @apply absolute left-0 w-0 bg-gray-600 duration-300;
       content: '';
-      width: 0;
-      height: 1px;
-      background-color: #333;
-      transition: .3s;
+      height: 1.2px;
+      bottom: -4px;
     }
 
     &:hover::after {

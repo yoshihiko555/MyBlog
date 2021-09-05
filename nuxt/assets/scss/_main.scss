@@ -5,3 +5,7 @@
   margin-top: $height-header;
   min-height: calc(100vh - #{($height-header + $height-footer)}) !important;
 }
+
+.site-title {
+  @apply py-5 text-2xl;
+}

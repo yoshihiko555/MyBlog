@@ -14,5 +14,6 @@ module.exports = {
     "scss/at-rule-no-unknown": true,
     'no-invalid-position-at-import-rule': null,
     'no-empty-source': null,
+    'declaration-empty-line-before': null,
   }
 }

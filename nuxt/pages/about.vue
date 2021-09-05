@@ -1,20 +1,20 @@
 <template>
   <div class="container">
-    <div class='text-center'>
-      <h3>Yoshihiko</h3>
-      <p>Engineer</p>
+    <div class='py-5 text-center'>
+      <h3 class='mb-1 text-2xl tracking-wider'>Yoshihiko</h3>
+      <p class='text-lg'>Engineer</p>
     </div>
-    <div>
-      <h4>Career</h4>
-      <div class="pl-2">
-        <p>1994年生まれ。栃木県出身。</p>
-        <p>専門学校を卒業後、業界の技術職として4年間従事。</p>
-        <p>2019年に某IT会社に転職。</p>
+    <div class='mb-10'>
+      <h4 class='mb-2 text-xl'>Career</h4>
+      <div class="pl-4">
+        <p class='text'>1994年生まれ。栃木県出身。</p>
+        <p class='text'>専門学校を卒業後、業界の技術職として4年間従事。</p>
+        <p class='text'>2019年に某IT会社に転職。</p>
       </div>
     </div>
     <div>
-      <h4>Skill</h4>
-      <skill-list :skills="skills"/>
+      <h4 class='mb-2 text-xl'>Skill</h4>
+      <skill-list :skills="skills" />
     </div>
   </div>
 </template>
@@ -39,3 +39,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="postcss" scoped>
+  .text {
+    @apply mb-1 text-sm tracking-widest;
+  }
+</style>
