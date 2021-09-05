@@ -37,6 +37,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    '@nuxtjs/apollo',
   ],
   axios: {},
   pwa: {
@@ -66,5 +67,15 @@ export default {
       'Noto+Sans+JP': [100, 400, 700],
     },
     display: 'swap'
+  },
+  apollo: {
+    clientConfigs: {
+      default: '~/apollo/config.ts'
+      // default: {
+      //   // GraphQL検証用エンドポイント
+      //   // 参考記事：https://zenn.dev/kimkiyong/articles/b92b1029093741#reference
+      //   // httpEndpoint: 'https://graphql-pokemon2.vercel.app/'
+      // }
+    }
   }
 }
