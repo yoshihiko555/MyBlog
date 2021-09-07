@@ -22,7 +22,8 @@ export default {
     ]
   },
   plugins: [
-    { src: '~/plugins/vuesax.js' }
+    { src: '~/plugins/vuesax.js' },
+    { src: '~/plugins/apollo' },
   ],
   components: true,
   buildModules: [
@@ -70,7 +71,15 @@ export default {
   },
   apollo: {
     clientConfigs: {
-      default: '~/apollo/config.ts'
+      default: {
+        httpEndpoint: 'https://graphql.contentful.com/content/v1/spaces/d3b1looh8iwg/environments/master',
+        httpLinkOptions: {
+          headers: {
+            Authorization: `Bearer nWaUt3VsuH96y4wnrI3uu_JCLe6JG1eoI_k4SR1Zxl0`
+          }
+        }
+      }
+      // default: '~/apollo/config.ts'
       // default: {
       //   // GraphQL検証用エンドポイント
       //   // 参考記事：https://zenn.dev/kimkiyong/articles/b92b1029093741#reference

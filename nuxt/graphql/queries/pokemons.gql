@@ -1,7 +1,0 @@
-query pokemons {
-  pokemons(first: 10) {
-    id
-    name
-    image
-  }
-}
