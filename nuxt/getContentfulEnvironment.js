@@ -1,10 +1,11 @@
 const contentfulManagement = require('contentful-management')
+require('dotenv').config()
 
 module.exports = function () {
   const contentfulClient = contentfulManagement.createClient({
-    accessToken: 'CFPAT-s6-u_jTvSu1ug1SExgMZwu9rUt1mNgKijy4JBgNV8co'
+    accessToken: process.env.CTF_MANAGE_TOKEN
   })
   return contentfulClient
-    .getSpace('d3b1looh8iwg')
-    .then(space => space.getEnvironment('master'))
+    .getSpace(process.env.CTF_SPACE_ID)
+    .then(space => space.getEnvironment(process.env.CTF_ENVIRONMENT))
 }

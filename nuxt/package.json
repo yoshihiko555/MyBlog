@@ -11,7 +11,7 @@
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
     "codegen": "graphql-codegen",
-    "contentful-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
+    "contentful-codegen": "contentful-typescript-codegen --output generated/contentful.d.ts"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",

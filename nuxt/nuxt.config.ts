@@ -1,5 +1,7 @@
-export default {
-  srcDir: 'src/',
+import { NuxtConfig } from '@nuxt/types'
+
+export default ():NuxtConfig => ({
+  // srcDir: 'src/',
   head: {
     title: 'yoshihiko',
     meta: [
@@ -23,7 +25,7 @@ export default {
     ]
   },
   plugins: [
-    { src: '~/plugins/vuesax.js' },
+    { src: '~/plugins/vuesax' },
     { src: '~/plugins/apollo' },
   ],
   components: true,
@@ -73,19 +75,23 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://graphql.contentful.com/content/v1/spaces/d3b1looh8iwg/environments/master',
+        httpEndpoint: process.env.CTF_ENDPOINT,
         httpLinkOptions: {
           headers: {
-            Authorization: `Bearer nWaUt3VsuH96y4wnrI3uu_JCLe6JG1eoI_k4SR1Zxl0`
+            Authorization: `Bearer ${process.env.CTF_CDA_TOKEN}`
           }
         }
       }
-      // default: '~/apollo/config.ts'
+      // default: '~/utils/apollop.config.ts'
       // default: {
       //   // GraphQL検証用エンドポイント
       //   // 参考記事：https://zenn.dev/kimkiyong/articles/b92b1029093741#reference
       //   // httpEndpoint: 'https://graphql-pokemon2.vercel.app/'
       // }
     }
-  }
-}
+  },
+  // tailwindcss: {
+  //   configPath: './src/config/tailwind.config.js',
+  //   purgeCSSInDev: false,
+  // }
+})

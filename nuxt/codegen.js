@@ -1,21 +1,28 @@
+require('dotenv').config()
 module.exports = {
   overwrite: true,
   schema: [
     {
-      'https://graphql.contentful.com/content/v1/spaces/d3b1looh8iwg/environments/master': {
+      [process.env.CTF_ENDPOINT]: {
         headers: {
-          Authorization: `Bearer nWaUt3VsuH96y4wnrI3uu_JCLe6JG1eoI_k4SR1Zxl0`
+          Authorization: `Bearer ${process.env.CTF_CDA_TOKEN}`
         }
       }
     }
   ],
-  documents: ['./graphql/**/*.gql'],
+  documents: ['./graphql/**/*.{graphql,gql}'],
   generates: {
     './generated/graphql.ts': {
-      plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typed-document-node'
+      ],
     },
-    './graphql.schema.json': {
-      plugins: ['introspection'],
+    './generated/graphql.schema.json': {
+      plugins: [
+        'introspection'
+      ],
     },
   },
 }
