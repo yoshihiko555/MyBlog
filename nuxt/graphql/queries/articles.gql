@@ -5,6 +5,12 @@ query getArticles {
         id
       }
       title
+      content
+      thumbnail {
+        url
+        description
+      }
+      slug
       category {
         name
       }

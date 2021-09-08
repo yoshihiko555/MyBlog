@@ -1,0 +1,44 @@
+query appInit($limit: Int!) {
+	articlesCollection (limit: $limit) {
+    items {
+      sys {
+        id
+        firstPublishedAt
+        publishedAt
+      }
+      title
+      content
+      thumbnail {
+        url
+        description
+      }
+      slug
+      category {
+        name
+      }
+      tagsCollection {
+        items {
+          name
+        }
+      }
+    }
+  }
+  categoriesCollection {
+    items {
+      sys {
+        id
+      }
+      name
+      slug
+    }
+  }
+  tagsCollection {
+    items {
+      sys {
+        id
+      }
+      name
+      slug
+    }
+  }
+}

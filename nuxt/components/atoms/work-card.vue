@@ -37,7 +37,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .root {
-    // @apply relative w-full text-center bg-site-theme cursor-pointer overflow-hidden;
+    @apply relative w-full text-center bg-site-theme cursor-pointer overflow-hidden;
     aspect-ratio: 16/10;
 
     img {
@@ -45,7 +45,7 @@ export default defineComponent({
     }
 
     .icon {
-      // @apply absolute top-2 right-2 z-20 text-site-theme bg-transparent ease-in-out hover:text-white hover:bg-site-theme-dark hover:bg-opacity-70;
+      @apply absolute top-2 right-2 z-20 text-site-theme bg-transparent ease-in-out hover:text-white hover:bg-site-theme-dark hover:bg-opacity-70;
     }
 
     .caption {

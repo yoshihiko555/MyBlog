@@ -42,6 +42,7 @@ export default ():NuxtConfig => ({
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/apollo',
+    '@nuxtjs/markdownit',
   ],
   axios: {},
   pwa: {
@@ -91,7 +92,11 @@ export default ():NuxtConfig => ({
     }
   },
   // tailwindcss: {
-  //   configPath: './src/config/tailwind.config.js',
+  //   configPath: '~/config/tailwind.config.js',
   //   purgeCSSInDev: false,
   // }
+  markdownit: {
+    injected: true,
+    breaks: true,
+  }
 })
