@@ -1,4 +1,5 @@
 export default {
+  srcDir: 'src/',
   head: {
     title: 'yoshihiko',
     meta: [
