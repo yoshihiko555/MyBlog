@@ -1,0 +1,7 @@
+fragment tagFramgment on Tags {
+  sys {
+    id
+  }
+  name
+  slug
+}

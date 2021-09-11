@@ -26,7 +26,8 @@ services:
     tty: true
 
   nuxt:
-    image: node:14-alpine
+    build: ./nuxt
+    image: node:my-14-alpine
     container_name: nx-client
     working_dir: /usr/src
     ports:

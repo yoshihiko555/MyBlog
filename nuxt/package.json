@@ -11,19 +11,23 @@
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
     "codegen": "graphql-codegen --require dotenv/config --config config/codegen.js dotenv_config_path=.env",
-    "contentful-codegen": "contentful-typescript-codegen --output generated/contentful.d.ts",
-    "postinstall": "patch-package"
+    "contentful-codegen": "contentful-typescript-codegen --output generated/contentful.d.ts"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/markdownit": "^2.0.0",
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/pwa": "^3.3.5",
     "@vue/apollo-composable": "^4.0.0-alpha.14",
     "boxicons": "^2.0.9",
+    "clipboard": "^2.0.8",
     "core-js": "^3.15.1",
     "graphql": "15.5.2",
+    "markdown-it-link-attributes": "^3.0.0",
+    "markdown-it-table-of-contents": "^0.5.2",
     "nuxt": "^2.15.7",
+    "prismjs": "^1.24.1",
     "vuesax": "^4.0.1-alpha.25"
   },
   "devDependencies": {
@@ -35,6 +39,7 @@
     "@graphql-codegen/typescript": "^2.2.1",
     "@graphql-codegen/typescript-operations": "^2.1.3",
     "@graphql-codegen/typescript-vue-apollo": "^3.1.3",
+    "@graphql-codegen/typescript-vue-apollo-smart-ops": "^2.1.3",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@nuxt/image": "^0.5.0",
     "@nuxt/types": "^2.15.7",
@@ -54,7 +59,6 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "fibers": "^5.0.0",
-    "patch-package": "^6.4.7",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
     "sass": "^1.38.2",

@@ -46,7 +46,7 @@ export default defineComponent({
   @apply relative inline-block px-4 py-2 text-lg tracking-widest border bg-transparent transition-all duration-500 ease-in-out z-0 hover:text-white;
 
   &::after {
-    // @apply absolute top-0 right-0 w-0 h-full bg-site-theme transition-all duration-500 ease-in-out;
+    @apply absolute top-0 right-0 w-0 h-full bg-site-theme transition-all duration-500 ease-in-out;
     content: '';
     z-index: -1;
   }

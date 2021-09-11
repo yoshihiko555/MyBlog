@@ -1,8 +1,11 @@
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import gql from 'graphql-tag';
+import * as VueApolloComposable from '@vue/apollo-composable';
+import * as VueCompositionApi from '@vue/composition-api';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type ReactiveFunction<TParam> = () => TParam;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -978,18 +981,286 @@ export type CfCategoriesNestedFilter = {
   sys?: Maybe<SysFilter>;
 };
 
+export type ArticleFragmentFragment = { __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> };
+
+export type CategoryFragmentFragment = { __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } };
+
+export type TagFramgmentFragment = { __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } };
+
 export type GetArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetArticlesQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string> }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string> }>> }> }>> }> };
+export type GetArticlesQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }> };
+
+export type GetArticleByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetArticleByIdQuery = { __typename?: 'Query', articles?: Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }> };
+
+export type GetArticleBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetArticleBySlugQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }> };
 
 export type AppInitQueryVariables = Exact<{
   limit: Scalars['Int'];
 }>;
 
 
-export type AppInitQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string> }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string> }>> }> }>> }>, categoriesCollection?: Maybe<{ __typename?: 'CategoriesCollection', items: Array<Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }>, tagsCollection?: Maybe<{ __typename?: 'TagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> };
+export type AppInitQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }>, categoriesCollection?: Maybe<{ __typename?: 'CategoriesCollection', items: Array<Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }>, tagsCollection?: Maybe<{ __typename?: 'TagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> };
 
+export const CategoryFragmentFragmentDoc = gql`
+    fragment categoryFragment on Categories {
+  sys {
+    id
+  }
+  name
+  slug
+}
+    `;
+export const TagFramgmentFragmentDoc = gql`
+    fragment tagFramgment on Tags {
+  sys {
+    id
+  }
+  name
+  slug
+}
+    `;
+export const ArticleFragmentFragmentDoc = gql`
+    fragment articleFragment on Articles {
+  sys {
+    id
+    firstPublishedAt
+    publishedAt
+  }
+  title
+  content
+  slug
+  thumbnail {
+    url
+    description
+  }
+  category {
+    ...categoryFragment
+  }
+  tagsCollection {
+    items {
+      ...tagFramgment
+    }
+  }
+}
+    ${CategoryFragmentFragmentDoc}
+${TagFramgmentFragmentDoc}`;
+export const GetArticlesDocument = gql`
+    query getArticles {
+  articlesCollection(order: sys_firstPublishedAt_DESC) {
+    items {
+      ...articleFragment
+    }
+  }
+}
+    ${ArticleFragmentFragmentDoc}`;
 
-export const GetArticlesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArticles"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articlesCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnail"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tagsCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetArticlesQuery, GetArticlesQueryVariables>;
-export const AppInitDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"appInit"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articlesCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstPublishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnail"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tagsCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"categoriesCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"tagsCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<AppInitQuery, AppInitQueryVariables>;
+/**
+ * __useGetArticlesQuery__
+ *
+ * To run a query within a Vue component, call `useGetArticlesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArticlesQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetArticlesQuery();
+ */
+export function useGetArticlesQuery(options: VueApolloComposable.UseQueryOptions<GetArticlesQuery, GetArticlesQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetArticlesQuery, GetArticlesQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetArticlesQuery, GetArticlesQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetArticlesQuery, GetArticlesQueryVariables>(GetArticlesDocument, {}, options);
+}
+export type GetArticlesQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetArticlesQuery, GetArticlesQueryVariables>;
+export const GetArticleByIdDocument = gql`
+    query getArticleById($id: String!) {
+  articles(id: $id) {
+    sys {
+      id
+      firstPublishedAt
+      publishedAt
+    }
+    title
+    content
+    thumbnail {
+      url
+      description
+    }
+    slug
+    category {
+      sys {
+        id
+      }
+      name
+      slug
+    }
+    tagsCollection {
+      items {
+        sys {
+          id
+        }
+        name
+        slug
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetArticleByIdQuery__
+ *
+ * To run a query within a Vue component, call `useGetArticleByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArticleByIdQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetArticleByIdQuery({
+ *   id: // value for 'id'
+ * });
+ */
+export function useGetArticleByIdQuery(variables: GetArticleByIdQueryVariables | VueCompositionApi.Ref<GetArticleByIdQueryVariables> | ReactiveFunction<GetArticleByIdQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetArticleByIdQuery, GetArticleByIdQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetArticleByIdQuery, GetArticleByIdQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetArticleByIdQuery, GetArticleByIdQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetArticleByIdQuery, GetArticleByIdQueryVariables>(GetArticleByIdDocument, variables, options);
+}
+export type GetArticleByIdQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetArticleByIdQuery, GetArticleByIdQueryVariables>;
+export const GetArticleBySlugDocument = gql`
+    query getArticleBySlug($slug: String!) {
+  articlesCollection(where: {slug: $slug}, limit: 1) {
+    items {
+      sys {
+        id
+        firstPublishedAt
+        publishedAt
+      }
+      title
+      content
+      thumbnail {
+        url
+        description
+      }
+      slug
+      category {
+        sys {
+          id
+        }
+        name
+        slug
+      }
+      tagsCollection {
+        items {
+          sys {
+            id
+          }
+          name
+          slug
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetArticleBySlugQuery__
+ *
+ * To run a query within a Vue component, call `useGetArticleBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArticleBySlugQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetArticleBySlugQuery({
+ *   slug: // value for 'slug'
+ * });
+ */
+export function useGetArticleBySlugQuery(variables: GetArticleBySlugQueryVariables | VueCompositionApi.Ref<GetArticleBySlugQueryVariables> | ReactiveFunction<GetArticleBySlugQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetArticleBySlugQuery, GetArticleBySlugQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>(GetArticleBySlugDocument, variables, options);
+}
+export type GetArticleBySlugQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>;
+export const AppInitDocument = gql`
+    query appInit($limit: Int!) {
+  articlesCollection(limit: $limit, order: sys_firstPublishedAt_DESC) {
+    items {
+      sys {
+        id
+        firstPublishedAt
+        publishedAt
+      }
+      title
+      content
+      thumbnail {
+        url
+        description
+      }
+      slug
+      category {
+        sys {
+          id
+        }
+        name
+      }
+      tagsCollection {
+        items {
+          sys {
+            id
+          }
+          name
+        }
+      }
+    }
+  }
+  categoriesCollection {
+    items {
+      sys {
+        id
+      }
+      name
+      slug
+    }
+  }
+  tagsCollection {
+    items {
+      sys {
+        id
+      }
+      name
+      slug
+    }
+  }
+}
+    `;
+
+/**
+ * __useAppInitQuery__
+ *
+ * To run a query within a Vue component, call `useAppInitQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAppInitQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useAppInitQuery({
+ *   limit: // value for 'limit'
+ * });
+ */
+export function useAppInitQuery(variables: AppInitQueryVariables | VueCompositionApi.Ref<AppInitQueryVariables> | ReactiveFunction<AppInitQueryVariables>, options: VueApolloComposable.UseQueryOptions<AppInitQuery, AppInitQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<AppInitQuery, AppInitQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<AppInitQuery, AppInitQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<AppInitQuery, AppInitQueryVariables>(AppInitDocument, variables, options);
+}
+export type AppInitQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<AppInitQuery, AppInitQueryVariables>;

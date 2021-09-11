@@ -1,0 +1,22 @@
+fragment articleFragment on Articles {
+  sys {
+    id
+    firstPublishedAt
+    publishedAt
+  }
+  title
+  content
+  slug
+  thumbnail {
+    url
+    description
+  }
+  category {
+    ...categoryFragment
+  }
+  tagsCollection {
+    items {
+      ...tagFramgment
+    }
+  }
+}

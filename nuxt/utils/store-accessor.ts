@@ -1,13 +1,20 @@
 import { Store } from 'vuex'
 import { getModule } from 'vuex-module-decorators'
-import SampleStore from '~/store/sample'
+import SampleModule from '~/store/sample'
+import ArticlesModule from '~/store/articles'
+import CategoriesModule from '~/store/categories'
+import TagsModule from '~/store/tags'
 
-let sampleStore: SampleStore
+let sampleModule: SampleModule
+let articlesModule: ArticlesModule
+let categoriesModule: CategoriesModule
+let tagsModule: TagsModule
 
 const initialiseStores = (store: Store<any>): void => {
-  console.log('store:', store)
-  sampleStore = getModule(SampleStore, store)
-  console.log('sampleStore:', sampleStore)
+  sampleModule = getModule(SampleModule, store)
+  articlesModule = getModule(ArticlesModule, store)
+  categoriesModule = getModule(CategoriesModule, store)
+  tagsModule = getModule(TagsModule, store)
 }
 
-export { initialiseStores, sampleStore }
+export { initialiseStores, sampleModule, articlesModule, categoriesModule, tagsModule }

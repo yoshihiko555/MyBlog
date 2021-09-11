@@ -16,8 +16,14 @@ module.exports = {
       plugins: [
         'typescript',
         'typescript-operations',
-        'typed-document-node'
+        // 'typed-document-node',
+        'typescript-vue-apollo',
+        // 'typescript-vue-apollo-smart-ops',
       ],
+      config: {
+        // 'operationResultSuffix': 'Operation',
+        // 'documentVariablePrefix': 'Custom',
+      }
     },
     './generated/graphql.schema.json': {
       plugins: [

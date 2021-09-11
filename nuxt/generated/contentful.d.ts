@@ -8,7 +8,7 @@ export interface IArticlesFields {
   title: string
 
   /** Content */
-  content: Document
+  content?: string | undefined
 
   /** Thumbnail */
   thumbnail?: Asset | undefined

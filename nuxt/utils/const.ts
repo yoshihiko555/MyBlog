@@ -12,7 +12,7 @@ export const SITE_MAPS: SiteType[] = [
   { id: 'about', url: '/about', title: 'About', },
   { id: 'blog', url: '/blog', title: 'Blog' },
   { id: 'works', url: '/works', title: 'Works' },
-  { id: 'contact', url: '/contact', title: 'Contact' },
+  // { id: 'contact', url: '/contact', title: 'Contact' },
 ]
 
 // *********************

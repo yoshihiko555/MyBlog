@@ -25,8 +25,9 @@ export default ():NuxtConfig => ({
     ]
   },
   plugins: [
-    { src: '~/plugins/vuesax' },
-    { src: '~/plugins/apollo' },
+    '~/plugins/vuesax',
+    '~/plugins/apollo',
+    '~/plugins/filter',
   ],
   components: true,
   buildModules: [
@@ -43,6 +44,7 @@ export default ():NuxtConfig => ({
     '@nuxtjs/style-resources',
     '@nuxtjs/apollo',
     '@nuxtjs/markdownit',
+    '@nuxtjs/moment',
   ],
   axios: {},
   pwa: {
@@ -98,5 +100,5 @@ export default ():NuxtConfig => ({
   markdownit: {
     injected: true,
     breaks: true,
-  }
+  },
 })

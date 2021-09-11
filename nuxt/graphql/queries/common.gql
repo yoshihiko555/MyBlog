@@ -1,5 +1,7 @@
-query appInit($limit: Int!) {
-	articlesCollection (limit: $limit) {
+# サイト初期化時用のクエリー
+query appInit ($limit: Int!) {
+  # 最新記事一覧を取得
+	articlesCollection (limit: $limit, order: sys_firstPublishedAt_DESC) {
     items {
       sys {
         id
@@ -14,15 +16,22 @@ query appInit($limit: Int!) {
       }
       slug
       category {
+        sys {
+          id
+        }
         name
       }
       tagsCollection {
         items {
+          sys {
+            id
+          }
           name
         }
       }
     }
   }
+  # カテゴリー全件取得
   categoriesCollection {
     items {
       sys {
@@ -32,6 +41,7 @@ query appInit($limit: Int!) {
       slug
     }
   }
+  # タグ全件取得
   tagsCollection {
     items {
       sys {
