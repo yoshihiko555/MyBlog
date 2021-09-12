@@ -28,7 +28,8 @@
       "@nuxt/types",
       "@nuxtjs/axios",
       "@types/node",
-      "@nuxtjs/moment"
+      "@nuxtjs/moment",
+      "@nuxtjs/markdownit"
     ]
   },
   "exclude": [

@@ -3,16 +3,20 @@ import { NuxtConfig } from '@nuxt/types'
 export default ():NuxtConfig => ({
   // srcDir: 'src/',
   head: {
-    title: 'yoshihiko',
+    title: 'Yoshihiko',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      // OGP設定
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#',
+    }
   },
   css: [
     'vuesax/dist/vuesax.css',
@@ -28,6 +32,7 @@ export default ():NuxtConfig => ({
     '~/plugins/vuesax',
     '~/plugins/apollo',
     '~/plugins/filter',
+    '~/plugins/prism',
   ],
   components: true,
   buildModules: [
@@ -37,6 +42,7 @@ export default ():NuxtConfig => ({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/composition-api/module',
     '@nuxtjs/google-fonts',
+    '@nuxtjs/color-mode',
   ],
   modules: [
     '@nuxtjs/axios',
@@ -99,6 +105,11 @@ export default ():NuxtConfig => ({
   // }
   markdownit: {
     injected: true,
-    breaks: true,
+    breaks: true, // Convert '\n' in paragraphs into <br>
+    use: [
+      'markdown-it-anchor',
+      'markdown-it-table-of-contents',
+      'markdown-it-collapsible',
+    ]
   },
 })

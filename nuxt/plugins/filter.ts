@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import moment from 'moment'
 
 Vue.filter('truncate', (value: string, max: number, suffix: string = '...') => {
   if (!value) return ''

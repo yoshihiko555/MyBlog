@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vs-navbar class="px-6">
+    <vs-navbar class="sm:px-6">
       <template #left>
         <nuxt-link to='/'>
           <img src='~/assets/img/logo.svg' alt="logo" width="30" height="30" />
@@ -116,6 +116,8 @@ export default defineComponent({
     border-radius: 30px 0 0 30px;
   }
   .vs-button__content i {
-    font-size: 0.875em;
+    @include sm {
+      font-size: 0.875em;
+    }
   }
 </style>
