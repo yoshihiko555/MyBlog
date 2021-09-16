@@ -18,6 +18,7 @@ export default defineComponent({
       'optional-graphql',
       'composition-graphql',
       'store',
+      'composition-async',
     ]
     return {
       varifications

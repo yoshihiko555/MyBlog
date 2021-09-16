@@ -32,6 +32,17 @@ export default defineComponent({
   components: {
     SkillList
   },
+  head: {
+    title: 'About',
+    meta: [
+      { hid: 'description', name: 'description', content: 'yoshihiko about page' },
+      { hid: 'og:title', property: 'og:title', content: 'About | Yoshihiko' },
+      { hid: 'og:description', property: 'og:description', content: 'yoshihiko about page' },
+      { hid: 'og:url', property: 'og:url', content: `${process.env.ORIGIN}/about` || 'http://localhost:3000/about' },
+      { hid: 'twitter:title', property: 'twitter:title', content: 'About | Yoshihiko' },
+      { hid: 'twitter:description', property: 'twitter:description', content: 'yoshihiko about page' },
+    ]
+  },
   setup (): Data {
     return {
       skills: SKILLS,

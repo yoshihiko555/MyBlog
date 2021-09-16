@@ -4,12 +4,23 @@ export default ():NuxtConfig => ({
   // srcDir: 'src/',
   head: {
     title: 'Yoshihiko',
+    titleTemplate: '%s | Yoshihiko',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-      // OGP設定
+      { hid: 'description', name: 'description', content: 'yoshihiko site' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'Yoshihiko' },
+      { hid: 'og:title', property: 'og:title', content: 'Yoshihiko' },
+      { hid: 'og:description', property: 'og:description', content: 'yoshihiko site' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: process.env.ORIGIN || 'http://localhost:3000' },
+      { hid: 'og:image', property: 'og:image', content: `${process.env.ORIGIN}/ogp-default.webp` },
+      { hid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:title', property: 'twitter:title', content: 'Yoshihiko' },
+      { hid: 'twitter:site', property: 'twitter:site', content: '@yoshihiko5555' },
+      { hid: 'twitter:description', property: 'twitter:description', content: 'yoshihiko site' },
+      { hid: 'twitter:image', property: 'twitter:image', content: `${process.env.ORIGIN}/ogp-default.webp` },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -31,8 +42,8 @@ export default ():NuxtConfig => ({
   plugins: [
     '~/plugins/vuesax',
     '~/plugins/apollo',
-    '~/plugins/filter',
     '~/plugins/prism',
+    '~/plugins/utils',
   ],
   components: true,
   buildModules: [
@@ -112,4 +123,7 @@ export default ():NuxtConfig => ({
       'markdown-it-collapsible',
     ]
   },
+  publicRuntimeConfig: {
+    origin: process.env.ORIGIN || 'http://localhost:3000'
+  }
 })

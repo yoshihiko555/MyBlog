@@ -31,6 +31,17 @@ export default defineComponent({
   components: {
     WorkCard,
   },
+  head: {
+    title: 'Works',
+    meta: [
+      { hid: 'description', name: 'description', content: 'yoshihiko works page' },
+      { hid: 'og:title', property: 'og:title', content: 'Works | Yoshihiko' },
+      { hid: 'og:description', property: 'og:description', content: 'yoshihiko works page' },
+      { hid: 'og:url', property: 'og:url', content: `${process.env.ORIGIN}/works` || 'http://localhost:3000/works' },
+      { hid: 'twitter:title', property: 'twitter:title', content: 'Works | Yoshihiko' },
+      { hid: 'twitter:description', property: 'twitter:description', content: 'yoshihiko works page' },
+    ]
+  },
   setup (): Data {
     return {
       works: WORKS,

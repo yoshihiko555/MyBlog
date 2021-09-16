@@ -12,7 +12,6 @@ export default class ArticlesModule extends VuexModule {
 
   @Mutation
   private setRecentArticles(articles: Articles[]) {
-    console.log(articles)
     this._recentArticles = articles
   }
 }

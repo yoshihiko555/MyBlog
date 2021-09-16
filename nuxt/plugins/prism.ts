@@ -1,5 +1,6 @@
 import 'clipboard'
 import Prism from 'prismjs'
+
 // Theme設定
 import 'prismjs/themes/prism-tomorrow.css'
 
@@ -12,7 +13,6 @@ import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-scss'
 import 'prismjs/components/prism-yaml'
-
 
 // プラグインの設定
 import 'prismjs/plugins/toolbar/prism-toolbar.js'

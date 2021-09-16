@@ -12,7 +12,7 @@
 /**
  * TODO : ページネーション
  */
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, useMeta } from '@nuxtjs/composition-api'
 import { useGetArticlesQuery } from '~/generated/graphql'
 import { useResult } from '@vue/apollo-composable'
 
@@ -25,6 +25,10 @@ export default defineComponent({
     ArticleList,
     Categories,
     Tags,
+  },
+  head: {
+    title: 'Blog',
+    meta: [],
   },
   setup () {
     const { result } = useGetArticlesQuery()

@@ -1,21 +1,47 @@
 {
+  // コンパイルする際のオプションを記述していく
   "compilerOptions": {
+    // JSバージョンの指定（デフォルト：ES3）
     "target": "ES2018",
+
+    // FrontとBackendはモジュールの読み込み方法が異なる
+    // 出力されるJSがどのようにモジュールを読み込むか指定する
     "module": "ESNext",
+
+    // tscのモジュール解決方法の指定
+    // Node or Classic(古い)が選択可能
     "moduleResolution": "Node",
+
+    // 使用する組み込みライブラリの指定
     "lib": [
       "ESNext",
       "ESNext.AsyncIterable",
       "DOM"
     ],
+
+    // コンパイル時にヘルパーメソッドが生成される
     "esModuleInterop": true,
+
+    // JSをコンパイル対象に含める
     "allowJs": true,
+
+    // JSのMapファイルの生成
     "sourceMap": true,
+
+    // 厳密な型チェック機能をON
     "strict": true,
+
+    // コンパイル結果を出力しない
     "noEmit": true,
+
+    // デコレータの使用許可
     "experimentalDecorators": true,
+
+    // non-relativeなimportにおいて、相対的なカレントディレクトリをどこにするか指定
     "baseUrl": ".",
     // "baseUrl": "./src",
+
+    // baseUrlを基準として、特定の非相対モジュールに対して個別のパスマッピングを行う
     "paths": {
       "~/*": [
         "./*"
@@ -24,14 +50,33 @@
         "./*"
       ]
     },
+
+    // デフォルトで対象範囲全ての`@types`パッケージがコンパイルに含まれる
+    // typesに記述すると、指定したパッケージのみが含まれるようになる
+    // node_modules/@types/nodeは含まれるが、node_modules/@types/lodashは含まれない
     "types": [
       "@nuxt/types",
       "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/moment",
-      "@nuxtjs/markdownit"
-    ]
+      "@nuxtjs/markdownit",
+    ],
   },
+  // コンパイルするファイルを直接指定する
+  // ワイルドカードは使用できない
+  // "files": [
+  //   "./types/nuxt.d.ts"
+  // ],
+
+  // コンパイルする対象ファイルを記述する
+  // ワイルドカードの使用が可能
+  "include": [
+    "./utils/*.ts",
+    "./types/*.d.ts"
+  ],
+
+  // コンパイルする対象から除外するファイルを記述する
+  // ワイルドカードの使用が可能
   "exclude": [
     "node_modules",
     ".nuxt",
