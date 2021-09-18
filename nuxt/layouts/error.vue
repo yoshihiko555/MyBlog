@@ -1,44 +1,43 @@
 <template>
-  <div class="main">
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+  <div class="main flex justify-center items-center text-2xl">
+    <h1>{{ dispTitle }}</h1>
   </div>
 </template>
 
-<script>
-export default {
-  layout: 'empty',
+<script lang='ts'>
+import { defineComponent, toRefs, useMeta, PropType } from '@nuxtjs/composition-api'
+import { NuxtError } from '~/types'
+export default defineComponent({
   props: {
     error: {
       type: Object,
+      // type: Object as PropType<NuxtError>, -> Errorになる
       default: null
     }
   },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
+  head: {},
+  setup (props) {
+    const { title, meta } = useMeta()
+
+    const getTitle = () => {
+      switch (props.error.statusCode) {
+        case 404: return '404 Page Notfound'
+        case 500: return '500 Internal Server Error'
+        default: return 'An error occurred'
+      }
     }
-  },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+
+    title.value = getTitle()
+
     return {
-      title
+      dispTitle: getTitle()
     }
   }
-}
+})
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
-  font-size: 20px;
+  @include r-line-blink;
 }
 </style>
