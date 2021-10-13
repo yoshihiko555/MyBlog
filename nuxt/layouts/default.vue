@@ -1,8 +1,8 @@
 <template>
-  <div class="container px-4">
+  <div>
     <Header />
     <transition name='fade'>
-      <Nuxt class="main" />
+      <Nuxt class="root-wrapper" />
     </transition>
     <Footer />
   </div>
@@ -17,13 +17,16 @@ export default Vue.extend({
   components: {
     Header,
     Footer,
-  },
-  transition: {
-    name: 'fade'
   }
 })
 </script>
 
 <style lang="scss" scoped>
-  @include animation($tran-name: 'fade', $anime-name: ('fade'))
+@include animation($tran-name: 'fade', $anime-name: ('fade'));
+
+.root-wrapper {
+  @apply container max-w-screen-xl;
+  padding-top: $header-h;
+  min-height: calc(100vh - #{($header-h + $footer-h)}) !important;
+}
 </style>

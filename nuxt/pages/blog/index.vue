@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class='site-title text-center'>Blog</h1>
+  <div>
+    <h1 class='page-title'>Blog</h1>
     <article-list :articles="articles" />
     <p class="mb-20 text-center">pagenation</p>
     <categories />

@@ -96,8 +96,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .link {
-    @apply mx-1 px-1;
-    position: relative;
+    @apply relative mx-1 px-1 font-medium;
     transition: .3s;
 
     &::after {

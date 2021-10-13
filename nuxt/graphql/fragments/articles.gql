@@ -1,3 +1,4 @@
+# onの部分はContentfulで定義したschema名に対応している必要がある
 fragment articleFragment on Articles {
   sys {
     id
@@ -16,7 +17,7 @@ fragment articleFragment on Articles {
   }
   tagsCollection {
     items {
-      ...tagFramgment
+      ...tagFragment
     }
   }
 }

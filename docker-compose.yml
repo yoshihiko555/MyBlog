@@ -27,7 +27,7 @@ services:
 
   nuxt:
     build: ./nuxt
-    image: node:my-14-alpine
+    image: node:14-alpine
     container_name: nx-client
     working_dir: /usr/src
     ports:

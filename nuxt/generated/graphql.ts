@@ -985,7 +985,7 @@ export type ArticleFragmentFragment = { __typename?: 'Articles', title?: Maybe<s
 
 export type CategoryFragmentFragment = { __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } };
 
-export type TagFramgmentFragment = { __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } };
+export type TagFragmentFragment = { __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } };
 
 export type GetArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1006,12 +1006,36 @@ export type GetArticleBySlugQueryVariables = Exact<{
 
 export type GetArticleBySlugQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }> };
 
+export type GetCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCategoriesQuery = { __typename?: 'Query', categoriesCollection?: Maybe<{ __typename?: 'CategoriesCollection', items: Array<Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> };
+
+export type GetArticleByCategoryQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetArticleByCategoryQuery = { __typename?: 'Query', categoriesCollection?: Maybe<{ __typename?: 'CategoriesCollection', items: Array<Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, linkedFrom?: Maybe<{ __typename?: 'CategoriesLinkingCollections', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }> }>, sys: { __typename?: 'Sys', id: string } }>> }> };
+
 export type AppInitQueryVariables = Exact<{
   limit: Scalars['Int'];
 }>;
 
 
-export type AppInitQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }>, categoriesCollection?: Maybe<{ __typename?: 'CategoriesCollection', items: Array<Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }>, tagsCollection?: Maybe<{ __typename?: 'TagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> };
+export type AppInitQuery = { __typename?: 'Query', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }>, categoriesCollection?: Maybe<{ __typename?: 'CategoriesCollection', items: Array<Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }>, tagsCollection?: Maybe<{ __typename?: 'TagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> };
+
+export type GetTagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTagsQuery = { __typename?: 'Query', tagsCollection?: Maybe<{ __typename?: 'TagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> };
+
+export type GetArticleByTagQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetArticleByTagQuery = { __typename?: 'Query', tagsCollection?: Maybe<{ __typename?: 'TagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, linkedFrom?: Maybe<{ __typename?: 'TagsLinkingCollections', articlesCollection?: Maybe<{ __typename?: 'ArticlesCollection', items: Array<Maybe<{ __typename?: 'Articles', title?: Maybe<string>, content?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string, firstPublishedAt?: Maybe<any>, publishedAt?: Maybe<any> }, thumbnail?: Maybe<{ __typename?: 'Asset', url?: Maybe<string>, description?: Maybe<string> }>, category?: Maybe<{ __typename?: 'Categories', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>, tagsCollection?: Maybe<{ __typename?: 'ArticlesTagsCollection', items: Array<Maybe<{ __typename?: 'Tags', name?: Maybe<string>, slug?: Maybe<string>, sys: { __typename?: 'Sys', id: string } }>> }> }>> }> }>, sys: { __typename?: 'Sys', id: string } }>> }> };
 
 export const CategoryFragmentFragmentDoc = gql`
     fragment categoryFragment on Categories {
@@ -1022,8 +1046,8 @@ export const CategoryFragmentFragmentDoc = gql`
   slug
 }
     `;
-export const TagFramgmentFragmentDoc = gql`
-    fragment tagFramgment on Tags {
+export const TagFragmentFragmentDoc = gql`
+    fragment tagFragment on Tags {
   sys {
     id
   }
@@ -1050,12 +1074,12 @@ export const ArticleFragmentFragmentDoc = gql`
   }
   tagsCollection {
     items {
-      ...tagFramgment
+      ...tagFragment
     }
   }
 }
     ${CategoryFragmentFragmentDoc}
-${TagFramgmentFragmentDoc}`;
+${TagFragmentFragmentDoc}`;
 export const GetArticlesDocument = gql`
     query getArticles {
   articlesCollection(order: sys_firstPublishedAt_DESC) {
@@ -1085,37 +1109,10 @@ export type GetArticlesQueryCompositionFunctionResult = VueApolloComposable.UseQ
 export const GetArticleByIdDocument = gql`
     query getArticleById($id: String!) {
   articles(id: $id) {
-    sys {
-      id
-      firstPublishedAt
-      publishedAt
-    }
-    title
-    content
-    thumbnail {
-      url
-      description
-    }
-    slug
-    category {
-      sys {
-        id
-      }
-      name
-      slug
-    }
-    tagsCollection {
-      items {
-        sys {
-          id
-        }
-        name
-        slug
-      }
-    }
+    ...articleFragment
   }
 }
-    `;
+    ${ArticleFragmentFragmentDoc}`;
 
 /**
  * __useGetArticleByIdQuery__
@@ -1140,38 +1137,11 @@ export const GetArticleBySlugDocument = gql`
     query getArticleBySlug($slug: String!) {
   articlesCollection(where: {slug: $slug}, limit: 1) {
     items {
-      sys {
-        id
-        firstPublishedAt
-        publishedAt
-      }
-      title
-      content
-      thumbnail {
-        url
-        description
-      }
-      slug
-      category {
-        sys {
-          id
-        }
-        name
-        slug
-      }
-      tagsCollection {
-        items {
-          sys {
-            id
-          }
-          name
-          slug
-        }
-      }
+      ...articleFragment
     }
   }
 }
-    `;
+    ${ArticleFragmentFragmentDoc}`;
 
 /**
  * __useGetArticleBySlugQuery__
@@ -1192,58 +1162,90 @@ export function useGetArticleBySlugQuery(variables: GetArticleBySlugQueryVariabl
   return VueApolloComposable.useQuery<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>(GetArticleBySlugDocument, variables, options);
 }
 export type GetArticleBySlugQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>;
+export const GetCategoriesDocument = gql`
+    query getCategories {
+  categoriesCollection(order: sys_firstPublishedAt_DESC) {
+    items {
+      ...categoryFragment
+    }
+  }
+}
+    ${CategoryFragmentFragmentDoc}`;
+
+/**
+ * __useGetCategoriesQuery__
+ *
+ * To run a query within a Vue component, call `useGetCategoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCategoriesQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetCategoriesQuery();
+ */
+export function useGetCategoriesQuery(options: VueApolloComposable.UseQueryOptions<GetCategoriesQuery, GetCategoriesQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetCategoriesQuery, GetCategoriesQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetCategoriesQuery, GetCategoriesQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument, {}, options);
+}
+export type GetCategoriesQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetCategoriesQuery, GetCategoriesQueryVariables>;
+export const GetArticleByCategoryDocument = gql`
+    query getArticleByCategory($slug: String!) {
+  categoriesCollection(where: {slug: $slug}, limit: 1) {
+    items {
+      ...categoryFragment
+      linkedFrom {
+        articlesCollection {
+          items {
+            ...articleFragment
+          }
+        }
+      }
+    }
+  }
+}
+    ${CategoryFragmentFragmentDoc}
+${ArticleFragmentFragmentDoc}`;
+
+/**
+ * __useGetArticleByCategoryQuery__
+ *
+ * To run a query within a Vue component, call `useGetArticleByCategoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArticleByCategoryQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetArticleByCategoryQuery({
+ *   slug: // value for 'slug'
+ * });
+ */
+export function useGetArticleByCategoryQuery(variables: GetArticleByCategoryQueryVariables | VueCompositionApi.Ref<GetArticleByCategoryQueryVariables> | ReactiveFunction<GetArticleByCategoryQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetArticleByCategoryQuery, GetArticleByCategoryQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetArticleByCategoryQuery, GetArticleByCategoryQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetArticleByCategoryQuery, GetArticleByCategoryQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetArticleByCategoryQuery, GetArticleByCategoryQueryVariables>(GetArticleByCategoryDocument, variables, options);
+}
+export type GetArticleByCategoryQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetArticleByCategoryQuery, GetArticleByCategoryQueryVariables>;
 export const AppInitDocument = gql`
     query appInit($limit: Int!) {
   articlesCollection(limit: $limit, order: sys_firstPublishedAt_DESC) {
     items {
-      sys {
-        id
-        firstPublishedAt
-        publishedAt
-      }
-      title
-      content
-      thumbnail {
-        url
-        description
-      }
-      slug
-      category {
-        sys {
-          id
-        }
-        name
-      }
-      tagsCollection {
-        items {
-          sys {
-            id
-          }
-          name
-        }
-      }
+      ...articleFragment
     }
   }
   categoriesCollection {
     items {
-      sys {
-        id
-      }
-      name
-      slug
+      ...categoryFragment
     }
   }
   tagsCollection {
     items {
-      sys {
-        id
-      }
-      name
-      slug
+      ...tagFragment
     }
   }
 }
-    `;
+    ${ArticleFragmentFragmentDoc}
+${CategoryFragmentFragmentDoc}
+${TagFragmentFragmentDoc}`;
 
 /**
  * __useAppInitQuery__
@@ -1264,3 +1266,66 @@ export function useAppInitQuery(variables: AppInitQueryVariables | VueCompositio
   return VueApolloComposable.useQuery<AppInitQuery, AppInitQueryVariables>(AppInitDocument, variables, options);
 }
 export type AppInitQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<AppInitQuery, AppInitQueryVariables>;
+export const GetTagsDocument = gql`
+    query getTags {
+  tagsCollection(order: sys_firstPublishedAt_DESC) {
+    items {
+      ...tagFragment
+    }
+  }
+}
+    ${TagFragmentFragmentDoc}`;
+
+/**
+ * __useGetTagsQuery__
+ *
+ * To run a query within a Vue component, call `useGetTagsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTagsQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetTagsQuery();
+ */
+export function useGetTagsQuery(options: VueApolloComposable.UseQueryOptions<GetTagsQuery, GetTagsQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetTagsQuery, GetTagsQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetTagsQuery, GetTagsQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetTagsQuery, GetTagsQueryVariables>(GetTagsDocument, {}, options);
+}
+export type GetTagsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetTagsQuery, GetTagsQueryVariables>;
+export const GetArticleByTagDocument = gql`
+    query getArticleByTag($slug: String!) {
+  tagsCollection(where: {slug: $slug}, limit: 1) {
+    items {
+      ...tagFragment
+      linkedFrom {
+        articlesCollection {
+          items {
+            ...articleFragment
+          }
+        }
+      }
+    }
+  }
+}
+    ${TagFragmentFragmentDoc}
+${ArticleFragmentFragmentDoc}`;
+
+/**
+ * __useGetArticleByTagQuery__
+ *
+ * To run a query within a Vue component, call `useGetArticleByTagQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArticleByTagQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetArticleByTagQuery({
+ *   slug: // value for 'slug'
+ * });
+ */
+export function useGetArticleByTagQuery(variables: GetArticleByTagQueryVariables | VueCompositionApi.Ref<GetArticleByTagQueryVariables> | ReactiveFunction<GetArticleByTagQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetArticleByTagQuery, GetArticleByTagQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetArticleByTagQuery, GetArticleByTagQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetArticleByTagQuery, GetArticleByTagQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetArticleByTagQuery, GetArticleByTagQueryVariables>(GetArticleByTagDocument, variables, options);
+}
+export type GetArticleByTagQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetArticleByTagQuery, GetArticleByTagQueryVariables>;

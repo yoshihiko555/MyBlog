@@ -2,7 +2,7 @@
   <span
     class="tag"
     :class="{small:small}"
-    @click="$router.push(`${tag.slug}`)"
+    @click="$router.push(`/tags/${tag.slug}`)"
   >
     #{{ tag.name }}
   </span>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class='py-5 text-center'>
       <h3 class='mb-1 text-2xl tracking-wider'>Yoshihiko</h3>
       <p class='text-lg'>Engineer</p>

@@ -1,32 +1,38 @@
 import { NuxtConfig } from '@nuxt/types'
 
+/** サイト名 */
+const siteName = 'Yoshihiko'
+/** Description */
+const desc = 'Yoshihiko tech siteです。技術ブログ兼ポートフォリオにもなっています。'
+
 export default ():NuxtConfig => ({
   // srcDir: 'src/',
   head: {
-    title: 'Yoshihiko',
-    titleTemplate: '%s | Yoshihiko',
+    title: siteName,
+    titleTemplate: `%s | ${siteName}`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'format-detection', content: 'telephone=no' },
-      { hid: 'description', name: 'description', content: 'yoshihiko site' },
-      { hid: 'og:site_name', property: 'og:site_name', content: 'Yoshihiko' },
-      { hid: 'og:title', property: 'og:title', content: 'Yoshihiko' },
-      { hid: 'og:description', property: 'og:description', content: 'yoshihiko site' },
+      { hid: 'description', name: 'description', content: desc },
+      { hid: 'og:site_name', property: 'og:site_name', content: siteName },
+      { hid: 'og:title', property: 'og:title', content: siteName },
+      { hid: 'og:description', property: 'og:description', content: desc },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', property: 'og:url', content: process.env.ORIGIN || 'http://localhost:3000' },
-      { hid: 'og:image', property: 'og:image', content: `${process.env.ORIGIN}/ogp-default.webp` },
+      { hid: 'og:image', property: 'og:image', content: `${process.env.ORIGIN}/ogp-default.jpeg` },
       { hid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
       { hid: 'twitter:title', property: 'twitter:title', content: 'Yoshihiko' },
       { hid: 'twitter:site', property: 'twitter:site', content: '@yoshihiko5555' },
-      { hid: 'twitter:description', property: 'twitter:description', content: 'yoshihiko site' },
-      { hid: 'twitter:image', property: 'twitter:image', content: `${process.env.ORIGIN}/ogp-default.webp` },
+      { hid: 'twitter:description', property: 'twitter:description', content: desc },
+      { hid: 'twitter:image', property: 'twitter:image', content: `${process.env.ORIGIN}/ogp-default.jpeg` },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon', sizes: '180×180', href: '/apple-touch-icon.png'},
     ],
     htmlAttrs: {
-      prefix: 'og: http://ogp.me/ns#',
+      prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#',
     }
   },
   css: [
@@ -73,7 +79,7 @@ export default ():NuxtConfig => ({
   build: {
     parallel: true,
     cache: true,
-    hardSource: true,
+    // hardSource: true,
   },
   server: {
     host: '0.0.0.0',
@@ -86,7 +92,7 @@ export default ():NuxtConfig => ({
   },
   googleFonts: {
     families: {
-      Roboto: true,
+      Roboto: [100, 400, 500],
       Inconsolata: [200, 500],
       'Noto+Sans+JP': [100, 400, 700],
     },

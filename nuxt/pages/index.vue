@@ -1,6 +1,5 @@
 <template>
   <section class="flex">
-    <!-- TODO : タイミングをずらしたフェードイン -->
     <div class="self-center">
       <transition name='down_fade' appear @before-appear='beforeAppear' @after-appear='afterAppear'>
         <h2 class="text-2xl font-normal mb-4" data-delay='0'>Hello<br />Welcome to my site</h2>
@@ -24,6 +23,7 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
+  layout: 'home',
   head: {
     title: 'Home',
     meta: [

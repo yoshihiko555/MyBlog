@@ -1,4 +1,4 @@
-fragment tagFramgment on Tags {
+fragment tagFragment on Tags {
   sys {
     id
   }

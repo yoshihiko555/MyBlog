@@ -6,6 +6,7 @@
         v-for="category in categories"
         :key="category.sys.id"
         class="category"
+        :to='`/categories/${category.slug}`'
       >
         {{ category.name }}
       </vs-button>

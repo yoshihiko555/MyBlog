@@ -3,52 +3,19 @@ query appInit ($limit: Int!) {
   # 最新記事一覧を取得
 	articlesCollection (limit: $limit, order: sys_firstPublishedAt_DESC) {
     items {
-      sys {
-        id
-        firstPublishedAt
-        publishedAt
-      }
-      title
-      content
-      thumbnail {
-        url
-        description
-      }
-      slug
-      category {
-        sys {
-          id
-        }
-        name
-      }
-      tagsCollection {
-        items {
-          sys {
-            id
-          }
-          name
-        }
-      }
+      ...articleFragment
     }
   }
   # カテゴリー全件取得
   categoriesCollection {
     items {
-      sys {
-        id
-      }
-      name
-      slug
+      ...categoryFragment
     }
   }
   # タグ全件取得
   tagsCollection {
     items {
-      sys {
-        id
-      }
-      name
-      slug
+      ...tagFragment
     }
   }
 }

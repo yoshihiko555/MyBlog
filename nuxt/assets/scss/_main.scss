@@ -1,11 +1,6 @@
 // *************************************
 // サイト全体の共通クラス定義
 // *************************************
-.main {
-  margin-top: $height-header;
-  min-height: calc(100vh - #{($height-header + $height-footer)}) !important;
-}
-
-.site-title {
-  @apply py-5 text-2xl;
+.page-title {
+  @apply py-20 text-2xl text-center;
 }

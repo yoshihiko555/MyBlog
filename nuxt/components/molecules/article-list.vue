@@ -5,7 +5,7 @@
         <nuxt-img v-if="article.thumbnail" :src='article.thumbnail.url' />
       </template>
       <template #interactions>
-        <vs-button v-if="article.category" :to='article.category.slug' class="category" @click.stop>
+        <vs-button v-if="article.category" :to='`/categories/${article.category.slug}`' class="category" @click.stop>
           <span>{{ article.category.name }}</span>
         </vs-button>
       </template>
@@ -14,13 +14,13 @@
         <h3 class="title">{{ article.title }}</h3>
       </template>
       <template #text>
-        <p class="lead-text">{{ $truncate(article.content || '', 60) }}</p>
+        <p class="lead-text">{{ $truncate(article.content && article.content.replace(/\[\[toc\]\]\s/, '') || '', 60) }}</p>
         <div v-if='article.tagsCollection && article.tagsCollection.items.length'>
           <span
             v-for='tag in article.tagsCollection.items'
             :key="tag && tag.sys.id"
             :to='tag && tag.slug'
-            @click.stop='$router.push(`${tag && tag.slug}`)'
+            @click.stop='$router.push(`/tags/${tag && tag.slug}`)'
             class="tag"
           >#{{ tag && tag.name }}</span>
         </div>

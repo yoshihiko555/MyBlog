@@ -10,8 +10,7 @@ import { NuxtError } from '~/types'
 export default defineComponent({
   props: {
     error: {
-      type: Object,
-      // type: Object as PropType<NuxtError>, -> Errorになる
+      type: Object as PropType<NuxtError>, //-> Errorになる
       default: null
     }
   },
