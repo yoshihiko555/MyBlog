@@ -45,13 +45,13 @@ export default ():NuxtConfig => ({
       '~/assets/scss/prepends.scss'
     ]
   },
+  components: true,
   plugins: [
     '~/plugins/vuesax',
     '~/plugins/apollo',
     '~/plugins/prism',
     '~/plugins/utils',
   ],
-  components: true,
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxt/image',
@@ -62,14 +62,13 @@ export default ():NuxtConfig => ({
     '@nuxtjs/color-mode',
   ],
   modules: [
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/apollo',
     '@nuxtjs/markdownit',
     '@nuxtjs/moment',
+    '@nuxtjs/google-gtag',
   ],
-  axios: {},
   pwa: {
     manifest: {
       name: 'yoshihiko',
@@ -81,6 +80,9 @@ export default ():NuxtConfig => ({
     cache: true,
     // hardSource: true,
   },
+  // *******************
+  // DevServerの設定
+  // *******************
   server: {
     host: '0.0.0.0',
   },
@@ -90,6 +92,15 @@ export default ():NuxtConfig => ({
       ignored: /node_modules/,
     }
   },
+  // *******************
+  // 環境変数の設定
+  // *******************
+  publicRuntimeConfig: {
+    origin: process.env.ORIGIN || 'http://localhost:3000'
+  },
+  // *******************
+  // 各モジュールの設定
+  // *******************
   googleFonts: {
     families: {
       Roboto: [100, 400, 500],
@@ -129,7 +140,7 @@ export default ():NuxtConfig => ({
       'markdown-it-collapsible',
     ]
   },
-  publicRuntimeConfig: {
-    origin: process.env.ORIGIN || 'http://localhost:3000'
-  }
+  'google-gtag': {
+    id: process.env.GTAG_ID
+  },
 })
