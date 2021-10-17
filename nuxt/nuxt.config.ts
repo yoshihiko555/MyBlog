@@ -80,6 +80,30 @@ export default ():NuxtConfig => ({
     cache: true,
     // hardSource: true,
   },
+  router: {
+    extendRoutes (routes, resolve) {
+      // Blog一覧ページネーション
+      routes.push({
+        path: '/blog/page/:page',
+        component: resolve(__dirname, 'pages/blog/index.vue'),
+        name: 'blog-page',
+      })
+
+      // Categoryページネーション
+      routes.push({
+        path: '/categories/page/:page',
+        component: resolve(__dirname, 'pages/categories/_slug.vue'),
+        name: 'categories-page',
+      })
+
+      // Tagページネーション
+      routes.push({
+        path: '/tags/page/:page',
+        component: resolve(__dirname, 'pages/tags/_slug.vue'),
+        name: 'tags-page',
+      })
+    }
+  },
   // *******************
   // DevServerの設定
   // *******************
@@ -138,6 +162,15 @@ export default ():NuxtConfig => ({
       'markdown-it-anchor',
       'markdown-it-table-of-contents',
       'markdown-it-collapsible',
+      [
+        'markdown-it-link-attributes',
+        {
+          attrs: {
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          }
+        }
+      ]
     ]
   },
   'google-gtag': {

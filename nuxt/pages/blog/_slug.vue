@@ -62,6 +62,7 @@
  * - 404ページへの遷移 : OK
  * - 戻るボタンでページ内で遷移する（今だとURLは戻っているけど画面上は戻っていない）
  * - 自サイトのリンクと、外部サイトのリンクで処理を切り替え
+ *     - https://izm51.com/posts/markdown-it-target-blank-anchor/
  * - やはり、ApolloClientがCSRだとスクリプト上ではNullとかUndefinedになってしまう問題はなんとかしなくてはいけない
  * - CSRとSSRでのレンダリングに差異が生まれて、エラーが発生してしまう（厳密にはVue.warn）
  * - コメント機能

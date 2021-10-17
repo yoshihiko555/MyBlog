@@ -56,7 +56,6 @@
     // node_modules/@types/nodeは含まれるが、node_modules/@types/lodashは含まれない
     "types": [
       "@nuxt/types",
-      "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/moment",
       "@nuxtjs/markdownit",

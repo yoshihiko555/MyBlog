@@ -1,6 +1,7 @@
 # 全記事を取得します。
-query getArticles {
-  articlesCollection (order: sys_firstPublishedAt_DESC) {
+query getArticles ($limit: Int = 0, $skip: Int = 0) {
+  articlesCollection (order: sys_firstPublishedAt_DESC, limit: $limit, skip: $skip) {
+    total
     items {
       ...articleFragment
     }

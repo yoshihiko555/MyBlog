@@ -1,10 +1,16 @@
 <template>
   <div>
-    <div v-if="tag">
+    <div v-if="tag && !loading">
       <h1 class="page-title">{{ tag.name }}</h1>
       <div v-if="articles">
         <article-list :articles="articles" />
-        <p>pagenation</p>
+        <div class="flex items-center justify-center mb-20">
+          <vs-pagination
+            v-model='page'
+            :length='totalPages'
+            @input='pageChange'
+          />
+        </div>
         <categories />
         <tags />
       </div>
@@ -18,7 +24,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, useContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, useContext, useMeta, useRouter, ref } from '@nuxtjs/composition-api'
 import { useResult } from '@vue/apollo-composable'
 import { useGetArticleByTagQuery } from '~/generated/graphql'
 import ArticleList from '~/components/molecules/article-list.vue'
@@ -33,9 +39,23 @@ export default defineComponent({
   head: {},
   setup () {
     const { route, $config, error } = useContext()
-    const { result, onResult } = useGetArticleByTagQuery({ slug: route.value.params.slug })
+    const router = useRouter()
+
+    // ページネーション
+    const page = ref<number>(Number(route.value.params.page) || 1)
+    const limit = 8
+    const skip = (page.value - 1) * limit
+    const pageChange = () => router.push(`/tags/page/${page.value}`)
+
+    const { result, onResult, loading } = useGetArticleByTagQuery({
+      slug: route.value.params.slug,
+      limit,
+      skip,
+    })
+
     const tag = useResult(result, null, data => data?.tagsCollection?.items[0])
     const articles = useResult(result, [], data => data?.tagsCollection?.items[0]?.linkedFrom?.articlesCollection?.items)
+    const totalPages = useResult(result, 1, data => Math.ceil((data?.tagsCollection?.items[0]?.linkedFrom?.articlesCollection?.total || 1)/limit))
 
     onResult(res => {
       if (!res.data.tagsCollection?.items.length)
@@ -66,6 +86,10 @@ export default defineComponent({
     return {
       tag,
       articles,
+      loading,
+      page,
+      totalPages,
+      pageChange,
     }
   }
 })
