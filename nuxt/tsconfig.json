@@ -57,8 +57,7 @@
     "types": [
       "@nuxt/types",
       "@types/node",
-      "@nuxtjs/moment",
-      "@nuxtjs/markdownit",
+      "@nuxtjs/moment"
     ],
   },
   // コンパイルするファイルを直接指定する

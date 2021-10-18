@@ -14,7 +14,7 @@
       <tags />
     </div>
     <div v-else>
-      <p>Now Loading...</p>
+      <p class="page-title">Now Loading...</p>
     </div>
   </div>
 </template>

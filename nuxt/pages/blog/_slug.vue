@@ -42,7 +42,7 @@
         </div>
 
         <nuxt-img class="mb-10" v-if="article.thumbnail" :src='article.thumbnail.url' :alt='article.thumbnail.description' />
-        <div class="markdown-body line-numbers" v-html="parse(article.content)" />
+        <div class="markdown-body line-numbers" v-html="parse(article.content)" v-interpolation/>
       </div>
       <aside
         v-html="toc(article.content)"
@@ -59,6 +59,7 @@
  *   - 参考記事
  *     https://nishimura.club/nuxt-jest
  *     https://github.com/RyuNIshimura/next-blog/blob/b9368ae08cdf0029b24bb210676dc9aab689c064/lib/markdown-utils.ts#L42
+ *   →一度のパースで内容と目次を生成するよう修正すべきである
  * - 404ページへの遷移 : OK
  * - 戻るボタンでページ内で遷移する（今だとURLは戻っているけど画面上は戻っていない）
  * - 自サイトのリンクと、外部サイトのリンクで処理を切り替え
@@ -86,6 +87,7 @@ export default defineComponent({
     const { result, onResult } = useGetArticleBySlugQuery({ slug: route.value.params.slug })
     const article = useResult(result, null, data => data?.articlesCollection?.items[0])
     const tags = useResult(result, [], data => data?.articlesCollection?.items[0]?.tagsCollection?.items)
+
     onResult(res => {
       if (!res.data.articlesCollection?.items.length)
         error({ statusCode: 404 })
@@ -145,6 +147,7 @@ export default defineComponent({
      * 目次抽出用解析処理
      */
     const toc = (value: Maybe<string>) => {
+      if (!value) return ''
       const str: string = $md.render(value)
       const res = str.match(regx)
       if (!res) return ''
@@ -174,7 +177,7 @@ export default defineComponent({
   .markdown-body {
     // 文字
     h1, h2, h3, h4, h5, h6 {
-      @apply my-6;
+      @apply my-8;
     }
 
     p {
