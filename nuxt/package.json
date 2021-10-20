@@ -12,7 +12,8 @@
     "lint": "yarn lint:js && yarn lint:style",
     "codegen": "graphql-codegen --require dotenv/config --config config/codegen.js dotenv_config_path=.env",
     "contentful-codegen": "contentful-typescript-codegen --output generated/contentful.d.ts",
-    "clean": "rm -rf .nuxt"
+    "clean": "rm -rf .nuxt",
+    "vercel-build": "yarn global add node-gyp sharp"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",
