@@ -1,14 +1,17 @@
-.DS_Store
-node_modules
-dist/
+# my ignore files
+_nuxt/
+bk/
+archives/
+tsconfig-in-comments.json
+
+# REST server
 __pycache__
-server/media/upload/
-server/media/images/
-db.sqlite3
+*.sqlite3
+migrations/
+server/media/
+!server/media/default/
 server/static/
 server/templates/*.html
-.settings/
-migrations/
 
 # local env files
 .env.local
@@ -31,6 +34,7 @@ pnpm-debug.log*
 *.sw?
 *.project
 *.pydevproject
+.settings
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

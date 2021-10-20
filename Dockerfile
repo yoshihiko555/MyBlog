@@ -1,6 +1,6 @@
 FROM python:3
 
-WORKDIR /home/
+WORKDIR /usr/src/
 
 ADD ./server .
 RUN pip install --upgrade pip
