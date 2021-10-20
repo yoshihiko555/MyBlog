@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Copy build files to static files
           shell: bash
-          command: bash cpBuildFiles.sh
+          command: bash cp-build-files.sh
           working_directory: ~/workspace/scripts
       - persist_to_workspace:
           root: ~/workspace
@@ -61,7 +61,11 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore:
+                - nuxt
       - deploy:
           requires:
             - build
@@ -69,3 +73,5 @@ workflows:
             branches:
               only:
                 - master
+              ignore:
+                - nuxt
